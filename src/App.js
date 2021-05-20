@@ -11,8 +11,6 @@ function App() {
 
   const baseUrl = 'http://127.0.0.1:/';
 
-
-
   return (
     <Router>
       <Navbar />

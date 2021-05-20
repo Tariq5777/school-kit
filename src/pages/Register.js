@@ -78,7 +78,6 @@ const Register = () => {
             required
             variant="outlined"
             value={email}
-
             onChange={(e) => setEmail(e.target.value)}
           />
         </FormControl>
@@ -142,10 +141,8 @@ const Register = () => {
             />
           </FormControl>
         </div>}
-
-
         <FormControl fullWidth={true}>
-          <Button size="large" type="submit" variant="contained" color="primary"> Register</Button>
+          <Button size="large" type="submit" variant="contained" color="secondary"> Register</Button>
         </FormControl>
         {registerStatus && <p>Register Successful</p>}
 
