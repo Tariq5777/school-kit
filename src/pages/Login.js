@@ -34,7 +34,6 @@ const Login = () => {
       <img src={image} alt="school-kit" />
       <TextField
         type="text"
-        id="outlined-basic"
         label="email"
         variant="outlined"
         value={username}
@@ -42,18 +41,17 @@ const Login = () => {
       />
       <TextField
         type="password"
-        id="outlined-basic"
         label="password"
         variant="outlined"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button type="submit" variant="outline" color="secondary">
+      <Button type="submit" variant="outlined" color="secondary">
         Login
       </Button>
       {/* {!isPending && <button>Submit</button>}
       {isPending && <button disabled>Adding...</button>} */}
-    {loginStatus && <p>Hello</p>}
+      {loginStatus && <p>Hello</p>}
     </form>
   );
 };
