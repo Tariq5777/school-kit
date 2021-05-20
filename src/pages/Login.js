@@ -14,7 +14,6 @@ const Login = () => {
   const handleLogin = e =>{
     e.preventDefault();
 		// setIsPending(true);
-    const 
     axios.post("http://localhost:8000/api/login/", {
       auth: {
         email:'testing@test.com',
