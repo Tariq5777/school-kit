@@ -8,6 +8,9 @@
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body{
+  background: #66666650;
+}
 .navbar{
   position: fixed;
   top:0;
@@ -50,7 +53,7 @@
 }
 
 .home {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   position: relative;
   width: 85%;
   height:100vh;

@@ -19,14 +19,35 @@ const Register = () => {
   const [standard, setStandard] = useState(0);
   const [section, setSection] = useState("");
   const [rollNo, setRollNo] = useState(0);
-  const [userType, setUserType] = useState("student");
-  const [value, setValue] = useState("student");
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const [userType, setUserType] = useState(1);
+  
+  const handleUserType = e => {
+    setUserType(e.target.value);
   };
 
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+
+    const response = await fetch('http://127.0.0.1:8000/api/register/',{
+      method:'POST',
+      headers:{'Content-Type' : 'application/json'},
+      body : JSON.stringify({
+        fullName,
+        email,
+        username,
+        password,
+        standard,
+        section,
+        rollNo,
+        userType
+      })
+    });
+    const content = await response.json();
+    console.log(content);
+  }
+
   return (
-    <form className="login register">
+    <form className="login register" onSubmit = {handleSubmit} >
       <img src={image} alt="school-kit" />
       <TextField
         type="text"
@@ -84,24 +105,43 @@ const Register = () => {
         value={rollNo}
         onChange={(e) => setRollNo(e.target.value)}
       />
-      <FormControl component="fieldset">
-        <FormLabel component="legend">User Type</FormLabel>
-        <RadioGroup
-          aria-label="User Type"
-          name="user_type"
-          value={value}
-          onChange={handleChange}
-          style={{display:"flex",flexDirection:"row", justifyContent:"center"}}
-        >
-          <FormControlLabel value="student" control={<Radio />} label="Student" />
-          <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
-        </RadioGroup>
-      </FormControl>
-      <Button type="submit" variant="outline" color="secondary" >
-        Login
+      <div>
+        <label htmlFor="radio-button-demo">Student</label>
+      <Radio
+        checked={userType === "1"}
+        onChange={handleUserType}
+        value="1"
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'A' }}
+      />
+      <label htmlFor="radio-button-demo">Teacher</label>
+      <Radio
+        checked={userType === "2"}
+        onChange={handleUserType}
+        value="2"
+        name="radio-button-demo"
+        inputProps={{ 'aria-label': 'B' }}
+      />
+      </div>
+      <Button type="submit" variant="outline" color="primary" >
+        Register
       </Button>
     </form>
   );
 };
 
 export default Register;
+
+// <FormControl>
+//         <FormLabel component="legend">User Type</FormLabel>
+//         <RadioGroup
+//           aria-label="User Type"
+//           name="user_type"
+//           value={userType}
+//           onChange={handleChange}
+//           style={{display:"flex",flexDirection:"row", justifyContent:"center"}}
+//         >
+//           <FormControlLabel value="student" control={<Radio />} label="Student" />
+//           <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
+//         </RadioGroup>
+//       </FormControl>

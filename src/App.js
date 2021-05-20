@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import NotFound from "./components/NotFound";
+// import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
@@ -16,7 +16,6 @@ function App() {
     <Router>
       <div className= "app">
       <Navbar />
-        <Switch>
           <Route exact path="/">
             <Home baseUrl = {baseUrl} />
           </Route>
@@ -26,11 +25,10 @@ function App() {
           <Route path="/register">
             <Register/>
           </Route>
-          <Route path="*">
+          {/* <Route path="*">
             <NotFound />
-          </Route>
-        </Switch>
-      <Footer />
+          </Route> */}
+      {/* <Footer /> */}
       </div>
     </Router>
   );

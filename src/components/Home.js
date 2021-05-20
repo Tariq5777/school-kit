@@ -20,8 +20,7 @@ const Home =  ({baseUrl})=> {
 
   return (
     <div className = "home">
-     <Link to ="/login">login</Link>
-     <Link to ="/register">register</Link>
+     
 
     </div>
   )

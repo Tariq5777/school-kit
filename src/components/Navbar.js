@@ -8,7 +8,7 @@ function Navbar() {
       <Link to="/">
       <img src={image} style={{ width: "70px" }} alt = "school-kit-logo"/>
       </Link>
-      <List>
+      {/* <List>
         <ListItem>
           <Link to="/FAQ">
             <Button variant="outline" color="secondary" className = "btn">
@@ -23,8 +23,17 @@ function Navbar() {
             </Button>
           </Link>
         </ListItem>
+      </List> */}
+      <List>
+        <ListItem>
+        <Link to ="/login">login</Link>
+        </ListItem>
+        <ListItem>
+
+     <Link to ="/register">register</Link>
+        </ListItem>
       </List>
-      <Avatar
+      {/* <Avatar
         alt="Remy Sharp"
         src="/static/images/avatar/1.jpg"
         style={{
@@ -33,7 +42,8 @@ function Navbar() {
           margin: "5px",
           right: "5px",
         }}
-      />
+      /> */}
+
     </div>
   );
 }

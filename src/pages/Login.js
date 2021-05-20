@@ -6,33 +6,50 @@ import image from "../img/SK-logo/default-monochrome-sk.svg";
 const Login = () => {
   // const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIyMjAyMDI3LCJqdGkiOiI2ZGRlOGYxNWU0ZTY0MjkyYTk3NDExNGRiNzRhM2Y2ZSIsInVzZXJfaWQiOjEsInVzZXJfdHlwZSI6Mn0.wNyO-c9Yfo5iMqKL08JP5C11T_pXxgI5Wf9r6zMGY5U";
 
-  const baseUrl = '/http://127.0.0.1:8000';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const [loginStatus,setLoginStatus] = useState("");
 
-  axios.defaults.withCredentials = true;
-
-  const handleLogin = (e) => {
+  const handleLogin = e =>{
     e.preventDefault();
-    axios.post(baseUrl+"api/login/",{
-      username:username,
-      password:password,
-    }).then(res=>{
-      if(!res.data.message){
-        setLoginStatus(res.data.message);
+		// setIsPending(true);
+    const 
+    axios.post("http://localhost:8000/api/login/", {
+      auth: {
+        email:'testing@test.com',
+        password:'testing'
       }
-      else{
-        console.log(res.data);
-        setLoginStatus(res.data[0].username)
-      }
-    }).catch(err=>{
-      console.log(err);
     })
+			.then(()=>{
+				console.log('Welcome');
+				// setIsPending(false);
+				// history.push('/');
+			})
+      .catch(err=>{
+        console.log(err.message);
+      })
   };
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   axios.post(baseUrl+"api/login/",{
+  //     username:username,
+  //     password:password,
+  //   }).then(res=>{
+  //     if(!res.data.message){
+  //       setLoginStatus(res.data.message);
+  //     }
+  //     else{
+  //       console.log(res.data);
+  //       setLoginStatus(res.data[0].username)
+  //     }
+  //   }).catch(err=>{
+  //     console.log(err);
+  //   })
+  // };
   return (
-    <form onSubmit={handleLogin} class="login">
+    <form  class="login" onSubmit={handleLogin}>
       <img src={image} alt="school-kit" />
       <TextField 
         type = "text" 
@@ -48,7 +65,7 @@ const Login = () => {
         variant="outlined" 
         value= {password} 
         onChange = {e=>setPassword(e.target.value)} />
-      <Button type = "submit"variant="outline" color="secondary">
+      <Button type = "submit"variant="outline" color="secondary" >
         Login
       </Button>
       <p>{loginStatus}</p>
