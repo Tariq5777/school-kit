@@ -2,13 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, TextField, Container } from "@material-ui/core";
 import image from "../img/SK-logo/default-monochrome-sk.svg";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
+import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [loginStatus, setLoginStatus] = useState(false);
+
+  if (isAuthenticated()) {
+    return <Redirect to="/" />
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,22 +22,21 @@ const Login = () => {
     axios
       .post("http://localhost:8000/api/login/", {
         email: username,
-        password: password,
-        withCredentials:true
+        password: password
       })
-      .then(() => {
+      .then((res) => {
         console.log("Welcome");
         setLoginStatus(true);
-        // setIsPending(false);
-        // history.push('/');
+        authenticate(res.data)
+        history.push("/")
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  if(loginStatus){
-    return <Redirect to="/home"/>
+  if (loginStatus) {
+    return <Redirect to="/home" />
   }
 
   return (

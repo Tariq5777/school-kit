@@ -54,8 +54,8 @@ const Register = () => {
       console.log(error.response.data.message)
     });
   };
-  if(registerStatus){
-    return <Redirect to="/login"/>
+  if (registerStatus) {
+    return <Redirect to="/login" />
   }
 
   return (
