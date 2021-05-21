@@ -1,28 +1,25 @@
-import {Button} from '@material-ui/core';
-// import axios from 'axios';
+import {Button, Container} from '@material-ui/core';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const Home =  ({baseUrl})=> {
 
+const Home =  ( )=> {
 
+  const [fullName, setFullName] = useState('name');
+  const [isPending, setIsPending] = useState(true);
 
-  const handleClick = () => {
-    // axios.get(`${baseUrl}/profile/${accesToken}`)
-    // .then(function (response) {
-    //   // handle success
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   // handle error
-    //   console.log(error);
-    // })
-  }
-
-
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/profile/', {
+      withCredentials:true
+    }).then(res=>{
+      setFullName(res.full_name);  
+    })
+  }, [])
   return (
-    <div className = "home">
-     
-
-    </div>
+    <Container>
+     {!isPending &&  <p>Hi </p>}
+     {isPending &&  <p>Loading... </p>}
+    </Container>
   )
 }
 

@@ -41,9 +41,12 @@ body {
 
 .navbar ul li a {
   text-decoration: none;
+  color:white;
+  text-transform: capitalize;
+  font-size: large;
   text-align: center;
   box-sizing: border-box;
-  font-weight: bold;
+  font-weight: 700;
 }
 .navbar .btn {
   font-size: 18px;
@@ -52,17 +55,6 @@ body {
   color: white;
 }
 
-.home {
-  /* background-color: #ffffff; */
-  position: relative;
-  width: 85%;
-  height: 100vh;
-  top: 60px;
-  left: 15%;
-}
-.home a {
-  display: block;
-}
 
 .login {
   position: relative;

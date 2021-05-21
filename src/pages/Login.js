@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, TextField, Container } from "@material-ui/core";
 import image from "../img/SK-logo/default-monochrome-sk.svg";
+import { Redirect } from "react-router";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ const Login = () => {
       .post("http://localhost:8000/api/login/", {
         email: username,
         password: password,
+        withCredentials:true
       })
       .then(() => {
         console.log("Welcome");
@@ -28,9 +30,13 @@ const Login = () => {
       });
   };
 
+  if(loginStatus){
+    return <Redirect to="/home"/>
+  }
+
   return (
     <Container maxWidth="sm">
-      <form class="login" onSubmit={handleLogin}>
+      <form className="login" onSubmit={handleLogin}>
         <h1>Login</h1>
         <TextField
           type="text"

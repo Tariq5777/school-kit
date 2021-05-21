@@ -8,23 +8,25 @@ import Register from "./pages/Register";
 import { Container } from "@material-ui/core";
 
 function App() {
-
-  const baseUrl = 'http://127.0.0.1:/';
-
   return (
     <Router>
       <Navbar />
       <main style={{ marginTop: "8rem" }}>
-
-        <Route exact path="/"><Home baseUrl={baseUrl} /></Route>
-        <Route path="/login"><Login /></Route>
-        <Route path="/register"><Register /></Route>
+        <Route exact path="/home">
+          <Home/>
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
         {/* <Route path="*">
             <NotFound />
           </Route> */}
         {/* <Footer /> */}
       </main>
-    </Router >
+    </Router>
   );
 }
 

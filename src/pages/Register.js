@@ -11,6 +11,7 @@ import {
   Container,
 } from "@material-ui/core";
 import image from "../img/SK-logo/default-monochrome-sk.svg";
+import { Redirect } from "react-router";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -25,7 +26,7 @@ const Register = () => {
   const [registerStatus, setRegisterStatus] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  // const [redirect,setRedirect] = useState(false);
   const handleUserType = (e) => {
     setUserType(e.target.value);
   };
@@ -53,6 +54,9 @@ const Register = () => {
       console.log(error.response.data.message)
     });
   };
+  if(registerStatus){
+    return <Redirect to="/login"/>
+  }
 
   return (
     <Container maxWidth="sm">
