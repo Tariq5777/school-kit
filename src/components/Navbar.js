@@ -58,7 +58,7 @@ const Navbar = () => {
                     {user && (
                         <div>
                             <List>
-                                <listItem>
+                                <ListItem>
                                     <Link
                                         to="/"
                                         onClick={handleLogout}
@@ -66,15 +66,15 @@ const Navbar = () => {
                                     >
                                         logout
                                     </Link>
-                                </listItem>
-                                <listItem>
+                                </ListItem>
+                                <ListItem>
                                     <Link
                                         to="/dashboard"
                                         className="link"
                                     >
                                         Dashboard
                                     </Link>
-                                </listItem>
+                                </ListItem>
                             </List>
                         </div>
                     )}
