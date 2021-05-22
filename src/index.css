@@ -11,51 +11,42 @@
 body {
   background: #66666650;
 }
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  height: 60px;
-  margin-bottom: 2px solid black;
-  background: var(--primary-color);
-  z-index: 1;
+main{
+  margin-bottom: 100px;
 }
-
-.navbar a img {
-  padding: 5px;
-  top: 5px;
-  position: relative;
-  left: 5px;
-}
-
-.navbar ul {
-  position: relative;
-  /* right:300px; */
-  display: flex;
-}
-
-.navbar ul li a {
+.link{
   text-decoration: none;
-  color:white;
-  text-transform: capitalize;
-  font-size: large;
-  text-align: center;
-  box-sizing: border-box;
-  font-weight: 700;
+  cursor:pointer;
+  font-size: 20px;
 }
-.navbar .btn {
-  font-size: 18px;
-  font-weight: 500;
-  padding: 15px;
-  color: white;
+.link:hover{
+  text-decoration: underline;
 }
+.title {
+  flex-grow: 1
+}
+.navbar{
+  background-color: white !important;
+  justify-content: space-between;
 
-
+}
+.nav-items{
+  display: flex;
+}
+.cardGrid{
+  padding:"30px"
+}
+.card{
+  height:"100%";
+  display:"flex";
+  flex-direction:"column" ;
+}
+.cardMedia{
+  padding-top:56.25%;
+}
+.cardContent{
+  flex-grow:1
+}
 .login {
   position: relative;
   display: flex;
@@ -66,63 +57,3 @@ body {
   margin: 1rem 0;
 }
 
-/* Footer */
-
-.footer {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: var(--primary-color);
-}
-.footer span {
-  font-size: 35px !important;
-}
-.footer-items span {
-  position: relative;
-}
-.footer-items a {
-  text-decoration: none;
-  color: white;
-}
-.footer a:hover {
-  color: var(--secondary-color);
-}
-
-/* Media Queries */
-@media screen and (max-width: 900px) {
-  .navbar button {
-    display: none;
-  }
-  .footer {
-    font-size: 18px;
-  }
-  .footer span {
-    font-size: 25px !important;
-  }
-  .login {
-    text-align: center;
-    max-width: 50%;
-  }
-  .login img {
-    width: 25%;
-  }
-}
-@media screen and (max-width: 500px) {
-  .navbar button {
-    display: none;
-  }
-  .footer {
-    font-size: 20px;
-    flex-direction: column;
-  }
-  .footer span {
-    font-size: 20px !important;
-  }
-}
