@@ -15,9 +15,7 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 
 const Home = () => {
-  if (isAuthenticated()) {
-    return <Redirect to="/" />;
-}
+
     const cards = [1];
     const [fullName, setFullName] = useState("name");
     const [isPending, setIsPending] = useState(true);
@@ -46,6 +44,10 @@ const Home = () => {
                 });
         }, 500);
     });
+
+    if (isAuthenticated()) {
+        return <Redirect to="/" />
+    }
 
     return (
         <>
