@@ -15,7 +15,6 @@ import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 
 const Home = () => {
-
     const cards = [1];
     const [fullName, setFullName] = useState("name");
     const [isPending, setIsPending] = useState(true);
@@ -46,7 +45,7 @@ const Home = () => {
     });
 
     if (isAuthenticated()) {
-        return <Redirect to="/" />
+        return <Redirect to="/home" />;
     }
 
     return (
@@ -54,16 +53,11 @@ const Home = () => {
             <CssBaseline />
             <Container className="cardGrid" maxWidth="md">
                 <Grid container spacing={4}>
-                    <Grid item /*key={card}*/ xs={12} sm={6} md={4}>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Card className="card">
-                            <CardMedia
-                                className="cardMedia"
-                                image="https://source.unsplash.com/random"
-                                title="Image title"
-                            />
                             <CardContent className="cardContent">
                                 <Typography gutterBottom variant="h5">
-                                    Heading
+                                    Hello
                                 </Typography>
                                 <Typography>
                                     Lorem ipsum dolor sit, amet consectetur
@@ -74,14 +68,6 @@ const Home = () => {
                                     aut eligendi!
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    View
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Edit
-                                </Button>
-                            </CardActions>
                         </Card>
                     </Grid>
                 </Grid>

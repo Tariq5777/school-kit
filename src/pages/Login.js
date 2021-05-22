@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, TextField, Container, Grid } from "@material-ui/core";
-import image from "../img/SK-logo/default-monochrome-sk.svg";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
@@ -13,7 +12,7 @@ const Login = ({ history }) => {
     const [loginStatus, setLoginStatus] = useState(false);
 
     if (isAuthenticated()) {
-        return <Redirect to="/" />;
+        return <Redirect to="/home" />;
     }
 
     const handleLogin = (e) => {
@@ -57,6 +56,7 @@ const Login = ({ history }) => {
                     <Button type="submit" variant="contained" color="secondary">
                         Login
                     </Button>
+                    
                 )}
                 {loginStatus && (
                     <Button

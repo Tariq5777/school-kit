@@ -3,15 +3,12 @@ import {
     AppBar,
     List,
     ListItem,
-    Avatar,
-    Button,
     Toolbar,
-    Typography,
     CssBaseline,
 } from "@material-ui/core";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
+import { isAuthenticated } from "../helper/auth/authUtils";
 
 const Navbar = () => {
     const [user, setUser] = useState(false);
@@ -22,7 +19,7 @@ const Navbar = () => {
         } else {
             setUser(false);
         }
-    });
+    },[]);
     const handleLogout = (e) => {
         localStorage.removeItem("userInfo");
     };
@@ -73,6 +70,14 @@ const Navbar = () => {
                                         className="link"
                                     >
                                         logout
+                                    </Link>
+                                </listItem>
+                                <listItem>
+                                    <Link
+                                        to="/dashboard"
+                                        className="link"
+                                    >
+                                        Dashboard
                                     </Link>
                                 </listItem>
                             </List>

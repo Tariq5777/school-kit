@@ -18,6 +18,7 @@ main{
   text-decoration: none;
   cursor:pointer;
   font-size: 20px;
+  padding:10px;
 }
 .link:hover{
   text-decoration: underline;

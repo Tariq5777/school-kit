@@ -12,9 +12,8 @@ import {
     Grid
 } from "@material-ui/core";
 import { Link } from 'react-router-dom'
-import image from "../img/SK-logo/default-monochrome-sk.svg";
 import { Redirect } from "react-router";
-import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
+import { isAuthenticated } from "../helper/auth/authUtils";
 
 const Register = () => {
     const [fullName, setFullName] = useState("");
@@ -32,10 +31,6 @@ const Register = () => {
     if (isAuthenticated()) {
         return <Redirect to="/" />;
     }
-
-    const handleUserType = (e) => {
-        setUserType(e.target.value);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
