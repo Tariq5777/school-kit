@@ -5,43 +5,38 @@ import {
     ListItem,
     Toolbar,
     CssBaseline,
+    IconButton,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import { isAuthenticated } from "../helper/auth/authUtils";
+import { UserStatusContext } from '../helper/UserStatusContext'
 
 const Navbar = () => {
-    const [user, setUser] = useState(false);
+    const { user, setUser } = useContext(UserStatusContext);
 
-    useEffect(() => {
-        if (isAuthenticated()) {
-            setUser(true);
-        } else {
-            setUser(false);
-        }
-    },[]);
     const handleLogout = (e) => {
         localStorage.removeItem("userInfo");
+        setUser(false);
+        return <Redirect to="/" />
     };
     return (
         <>
             <CssBaseline />
             <AppBar position="static" className="navbar">
                 <Toolbar>
-                    {/* <Typography className="title">
-                        <Link to="/" className= "link">School Kit</Link>
-                    </Typography> */}
-                    <List className= "title">
-                        <ListItem>
-                            <Link to ="/">
-
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Link to="/">
                             <img
                                 src={image}
                                 style={{ width: "70px" }}
                                 alt="school-kit-logo"
-                                
                             />
-                            </Link>
+                        </Link>
+                    </IconButton>
+                    <List className="title">
+                        <ListItem>
+
                         </ListItem>
                     </List>
                     {!user && (
@@ -65,7 +60,7 @@ const Navbar = () => {
                             <List>
                                 <listItem>
                                     <Link
-                                        to="/login"
+                                        to="/"
                                         onClick={handleLogout}
                                         className="link"
                                     >

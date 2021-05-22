@@ -12,15 +12,18 @@ const ChangePassword = ({ baseUrl }) => {
 
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`,
-            current_password: currentPassword,
-            new_password: newPassword,
+            Authorization: `Bearer ${token}`
         },
     };
     const handleChangePassword = (e) => {
+
+        const data = new FormData();
+        data.append("current_password", currentPassword)
+        data.append("new_password", newPassword)
+
         e.preventDefault();
         axios
-            .put('http://localhost:8000/api/change_password/', config)
+            .put('http://localhost:8000/api/change_password/', data, config)
             .then((res) => {
                 console.log(res.data.message);
             })
@@ -36,7 +39,7 @@ const ChangePassword = ({ baseUrl }) => {
                     <h1>Change password</h1>
                     <TextField
                         type="password"
-                        label="current password"
+                        label="Current Password"
                         variant="outlined"
                         value={currentPassword}
                         required
@@ -44,7 +47,7 @@ const ChangePassword = ({ baseUrl }) => {
                     />{" "}
                     <TextField
                         type="password"
-                        label="new password"
+                        label="New Password"
                         variant="outlined"
                         value={newPassword}
                         required

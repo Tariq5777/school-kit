@@ -10,38 +10,32 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./components/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import ChangePassword from "./pages/ChangePassword";
+import { useState, useMemo } from "react";
+import { UserStatusContext } from './helper/UserStatusContext'
 
 const App = () => {
     const baseUrl = "http://localhost:8000/api/";
+
+    const [user, setUser] = useState(false)
+    const value = useMemo(() => ({ user, setUser }), [user, setUser])
+
     return (
         <Router>
-            <Navbar />
-            <main style={{ marginTop: "3rem" }}>
+            <UserStatusContext.Provider value={value}>
+                <Navbar />
+            </UserStatusContext.Provider>
+            <main style={{ marginTop: "3rem", height: "70vh" }}>
                 <Switch>
-                    <Route exact path="/">
-                        <LandingPage/>
-                    </Route>
-                    <Route path ="/home">
-                        <Home/>
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/register">
-                        <Register />
-                    </Route>
-                    <Route path="/forgot-password">
-                        <ForgotPassword />
-                    </Route>
-                    <Route path="/dashboard">
-                        <Dashboard/>
-                    </Route>
-                    <Route to="/change-password" baseUrl={baseUrl}>
-                        <ChangePassword/>
-                    </Route>
-                    <Route path="*">
-                        <NotFound />
-                    </Route>
+                    <UserStatusContext.Provider value={value}>
+                        <Route exact path="/" component={LandingPage} />
+                        <Route path="/home" component={Home} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                    </UserStatusContext.Provider>
+                    <Route path="/forgot-password" component={ForgotPassword} />
+                    <Route path="/dashboard" component={Dashboard} />
+                    <Route to="/change-password" baseUrl={baseUrl} component={ChangePassword} />
+                    <Route path="*" component={NotFound} />
                 </Switch>
             </main>
             <Footer />
