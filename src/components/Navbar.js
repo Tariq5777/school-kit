@@ -57,7 +57,7 @@ const Navbar = () => {
                     )}
                     {user && (
                         <div>
-                            <List>
+                            <List className="nav-items">
                                 <ListItem>
                                     <Link
                                         to="/"
