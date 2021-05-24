@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 // import NotFound from "./components/NotFound";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -26,7 +26,7 @@ const App = () => {
             <UserStatusContext.Provider value={value}>
                 <Navbar />
             </UserStatusContext.Provider>
-            <main style={{ marginTop: "3rem", height: "70vh" }}>
+            <main style={{ marginTop: "3rem" }}>
                     <UserStatusContext.Provider value={value}>
                         <Route exact path="/" component={LandingPage} />
                         <PrivateRoute path="/home" component={Home} />

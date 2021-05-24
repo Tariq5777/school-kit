@@ -1,10 +1,10 @@
-import { Container, CssBaseline, Typography } from "@material-ui/core"
+import { Container, Typography } from "@material-ui/core"
 
 const Dashboard = () => {
   return (
     <div>
       <Container maxWidth="lg">
-        <Typography variant="h1">Dashboard dbfjhdbfhbasj</Typography>
+        <Typography variant="h3">My Dashboard</Typography>
       </Container>
     </div>
   );

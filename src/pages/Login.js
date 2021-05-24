@@ -35,7 +35,7 @@ const Login = ({ history }) => {
             })
             .then(res => {
                 console.log("Welcome");
-                const { token } = res.data
+                const { token } = res.data;
                 if (token) {
                     authenticate(res.data, () => {
                         setValues({ ...values, loading: false })
