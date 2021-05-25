@@ -18,7 +18,7 @@ import { UserStatusContext } from "../helper/UserStatusContext";
 const Home = () => {
     const cards = [1];
     const [fullName, setFullName] = useState("name");
-    const [isPending, setIsPending] = useState(true);
+        const [isPending, setIsPending] = useState(true);
     const { user, setUser } = useContext(UserStatusContext);
     const [profile, setProfile] = useState({
         acc_type: 0,
@@ -36,7 +36,7 @@ const Home = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const url = "http://localhost:8000/api/profile/";
+    const url = "http://localhost:7000/api/profile/";
 
     useEffect(() => {
         setTimeout(() => {

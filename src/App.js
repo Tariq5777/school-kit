@@ -16,7 +16,7 @@ import PrivateRoute from "./helper/auth/PrivateRoute";
 
 
 const App = () => {
-    const baseUrl = "http://localhost:8000/api/";
+    const baseUrl = "http://localhost:7000/api/";
 
     const [user, setUser] = useState(false);
     const value = useMemo(() => ({ user, setUser }), [user, setUser]);

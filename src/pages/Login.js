@@ -29,7 +29,7 @@ const Login = ({ history }) => {
         e.preventDefault();
         setValues({ ...values, loading: true })
         axios
-            .post("http://localhost:8000/api/login/", {
+            .post("http://localhost:7000/api/login/", {
                 email: username,
                 password: password,
             })

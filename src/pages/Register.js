@@ -47,7 +47,7 @@ const Register = () => {
         }
         console.log(data);
         axios
-            .post("http://127.0.0.1:8000/api/register/", data)
+            .post("http://127.0.0.1:7000/api/register/", data)
             .then((res) => {
                 setRegisterStatus(true);
                 console.log(res);
@@ -63,7 +63,7 @@ const Register = () => {
     }
 
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" style={{marginBottom:"2rem"}}>
             {error && <p>{errorMessage}</p>}
             <h1>Register User</h1>
             <form onSubmit={handleSubmit}>

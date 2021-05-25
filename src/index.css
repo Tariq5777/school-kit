@@ -1,87 +1,102 @@
 :root {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  box-sizing: border-box;
-  --primary-color: #212121;
-  --secondary-color: #4760ee;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-body {
-  background: #66666650;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+    --primary-color: #212121;
+    --secondary-color: #4760ee;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
-.link{
-  text-decoration: none;
-  cursor:pointer;
-  font-size: 20px;
-  padding:10px;
+.link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
 }
-.link:hover{
-  text-decoration: underline;
+.link:hover {
+    font-weight: bold;
+    text-decoration: underline;
 }
-.title {
-  flex-grow: 1
-}
-.navbar{
-  background-color: white !important;
-  justify-content: space-between;
 
+.navbar {
+    display: flex;
+    width:100%;
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
 }
-.nav-items{
-  display: flex;
+
+.nav-items {
+    display: flex;
 }
+
 .login {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 90px auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 90px auto;
 }
 .login * {
-  margin: 1rem 0;
+    margin: 1rem 0;
 }
-.landing-page{
-  display: flex !important;
-  flex-flow: row nowrap;
-}
-.landing-page-image{
-  width:50%;
-}
-.content{
-  flex-direction: column;
-  text-align: center;
-  margin: auto 20px;
-}
-.why-school-kit{
-  padding: 18rem;
+.landing-page {
+    display: flex !important;
+    flex-flow: row nowrap;
 }
 
-.chrome-extension{
-  display: flex !important;
-  padding:18rem;
-  flex-flow: row wrap;
+.content {
+    flex-direction: column;
+    text-align: center;
+    margin: auto 20px;
 }
-.chrome-text{
+.why-school-kit {
+    padding: 18rem;
+}
+
+.chrome-extension {
+    display: flex !important;
+    padding: 18rem;
+    flex-flow: row wrap;
+}
+.chrome-text {
     font-weight: bold;
 }
-.chrome-icon{
-  width: 200px;
+.chrome-icon {
+    width: 200px;
 }
 
-@media screen and (max-width:990px) {
-    .landing-page{
-        flex-direction: column;
-    }
-    .landing-page-image{
-        display: none;
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1130px) {
+    .landing-page-image {
+        width: 400px;
     }
 }
-@media screen and (max-width:530px) {
-    .school-kit-image{
-        width: 70%;
+
+@media screen and (max-width: 990px) {
+    .landing-page {
+        flex-direction: column;
+        text-align: center;
     }
-    h1{
+}
+@media screen and (max-width: 530px) {
+    .landing-page-image {
+        width: 250px;
+    }
+    .school-kit-image {
+        margin-top: 20px;
+        width: 80%;
+    }
+    .why-school-kit {
+        padding: 10rem;
+    }
+    .chrome-extension {
+        padding: 10rem;
+    }
+    h1 {
         font-size: 40px !important;
     }
 }

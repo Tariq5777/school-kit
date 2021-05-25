@@ -31,17 +31,20 @@ const LandingPage = () => {
         <div>
             <CssBaseline />
             <Container className="landing-page">
+                <div>
                 <img
                     src={image}
                     alt="online schooling"
                     className="landing-page-image"
                 />
+
+                </div>
                 <div className="content">
                     <img
                         src={SchoolKitLogo}
                         alt="school kit logo_old"
                         style={{ marginBottom: "10px" }}
-                        class="school-kit-image"
+                        className="school-kit-image"
                     />
                     <Typography variant="h6">
                         We thrive to create a Web app for the school teachers
@@ -49,6 +52,7 @@ const LandingPage = () => {
                         amount of features that can handle their study’s basic
                         needs and regularities.
                     </Typography>
+                    <Button color = "secondary" variant="outlined" style={{marginTop:"2rem"}}>Learn More</Button>
                 </div>
             </Container>
             <Container className="why-school-kit" gutterBottom maxWidth="md">
