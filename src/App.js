@@ -25,20 +25,19 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-            </UserStatusContext.Provider>
-            <main style={{ marginTop: "3rem" }}>
-                    <UserStatusContext.Provider value={value}>
-                        <Route exact path="/" component={LandingPage} />
-                        <PrivateRoute path="/home" component={Home} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                    </UserStatusContext.Provider>
+                <main style={{ marginTop: "3rem" }}>
+                    <Route exact path="/" component={LandingPage} />
+                    <PrivateRoute path="/home" component={Home} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/register" component={Register} />
+
                     <Route path="/forgot-password" component={ForgotPassword} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute path="/change-password" baseUrl={baseUrl} component={ChangePassword} />
 
                     {/* <Route path="*" component={NotFound} /> */}
-            </main>
+                </main>
+            </UserStatusContext.Provider>
             <Footer />
         </Router>
     );
