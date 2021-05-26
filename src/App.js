@@ -7,12 +7,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 // import { isAuthenticated } from "./helper/auth/authUtils";
 import ForgotPassword from "./pages/ForgotPassword";
-import Dashboard from "./components/Dashboard";
+import StudentDashboard from "./components/StudentDashboard";
 import LandingPage from "./pages/LandingPage";
 import ChangePassword from "./pages/ChangePassword";
 import { useState, useMemo } from "react";
 import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
+import TeacherDashboard from "./pages/TeacherDashboard";
 
 
 const App = () => {
@@ -25,16 +26,16 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "3rem" }}>
+                <main style={{ marginTop: "3rem",marginBottom:"3rem" }}>
                     <Route exact path="/" component={LandingPage} />
                     <PrivateRoute path="/home" component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
 
                     <Route path="/forgot-password" component={ForgotPassword} />
-                    <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                    <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
+                    <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute path="/change-password" baseUrl={baseUrl} component={ChangePassword} />
-
                     {/* <Route path="*" component={NotFound} /> */}
                 </main>
             </UserStatusContext.Provider>

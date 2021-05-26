@@ -3,10 +3,10 @@ import {
     Container,
     Typography,
     Button,
-    Grid,
-    Card,
-    CardMedia,
-    CardContent,
+    // Grid,
+    // Card,
+    // CardMedia,
+    // CardContent,
     List,
     ListItem,
 } from "@material-ui/core";
@@ -17,7 +17,7 @@ import { UserStatusContext } from "../helper/UserStatusContext";
 import image from "../img/online-schooling.jpg";
 import SchoolKitLogo from "../img/School Kit - logo/default-monochrome.png";
 import ChromeIcon from "../img/google-chrome-icon.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const LandingPage = () => {
     const { user, setUser } = useContext(UserStatusContext);

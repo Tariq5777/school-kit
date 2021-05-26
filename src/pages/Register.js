@@ -66,7 +66,7 @@ const Register = () => {
         <Container maxWidth="sm" style={{marginBottom:"2rem"}}>
             {error && <p>{errorMessage}</p>}
             <h1>Register User</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="register">
                 <FormControl margin="normal" fullWidth={true}>
                     <TextField
                         type="text"
@@ -142,6 +142,7 @@ const Register = () => {
                                 label="section"
                                 variant="outlined"
                                 margin="normal"
+                                className="get-section"
                                 required
                                 disabled={parseInt(userType) === 2}
                                 style={{ marginLeft: "10px" }}
