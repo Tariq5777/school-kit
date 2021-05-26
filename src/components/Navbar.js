@@ -15,7 +15,7 @@ import ListItem from "@material-ui/core/ListItem";
 import { Link, Redirect } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import image from "../img/SK-logo/default-monochrome-sk.png";
-import {useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from "../helper/UserStatusContext";
 import axios from "axios";
@@ -26,6 +26,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
+        marginBottom: "2rem"
     },
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
@@ -82,11 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserStatusContext);
-    const [accType, setAccType] = useState({
-        acc_type:0
-    });
 
-    
     const { token } = isAuthenticated();
 
     const config = {
@@ -94,25 +91,14 @@ const Navbar = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const url = "http://localhost:7000/api/profile/";
 
     useEffect(() => {
-        setTimeout(() => {
-            axios.get(url, config)
-                .then((res) => {
-                    const {acc_type} = res.data;
-                    setAccType({acc_type});
-                    console.log(accType.acc_type);
-                })  
-                .catch((err) => {
-                    console.log(err.message);
-                });
-        });
-    }, []);
+        if (isAuthenticated()) {
+            setUser(true);
+        }
+    }, [])
 
-    if (isAuthenticated()) {
-        setUser(true);
-    }
+
 
     const handleLogout = (e) => {
         localStorage.removeItem("userInfo");
@@ -154,7 +140,7 @@ const Navbar = () => {
                     >
                         <MenuIcon />
                     </IconButton>}
-                    <IconButton edge="start"  aria-label="menu"color="secondary">
+                    <IconButton edge="start" aria-label="menu" color="secondary">
                         <Link to="/">
                             <img
                                 src={image}
@@ -163,35 +149,35 @@ const Navbar = () => {
                             />
                         </Link>
 
-                </IconButton>
-                {!user && (
-                    <div className="nav-links">
-                        <List className="nav-items">
-                            <ListItem>
-                                <Link to="/login" className="link">
-                                    <Button
-                                        color="secondary"
-                                        variant="outlined"
-                                    >
-                                        login
+                    </IconButton>
+                    {!user && (
+                        <div className="nav-links">
+                            <List className="nav-items">
+                                <ListItem>
+                                    <Link to="/login" className="link">
+                                        <Button
+                                            color="secondary"
+                                            variant="outlined"
+                                        >
+                                            login
                                     </Button>
-                                </Link>
-                            </ListItem>
-                            <ListItem>
-                                <Link to="/register" className="link">
-                                    <Button
-                                        color="secondary"
-                                        variant="outlined"
-                                    >
-                                        register
+                                    </Link>
+                                </ListItem>
+                                <ListItem>
+                                    <Link to="/register" className="link">
+                                        <Button
+                                            color="secondary"
+                                            variant="outlined"
+                                        >
+                                            register
                                     </Button>
-                                </Link>
-                            </ListItem>
-                        </List>
-                    </div>
-                )}
-                {user && (
-                    <div>
+                                    </Link>
+                                </ListItem>
+                            </List>
+                        </div>
+                    )}
+                    {user && (
+
                         <List className="nav-items">
                             <ListItem>
                                 <Link
@@ -218,8 +204,8 @@ const Navbar = () => {
                                 </Link>
                             </ListItem>
                         </List>
-                    </div>
-                )}
+
+                    )}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -241,7 +227,7 @@ const Navbar = () => {
                     </IconButton>
                 </div>
                 <Divider />
-                    <DrawerItems userType = {accType.acc_type}/>                
+                <DrawerItems userType={isAuthenticated().user_type} />
                 <Divider />
 
             </Drawer>

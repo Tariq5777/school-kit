@@ -3,14 +3,10 @@ import {
     Container,
     Typography,
     Button,
-    // Grid,
-    // Card,
-    // CardMedia,
-    // CardContent,
     List,
     ListItem,
 } from "@material-ui/core";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Redirect } from "react-router";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from "../helper/UserStatusContext";
@@ -22,21 +18,24 @@ import ChromeIcon from "../img/google-chrome-icon.png";
 const LandingPage = () => {
     const { user, setUser } = useContext(UserStatusContext);
 
-    if (isAuthenticated()) {
-        setUser(true);
-        return <Redirect to="/home" />;
-    }
+    useEffect(() => {
+        if (isAuthenticated()) {
+            setUser(true);
+            return <Redirect to="/home" />;
+        }
+    }, [])
+
 
     return (
         <div>
             <CssBaseline />
             <Container className="landing-page">
                 <div>
-                <img
-                    src={image}
-                    alt="online schooling"
-                    className="landing-page-image"
-                />
+                    <img
+                        src={image}
+                        alt="online schooling"
+                        className="landing-page-image"
+                    />
 
                 </div>
                 <div className="content">
@@ -52,15 +51,15 @@ const LandingPage = () => {
                         amount of features that can handle their study’s basic
                         needs and regularities.
                     </Typography>
-                    <Button color = "secondary" variant="outlined" style={{marginTop:"2rem"}}>Learn More</Button>
+                    <Button color="secondary" variant="outlined" style={{ marginTop: "2rem" }}>Learn More</Button>
                 </div>
             </Container>
-            <Container className="why-school-kit" gutterBottom maxWidth="md">
+            <Container className="why-school-kit" maxWidth="md">
                 <div className="content">
                     <Typography
                         variant="h1"
                         style={{ fontWeight: "700" }}
-                        // color="textSecondary"
+                    // color="textSecondary"
                     >
                         Why School Kit ?
                     </Typography>
@@ -90,16 +89,16 @@ const LandingPage = () => {
                         src={ChromeIcon}
                         alt="google chrome icon"
                         className="chrome-icon"
-                        // style={{ marginBottom: "10px" }}
+                    // style={{ marginBottom: "10px" }}
                     />
                 </div>
             </Container>
-            <Container className="why-school-kit" gutterBottom maxWidth="md">
+            <Container className="why-school-kit" maxWidth="md">
                 <div className="content">
                     <Typography
                         variant="h1"
                         style={{ fontWeight: "700" }}
-                        color=""
+                    //color=""
                     >
                         Get Started
                     </Typography>
@@ -112,13 +111,13 @@ const LandingPage = () => {
                         <ListItem button>
                             <Typography>
                                 Attendance
-                                (Facial recognition). 
+                                (Facial recognition).
                             </Typography>
                         </ListItem>
                         <ListItem button>
                             <Typography>
                                 Time Table-(Email
-                                Scheduled). 
+                                Scheduled).
                             </Typography>
                         </ListItem>
                         <ListItem button>
@@ -129,7 +128,7 @@ const LandingPage = () => {
                         <ListItem button>
                             <Typography>
                                 Result Displayed(Pattern Check for uploaded
-                                file, Visualization, Leaderboard). 
+                                file, Visualization, Leaderboard).
                             </Typography>
                         </ListItem>
                         <ListItem button>

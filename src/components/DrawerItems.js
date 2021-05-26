@@ -10,8 +10,8 @@ import ClassRoundedIcon from "@material-ui/icons/ClassRounded";
 
 const DrawerItems = ({ userType }) => {
     return (
-        <>
-            {userType == 1 && (
+        <div>
+            {userType === 1 && (
                 <List>
                     {[
                         "Dashboard",
@@ -23,39 +23,39 @@ const DrawerItems = ({ userType }) => {
                     ].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
-                                {index == 0 && <HomeRoundedIcon />}
-                                {index == 1 && <TableChartIcon />}
-                                {index == 2 && <AssignmentIcon />}
-                                {index == 3 && <BarChartIcon />}
-                                {index == 4 && <SchoolIcon />}
-                                {index == 5 && <AddIcon />}
+                                {index === 0 && <HomeRoundedIcon />}
+                                {index === 1 && <TableChartIcon />}
+                                {index === 2 && <AssignmentIcon />}
+                                {index === 3 && <BarChartIcon />}
+                                {index === 4 && <SchoolIcon />}
+                                {index === 5 && <AddIcon />}
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
                 </List>
             )}
-            {userType == 2 && (
+            {userType === 2 && (
                 <List>
                     {["Dashboard", "Timetable", "Classes", "Attendance"].map(
                         (text, index) => (
                             <ListItem button key={text}>
                                 <ListItemIcon>
-                                    {index == 0 && <HomeRoundedIcon />}
-                                    {index == 1 && <TableChartIcon />}
-                                    {index == 2 && <ClassRoundedIcon />}
-                                    {index == 3 && <BarChartIcon />}
+                                    {index === 0 && <HomeRoundedIcon />}
+                                    {index === 1 && <TableChartIcon />}
+                                    {index === 2 && <ClassRoundedIcon />}
+                                    {index === 3 && <BarChartIcon />}
                                     {/* {index == 4 &&  < /> } */}
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
-                                {index == 1 && (
+                                {index === 1 && (
                                     <List style={{ display: "block" }}>
                                         <ListItem>Add</ListItem>
                                         <ListItem>Update</ListItem>
                                         <ListItem>View</ListItem>
                                     </List>
                                 )}
-                                {index == 2 && (
+                                {index === 2 && (
                                     <List style={{ display: "block" }}>
                                         <ListItem>Transcript</ListItem>
                                         <ListItem>Summary</ListItem>
@@ -66,7 +66,7 @@ const DrawerItems = ({ userType }) => {
                     )}
                 </List>
             )}
-        </>
+        </div>
     );
 };
 

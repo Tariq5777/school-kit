@@ -7,13 +7,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 // import { isAuthenticated } from "./helper/auth/authUtils";
 import ForgotPassword from "./pages/ForgotPassword";
-import StudentDashboard from "./components/StudentDashboard";
 import LandingPage from "./pages/LandingPage";
 import ChangePassword from "./pages/ChangePassword";
 import { useState, useMemo } from "react";
 import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "3rem",marginBottom:"3rem" }}>
+                <main style={{ marginTop: "1rem" }}>
                     <Route exact path="/" component={LandingPage} />
                     <PrivateRoute path="/home" component={Home} />
                     <Route path="/login" component={Login} />

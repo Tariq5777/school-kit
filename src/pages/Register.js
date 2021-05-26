@@ -63,7 +63,7 @@ const Register = () => {
     }
 
     return (
-        <Container maxWidth="sm" style={{marginBottom:"2rem"}}>
+        <Container maxWidth="sm" style={{ marginTop: "5rem" }}>
             {error && <p>{errorMessage}</p>}
             <h1>Register User</h1>
             <form onSubmit={handleSubmit} className="register">
@@ -175,7 +175,7 @@ const Register = () => {
                         Register
                     </Button>
                 </FormControl>
-                <Grid container style={{marginTop:"20px"}}>
+                <Grid container style={{ marginTop: "20px" }}>
                     <Grid item xs>
                         <Link to="/login">Already have an account ? Sign In</Link>
                     </Grid>

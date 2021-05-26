@@ -30,9 +30,15 @@ export default function Footer() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} >
             <CssBaseline />
-            <footer className={classes.footer}>
+            <footer className={classes.footer} style={{
+                width: "100%",
+                flexShrink: 0,
+                textAlign: "center",
+                position: "fixed",
+                bottom: 0
+            }}>
                 <Container maxWidth="sm">
                     <Typography variant="h5">School Kit</Typography>
                     <Copyright />

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { Button, TextField, Container, Grid } from "@material-ui/core";
+import { Button, TextField, Container, Grid, Card, Typography, FormControl, Paper, CardContent, CardActions, CardActionArea, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
@@ -53,42 +53,65 @@ const Login = ({ history }) => {
     };
 
     return (
-        <Container maxWidth="sm">
-            <form className="login" onSubmit={handleLogin}>
-                <h1>Login</h1>
-                <TextField
-                    type="text"
-                    label="Email"
-                    variant="outlined"
-                    required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <TextField
-                    type="password"
-                    label="Password"
-                    variant="outlined"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button type="submit" variant="contained" color="secondary" disabled={loading}>
-                    Login
-                    </Button>
-                <Grid container>
-                    <Grid item xs>
-                        <Link to="forgot-password">
-                            Forgot password?
-              </Link>
-                    </Grid>
-                    <Grid item>
-                        <Link to="register">
-                            {"Don't have an account? Sign Up"}
-                        </Link>
-                    </Grid>
+        <div style={{}}>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '85vh', width: '100%' }}>
+                <Grid item xs={12}>
+                    <Card elevation={3} style={{ width: '60vh', padding: "55px" }} raised={false}>
+                        <Typography align="center" variant="h4"><Box fontWeight="fontWeightBold">LOGIN</Box></Typography>
+                        <br />
+                        <form onSubmit={handleLogin}>
+                            <CardContent>
+                                <FormControl margin="normal" fullWidth={true}>
+                                    <TextField
+                                        type="text"
+                                        label="EMAIL"
+                                        variant="outlined"
+                                        required
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                </FormControl>
+                                <FormControl margin="normal" fullWidth={true}>
+                                    <TextField
+                                        type="password"
+                                        label="PASSWORD"
+                                        variant="outlined"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </FormControl>
+                            </CardContent>
+                            <CardActions>
+                                <FormControl fullWidth={true} style={{ marginLeft: "50px", marginRight: "50px" }}>
+                                    <Button style={{ paddingTop: "15px", paddingBottom: "15px" }} type="submit" variant="contained" color="secondary" disabled={loading}>
+                                        Login
+                                    </Button>
+                                </FormControl>
+                            </CardActions>
+                            <CardActions style={{ marginBotton: "25px" }}>
+                                <Link to="forgot-password">
+                                    CAN'T SIGN IN?
+                                    </Link>
+                            </CardActions>
+                            <CardActions>
+                                <Link to="register">
+                                    DON'T HAVE AN ACCOUNT? REGISTER HERE
+                                </Link>
+                            </CardActions>
+
+                        </form>
+
+                    </Card>
                 </Grid>
-            </form>
-        </Container>
+            </Grid>
+        </div>
     );
 };
 
