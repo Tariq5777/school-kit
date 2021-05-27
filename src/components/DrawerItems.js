@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { Divider, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
@@ -7,83 +7,85 @@ import SchoolIcon from "@material-ui/icons/School";
 import InputIcon from "@material-ui/icons/Input";
 import AddIcon from "@material-ui/icons/Add";
 import ClassRoundedIcon from "@material-ui/icons/ClassRounded";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import React from "react";
 
 const DrawerItems = ({ userType }) => {
     // userType =2;
+
+    let history = useHistory()
+
+    const studentDrawer = [
+        { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
+        { title: "Timetable", link: "timetable", icon: <TableChartIcon /> },
+        { title: "Submit Assignment", link: "assignment", icon: <AssignmentIcon /> },
+        { title: "Check Attendance", link: "attendance", icon: <BarChartIcon /> },
+        { title: "Result", link: "result", icon: <SchoolIcon /> },
+        { title: "Send Query", link: "query", icon: <AddIcon /> }
+    ]
+
+    const teacherDrawer = [
+        { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
+        { title: "Timetable", link: "timetable", icon: <TableChartIcon /> },
+        { title: "Classes", link: "classes", icon: <ClassRoundedIcon /> },
+        { title: "Check Attendance", link: "attendance", icon: <BarChartIcon /> }
+    ]
+
     return (
         <div>
             {userType === 1 && (
                 <List>
-                    {[
-                        "Dashboard",
-                        "Timetable",
-                        "Submit Assignment",
-                        "Check Attendance",
-                        "Result",
-                        "Send Query",
-                    ].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index === 0 && <HomeRoundedIcon />}
-                                {index === 1 && <TableChartIcon />}
-                                {index === 2 && <AssignmentIcon />}
-                                {index === 3 && <BarChartIcon />}
-                                {index === 4 && <SchoolIcon />}
-                                {index === 5 && <AddIcon />}
-                            </ListItemIcon>
-                            <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
-                            <ListItemText primary={text}/>
-                                </Link>
+                    {studentDrawer.map((data, key) =>
+                        <ListItem key={key} button divider onClick={() => history.push(data.link)}>
+                            <ListItemIcon>{data.icon}</ListItemIcon>
+                            <ListItemText primary={data.title} />
                         </ListItem>
-                    ))}
+                    )}
                 </List>
             )}
             {userType === 2 && (
                 <List>
-                    {["Dashboard", "Timetable", "Classes", "Attendance"].map(
-                        (text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index === 0 && <HomeRoundedIcon />}
-                                    {index === 1 && <TableChartIcon />}
-                                    {index === 2 && <ClassRoundedIcon />}
-                                    {index === 3 && <BarChartIcon />}
-                                    {/* {index == 4 &&  < /> } */}
-                                </ListItemIcon>
-                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
+                    {["Dashboard", "Timetable", "Classes", "Attendance"].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>
+                                {index === 0 && <HomeRoundedIcon />}
+                                {index === 1 && <TableChartIcon />}
+                                {index === 2 && <ClassRoundedIcon />}
+                                {index === 3 && <BarChartIcon />}
+                                {/* {index == 4 &&  < /> } */}
+                            </ListItemIcon>
+                            <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
                                 <ListItemText primary={text} />
-                                </Link>
-                                {index === 1 && (
-                                    <List style={{ display: "flex",flexDirection:"column" }}>
+                            </Link>
+                            {index === 1 && (
+                                <List style={{ display: "flex", flexDirection: "column" }}>
                                     {["Add", "Update", "View"].map(
-                                        (text, index) =>(
+                                        (text, index) => (
                                             <ListItem button key={text}>
-                                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
-                                                <ListItemText primary={text} />
+                                                <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
+                                                    <ListItemText primary={text} />
                                                 </Link>
                                             </ListItem>
                                         )
                                     )}
-                                    </List>
-                                )}
-                                {index === 2 && (
-                                    <List style={{ display: "block" }}>
-                                       {["Transcript", "Summary"].map(
-                                           (text, index)=>(
+                                </List>
+                            )}
+                            {index === 2 && (
+                                <List style={{ display: "block" }}>
+                                    {["Transcript", "Summary"].map(
+                                        (text, index) => (
                                             <ListItem button key={text}>
-                                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
-                                                <ListItemText primary={text} />
+                                                <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
+                                                    <ListItemText primary={text} />
                                                 </Link>
                                             </ListItem>
 
-                                           ))
-                                       }
-                                    </List>
-                                )}
-                            </ListItem>
-                        )
-                    )}
+                                        ))
+                                    }
+                                </List>
+                            )}
+                        </ListItem>
+                    ))}
                 </List>
             )}
         </div>

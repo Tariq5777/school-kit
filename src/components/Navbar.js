@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from "../helper/UserStatusContext";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserStatusContext);
+    const history = useHistory()
 
     const { token } = isAuthenticated();
 
@@ -146,6 +147,7 @@ const Navbar = () => {
                         edge="start"
                         aria-label="menu"
                         color="secondary"
+                        onClick={() => history.push("/")}
                     >
                         <Link to="/">
                             <img
@@ -159,54 +161,25 @@ const Navbar = () => {
                         <div className="nav-links">
                             <List className="nav-items">
                                 <ListItem>
-                                    <Link to="/login" className="link">
-                                        <Button
-                                            color="secondary"
-                                            variant="outlined"
-                                        >
-                                            login
+                                    <Button onClick={() => history.push("/login")}
+                                        color="secondary"
+                                        variant="outlined">
+                                        Login
                                         </Button>
-                                    </Link>
                                 </ListItem>
                                 <ListItem>
-                                    <Link to="/register" className="link">
-                                        <Button
-                                            color="secondary"
-                                            variant="outlined"
-                                        >
-                                            register
+                                    <Button
+                                        onClick={() => history.push("/register")}
+                                        color="secondary"
+                                        variant="outlined">
+                                        Register
                                         </Button>
-                                    </Link>
                                 </ListItem>
                             </List>
                         </div>
                     )}
                     {user && (
                         <List className="nav-items">
-                            {/* <ListItem>
-                                <Link
-                                    to="/"
-                                    onClick={handleLogout}
-                                    className="icon-button"
-                                >
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                    >
-                                        logout
-                                    </Button>
-                                </Link>
-                            </ListItem>
-                            <ListItem>
-                                <Link to="/dashboard" className="link">
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                    >
-                                        Dashboard
-                                    </Button>
-                                </Link>
-                            </ListItem> */}
                             <ListItem>
                                 <NavItems>
                                     <DropdownMenu />
@@ -236,7 +209,7 @@ const Navbar = () => {
                 </div>
                 <Divider />
                 <DrawerItems userType={isAuthenticated().user_type} />
-                <Divider />
+
             </Drawer>
             <main
                 className={clsx(classes.content, {

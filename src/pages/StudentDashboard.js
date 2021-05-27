@@ -45,7 +45,7 @@ const StudentDashboard = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const url = "http://localhost:7000/api/profile/"
+    const url = "api/profile/"
 
     useEffect(() => {
         setTimeout(() => {
@@ -71,7 +71,6 @@ const StudentDashboard = () => {
     }, []);
 
     const schedule = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-1:00", "1:00-2:00", "2:00-3:00", "3:00-4:00"]
-    const meet = { id: 1, meet_id: "zoom-id", date: "2021-05-26", subject: "English" }
 
     return (
         <Container
@@ -81,7 +80,7 @@ const StudentDashboard = () => {
         >
             <div style={{ paddingTop: "25px" }}>
                 <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
-                    <CardContent><Typography variant="h4" component="h4">TODAY TimeTable</Typography></CardContent>
+                    <CardContent><Typography variant="h4" component="h4">Today TimeTable</Typography></CardContent>
                     <CardContent>
                         <TableContainer component={Paper} variant="outlined">
                             <Table size="medium">
@@ -129,7 +128,8 @@ const StudentDashboard = () => {
                                         {liveClass.map(live =>
                                             <TableRow key={live.id}>
                                                 <TableCell component="th" scope="row">
-                                                    <Link to={window.location.pathname} onClick={() => window.open(`https://meet.google.com/${live.meet_id}`)}>
+                                                    <Link to={window.location.pathname} onClick={
+                                                        () => window.open(`https://meet.google.com/${live.meet_id}`)}>
                                                         {live.meet_id}
                                                     </Link>
                                                 </TableCell>
@@ -144,7 +144,7 @@ const StudentDashboard = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md = {4}>
+                <Grid item xs={12} md={4}>
                     {profile.acc_type === 1 && (
                         <Card style={{ margin: "3rem 1rem" }}>
                             <CardContent>
