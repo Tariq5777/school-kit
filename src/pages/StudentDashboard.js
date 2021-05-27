@@ -112,7 +112,7 @@ const StudentDashboard = () => {
             </div>
 
             <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={4}>
                     <Card style={{ margin: "3rem 1rem 1rem 0" }}>
                         <CardContent>
                             <Typography variant="h4">Ongoing Classes</Typography>
@@ -144,7 +144,7 @@ const StudentDashboard = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md = {4}>
                     {profile.acc_type === 1 && (
                         <Card style={{ margin: "3rem 1rem" }}>
                             <CardContent>
@@ -157,14 +157,7 @@ const StudentDashboard = () => {
                     )}
                 </Grid>
 
-                {profile.acc_type === 2 && (
-                    <Card style={{ margin: "1rem 1rem" }}>
-                        <CardContent>
-                            <Typography variant="h4">Queries</Typography>
-                            <Typography variant="h4">query</Typography>
-                        </CardContent>
-                    </Card>
-                )}
+
             </Grid>
 
         </Container>

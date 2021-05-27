@@ -1,176 +1,222 @@
 :root {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  box-sizing: border-box;
-  --primary-color: #212121;
-  --secondary-color: #4760ee;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+    --primary-color: #212121;
+    --secondary-color: #4760ee;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+    --bg: #242526;
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 1px solid #474a4d;
+    --border-radius: 8px;
+    --speed: 500ms;
 }
 
 body {
-  height: 100vh;
+    height: 100vh;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .link {
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
 }
 .link:hover {
-  font-weight: bold;
-  text-decoration: underline;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
+/* NAVBAR */
+
 .navbar {
-  display: flex;
-  width: 100%;
-  flex-flow: row wrap;
-  align-items: center;
-  background-color: white;
-  justify-content: space-between;
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
 }
 
 .nav-items {
-  display: flex;
+    display: flex;
+}
+.makeStyles-menuButton-4 {
+    margin-right: 0;
+}
+/* DROP DOWN */
+
+.dropdown {
+    position: absolute;
+    top: 70px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* transform: translateX(-45%); */
+    /* transition-property: ease-in; */
+    right: 1rem;
+    background-color: #484a4d;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    transition: height var(--speed) ease;
 }
 
+.menu-items ul div:hover {
+    background-color: #474a4d;
+}
+
+.dropdown-links {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: #e4e6eb;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* LOGIN */
 .login {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
 }
 .login * {
-  margin: 1rem 0;
+    margin: 1rem 0;
 }
 .landing-page {
-  display: flex !important;
-  flex-flow: row nowrap;
+    display: flex !important;
+    flex-flow: row nowrap;
 }
 
 .content {
-  flex-direction: column;
-  text-align: center;
-  margin: auto 20px;
+    flex-direction: column;
+    text-align: center;
+    margin: auto 20px;
 }
 .why-school-kit {
-  padding: 18rem;
+    padding: 18rem;
 }
 
 .chrome-extension {
-  display: flex !important;
-  padding: 18rem;
-  flex-flow: row wrap;
+    display: flex !important;
+    padding: 18rem;
+    flex-flow: row wrap;
 }
 .chrome-text {
-  font-weight: bold;
+    font-weight: bold;
 }
 .chrome-icon {
-  width: 200px;
-}
-.table {
-  /* overflow-x: auto; */
+    width: 200px;
 }
 
 .dashboard-items {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 .dashboard-items * {
-  margin-left: 1rem;
-  margin-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1130px) {
-  .landing-page-image {
-    width: 400px;
-  }
+    .landing-page-image {
+        width: 400px;
+    }
 }
 
 @media screen and (max-width: 900px) {
-  .landing-page {
-    flex-direction: column;
-    text-align: center;
-  }
+    .landing-page {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 /* small screens, bigger than smartphones*/
 @media screen and (max-width: 530px) {
-  .landing-page-image {
-    width: 250px;
-  }
-  .school-kit-image {
-    margin-top: 20px;
-    width: 80%;
-  }
-  .why-school-kit {
-    padding: 10rem;
-  }
-  .chrome-extension {
-    padding: 10rem;
-  }
-  h1 {
-    font-size: 40px !important;
-  }
-  main {
-    margin-top: 8rem;
-  }
+    .landing-page-image {
+        width: 250px;
+    }
+    .school-kit-image {
+        margin-top: 20px;
+        width: 80%;
+    }
+    .why-school-kit {
+        padding: 10rem;
+    }
+    .chrome-extension {
+        padding: 10rem;
+    }
+    h1 {
+        font-size: 40px !important;
+    }
+    main {
+        margin-bottom: 2rem;
+    }
 }
 /* smart phones */
 @media screen and (max-width: 300px) {
-  main {
-    margin-top: 15rem;
-  }
-  .navbar,
-  .navbar div ul {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-  .landing-page-image {
-    display: none;
-  }
-  .content {
-    margin: 0;
-    margin-top: -50px;
-  }
-  .content h6 {
-    text-align: justify;
-    font-size: 13px;
-  }
-  .login {
-    margin-top: -2rem;
-  }
-  .get-section {
-    margin-left: 0 !important;
-  }
-  .dashboard-section {
-    flex-direction: column !important;
-  }
-  .dashboard-section div {
-    margin: 1rem !important;
-  }
+    .navbar,
+    .navbar div ul {
+        text-align: center;
+        /* display: flex;
+    flex-direction: column; */
+    }
+    .landing-page-image {
+        display: none;
+    }
+    main {
+        margin: 0;
+        margin-top: 50px;
+    }
+    .content h6 {
+        text-align: justify;
+        font-size: 13px;
+    }
+    .login {
+        margin-top: -2rem;
+    }
+    .get-section {
+        margin-left: 0 !important;
+    }
+    .dashboard-section {
+        flex-direction: column !important;
+    }
+    .dashboard-section div {
+        margin: 1rem !important;
+    }
 }
 /* Dashboard */
 @media screen and (min-width: 800px) {
-  .short-table {
-    display: none;
-  }
+    .short-table {
+        display: none;
+    }
 }
 @media screen and (max-width: 800px) {
-  .long-table {
-    display: none;
-  }
-  .short-table {
-    display: block;
-  }
-  .nav-links-exit {
-    display: none;
-  }
+    .long-table {
+        display: none;
+    }
+    .short-table {
+        display: block;
+    }
+    .nav-links-exit {
+        display: none;
+    }
 }
 /* Navbar  */
 @media screen and (max-width: 800px) {

@@ -214,8 +214,8 @@ const TeacherDashboard = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item style={{ display: "flex" }}>
-                    <Card style={{ margin: "1rem 1rem 1rem 0" }}>
+                <Grid item style={{ display: "flex" }} >
+                    <Card style={{ margin: "1rem 1rem 1rem 0" }}md ={4}>
                         <CardContent>
                             <Typography variant="h4">Queries</Typography>
                             <Typography variant="h4">query</Typography>

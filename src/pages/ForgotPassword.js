@@ -1,13 +1,27 @@
 import { Button, TextField, Container, Grid } from "@material-ui/core";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
+
     const [username, setUsername] = useState("");
+    const url = 'http://localhost:7000/api/forgot-password/';
 
     const handleForgotPassword = (e) => {
+        const data = new FormData();
+        data.append("username", username);
         e.preventDefault();
+        axios.post(url, data)
+            .then(response=>{
+                console.log(response.data.message);
+            })
+            .cath(err=>{
+                console.log(err.message);
+            })
     };
+
+
 
     return (
         <>
@@ -30,7 +44,7 @@ const ForgotPassword = () => {
                             <Link to="/login">Login</Link>
                         </Grid>
                         <Grid item>
-                            <Link to="/register">"Don't have an account? Sign Up"</Link>
+                            <Link to="/register">Don't have an account? Sign Up</Link>
                         </Grid>
                     </Grid>
                 </form>

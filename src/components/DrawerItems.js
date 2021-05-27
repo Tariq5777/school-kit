@@ -7,8 +7,10 @@ import SchoolIcon from "@material-ui/icons/School";
 import InputIcon from "@material-ui/icons/Input";
 import AddIcon from "@material-ui/icons/Add";
 import ClassRoundedIcon from "@material-ui/icons/ClassRounded";
+import { Link } from "react-router-dom";
 
 const DrawerItems = ({ userType }) => {
+    // userType =2;
     return (
         <div>
             {userType === 1 && (
@@ -30,7 +32,9 @@ const DrawerItems = ({ userType }) => {
                                 {index === 4 && <SchoolIcon />}
                                 {index === 5 && <AddIcon />}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
+                            <ListItemText primary={text}/>
+                                </Link>
                         </ListItem>
                     ))}
                 </List>
@@ -47,18 +51,34 @@ const DrawerItems = ({ userType }) => {
                                     {index === 3 && <BarChartIcon />}
                                     {/* {index == 4 &&  < /> } */}
                                 </ListItemIcon>
+                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
                                 <ListItemText primary={text} />
+                                </Link>
                                 {index === 1 && (
-                                    <List style={{ display: "block" }}>
-                                        <ListItem>Add</ListItem>
-                                        <ListItem>Update</ListItem>
-                                        <ListItem>View</ListItem>
+                                    <List style={{ display: "flex",flexDirection:"column" }}>
+                                    {["Add", "Update", "View"].map(
+                                        (text, index) =>(
+                                            <ListItem button key={text}>
+                                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
+                                                <ListItemText primary={text} />
+                                                </Link>
+                                            </ListItem>
+                                        )
+                                    )}
                                     </List>
                                 )}
                                 {index === 2 && (
                                     <List style={{ display: "block" }}>
-                                        <ListItem>Transcript</ListItem>
-                                        <ListItem>Summary</ListItem>
+                                       {["Transcript", "Summary"].map(
+                                           (text, index)=>(
+                                            <ListItem button key={text}>
+                                                <Link to = {`/${text}`} style={{textDecoration:"none", color:"#333333"}}>
+                                                <ListItemText primary={text} />
+                                                </Link>
+                                            </ListItem>
+
+                                           ))
+                                       }
                                     </List>
                                 )}
                             </ListItem>

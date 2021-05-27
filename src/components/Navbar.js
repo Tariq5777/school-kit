@@ -1,32 +1,34 @@
 import React from "react";
-import clsx from "clsx";
+import { useContext, useState, useEffect } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { isAuthenticated } from "../helper/auth/authUtils";
+import { UserStatusContext } from "../helper/UserStatusContext";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Button, Avatar } from "@material-ui/core";
+import axios from "axios";
+import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import { Link, Redirect } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import image from "../img/SK-logo/default-monochrome-sk.png";
-import { useContext, useState, useEffect } from "react";
-import { isAuthenticated } from "../helper/auth/authUtils";
-import { UserStatusContext } from "../helper/UserStatusContext";
-import axios from "axios";
 import DrawerItems from "./DrawerItems";
+import NavItems from "./NavItems";
+import DropdownMenu from "./DropdownMenu";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
-        marginBottom: "2rem"
+        marginBottom: "2rem",
     },
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
@@ -96,15 +98,13 @@ const Navbar = () => {
         if (isAuthenticated()) {
             setUser(true);
         }
-    }, [])
-
-
+    }, []);
 
     const handleLogout = (e) => {
         localStorage.removeItem("userInfo");
         setUser(false);
         return <Redirect to="/" />;
-    }
+    };
 
     const classes = useStyles();
     const theme = useTheme();
@@ -128,19 +128,25 @@ const Navbar = () => {
                 })}
             >
                 <Toolbar className="navbar">
-                    {user && <IconButton
-                        color="secondary"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                    {user && (
+                        <IconButton
+                            color="secondary"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(
+                                classes.menuButton,
+                                open && classes.hide
+                            )}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    )}
+                    <IconButton
                         edge="start"
-                        className={clsx(
-                            classes.menuButton,
-                            open && classes.hide
-                        )}
+                        aria-label="menu"
+                        color="secondary"
                     >
-                        <MenuIcon />
-                    </IconButton>}
-                    <IconButton edge="start" aria-label="menu" color="secondary">
                         <Link to="/">
                             <img
                                 src={image}
@@ -148,7 +154,6 @@ const Navbar = () => {
                                 alt="school-kit-logo"
                             />
                         </Link>
-
                     </IconButton>
                     {!user && (
                         <div className="nav-links">
@@ -160,7 +165,7 @@ const Navbar = () => {
                                             variant="outlined"
                                         >
                                             login
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </ListItem>
                                 <ListItem>
@@ -170,20 +175,19 @@ const Navbar = () => {
                                             variant="outlined"
                                         >
                                             register
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </ListItem>
                             </List>
                         </div>
                     )}
                     {user && (
-
                         <List className="nav-items">
-                            <ListItem>
+                            {/* <ListItem>
                                 <Link
                                     to="/"
                                     onClick={handleLogout}
-                                    className="link"
+                                    className="icon-button"
                                 >
                                     <Button
                                         variant="outlined"
@@ -202,9 +206,13 @@ const Navbar = () => {
                                         Dashboard
                                     </Button>
                                 </Link>
+                            </ListItem> */}
+                            <ListItem>
+                                <NavItems>
+                                    <DropdownMenu />
+                                </NavItems>
                             </ListItem>
                         </List>
-
                     )}
                 </Toolbar>
             </AppBar>
@@ -229,7 +237,6 @@ const Navbar = () => {
                 <Divider />
                 <DrawerItems userType={isAuthenticated().user_type} />
                 <Divider />
-
             </Drawer>
             <main
                 className={clsx(classes.content, {
