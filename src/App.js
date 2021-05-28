@@ -17,6 +17,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import Timetable from "./components/Timetable";
 import Profile from "./pages/Profile";
 import Query from "./pages/Query";
+import Attendance from "./components/Attendance";
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
                     <PrivateRoute exact path="/timetable" component={Timetable} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
+                    <PrivateRoute exact path = "/attendance" component={Attendance}/>
                 </main>
             </UserStatusContext.Provider>
             <Footer />
