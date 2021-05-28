@@ -37,6 +37,11 @@ const TeacherDashboard = () => {
     });
     const [liveClass, setLiveClass] = useState([]);
 
+    const standardID = useState({
+        standard:"",
+        section:""
+    })
+
     const schedule = [
         "8:00 - 9:00",
         "9:00 - 10:00",
@@ -83,12 +88,16 @@ const TeacherDashboard = () => {
                 .catch((err) => {
                     console.log(err.message);
                 });
-            axios.get("/extra/timetable/today", config).then((res) => {
-                setTimetable({
-                    day: res.data.day,
-                    tt: { ...res.data.timetable },
-                });
-            }, []);
+            axios.get("http://localhost:7000/extra/timetable/today/", config)
+                .then((res) => {
+                    setTimetable({
+                        day: res.data.day,
+                        tt: { ...res.data.timetable },
+                    })
+                })
+                .catch(err=>{
+                    console.log(err.message)
+                })
             axios.get("/user/liveclass", config).then((res) => {
                 setLiveClass(res.data);
             });
@@ -193,7 +202,7 @@ const TeacherDashboard = () => {
                              <Typography variant="h4">Queries</Typography>
                          </CardContent>
                              <CardContent>
-                             <Typography variant="h4">query</Typography>
+                             <Typography variant="h4">query {profile.acc_type}</Typography>
                          </CardContent>
                      </Card>
                  </Grid>

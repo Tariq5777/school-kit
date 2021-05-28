@@ -14,6 +14,9 @@ import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
+import Timetable from "./components/Timetable";
+import Profile from "./pages/Profile";
+import Query from "./pages/Query";
 
 
 const App = () => {
@@ -36,6 +39,9 @@ const App = () => {
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute path="/change-password" baseUrl={baseUrl} component={ChangePassword} />
                     {/* <Route path="*" component={NotFound} /> */}
+                    <PrivateRoute exact path="/timetable" component={Timetable} />
+                    <PrivateRoute exact path="/profile" component={Profile} />
+                    <PrivateRoute exact path="/query" component={Query} />
                 </main>
             </UserStatusContext.Provider>
             <Footer />

@@ -60,10 +60,10 @@ const StudentDashboard = () => {
                     console.log(err.message);
                 });
         }, 500);
-        axios.get("http://localhost:7000/extra/timetable/today", config)
+        axios.get("extra/timetable/today", config)
             .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } })
                 , [])
-        axios.get("http://localhost:7000/user/liveclass/", config)
+        axios.get("user/liveclass/", config)
             .then(res => {
                 setLiveClass(res.data)
                 console.log(liveClass)

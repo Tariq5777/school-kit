@@ -54,7 +54,7 @@ ul {
 
 /* Drawer */
 .makeStyles-drawerHeader-8  {
-  min-height: 80px !important;
+  min-height: 82px !important;
 }
 
 /* DROP DOWN */
@@ -127,7 +127,7 @@ ul {
 .chrome-icon {
   width: 200px;
 }
-
+/* DASHBOARD */
 .dashboard-items {
   display: flex;
   align-items: center;
@@ -136,6 +136,16 @@ ul {
 .dashboard-items * {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+/* PROFILE */
+
+.profile-image{
+    align-items: center;
+}
+
+.profile *{
+  padding: 1rem;
 }
 
 /* MEDIA QUERIES */
