@@ -48,26 +48,17 @@ const StudentDashboard = () => {
     const url = "api/profile/"
 
     useEffect(() => {
-        setTimeout(() => {
-            axios
-                .get(url, config)
-                .then((res) => {
-                    const { acc_type, full_name, email, roll_no, section, standard, } = res.data;
-                    setProfile({ acc_type, full_name, email, roll_no, section, standard, });
-                    setIsPending(false);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
-        }, 500);
+        axios.get(url, config).then((res) => {
+            const { acc_type, full_name, email, roll_no, section, standard, } = res.data;
+            setProfile({ acc_type, full_name, email, roll_no, section, standard, });
+            setIsPending(false);
+        }).catch((err) => {
+            console.log("Profile Error", err.message);
+        });
         axios.get("extra/timetable/today", config)
-            .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } })
-                , [])
+            .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } }))
         axios.get("user/liveclass/", config)
-            .then(res => {
-                setLiveClass(res.data)
-                console.log(liveClass)
-            })
+            .then(res => setLiveClass(res.data))
     }, []);
 
     const schedule = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-1:00", "1:00-2:00", "2:00-3:00", "3:00-4:00"]
@@ -116,14 +107,14 @@ const StudentDashboard = () => {
                         <CardContent>
                             <Typography variant="h4">Ongoing Classes</Typography>
                         </CardContent>
-                            <CardContent>
+                        <CardContent>
                             <TableContainer component={Paper} variant="outlined">
                                 <Table size="medium">
                                     <TableHead>
                                         <TableRow>
                                             {["Meet ID", "Date", "Subject"].map((data, key) =>
                                                 <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
-                                                )}
+                                            )}
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

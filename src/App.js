@@ -18,6 +18,8 @@ import Timetable from "./components/Timetable";
 import Profile from "./pages/Profile";
 import Query from "./pages/Query";
 import Attendance from "./components/Attendance";
+import TimeTablePage from "./pages/Timetable/TimeTablePage";
+import AttendanceDisplayPage from "./pages/Attendance/AttendanceDisplayPage";
 
 
 const App = () => {
@@ -40,10 +42,10 @@ const App = () => {
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute path="/change-password" baseUrl={baseUrl} component={ChangePassword} />
                     {/* <Route path="*" component={NotFound} /> */}
-                    <PrivateRoute exact path="/timetable" component={Timetable} />
+                    <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
-                    <PrivateRoute exact path = "/attendance" component={Attendance}/>
+                    <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
                 </main>
             </UserStatusContext.Provider>
             <Footer />

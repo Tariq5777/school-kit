@@ -1,29 +1,26 @@
 import {
     Avatar,
-    Button,
-    Card,
-    CardContent,
-    Container,
-    Paper,
-    Table,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+    Button, Card, CardContent, Container, Paper, Table, TableCell, TableContainer, TableHead, TableRow, Typography,
 } from "@material-ui/core";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../helper/auth/authUtils";
 import face4 from "../img/faces/face4.jpg";
 const Profile = () => {
     const [profile, setProfile] = useState({
         acc_type: 0,
-        email: "test@run.com",
-        full_name: "Test",
-        roll_no: 12,
-        section: "C",
-        standard: 2,
+        email: "",
+        full_name: "",
+        roll_no: 0,
+        section: "",
+        standard: 0,
     });
+
+    useEffect(() => {
+        axios.get("api/profile/", { headers: { Authorization: `Bearer ${isAuthenticated().token}` } })
+            .then(res => setProfile({ ...res.data }))
+    }, [])
 
     return (
         <Container
@@ -113,7 +110,7 @@ const Profile = () => {
                     </TableContainer>
                 </CardContent>
                 <CardContent>
-                    <Link to="/change-password" style ={{color:"white", textDecoration:"none"}}>
+                    <Link to="/change-password" style={{ color: "white", textDecoration: "none" }}>
                         <Button variant="contained" color="secondary">
                             Change Password
                         </Button>

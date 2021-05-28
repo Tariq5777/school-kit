@@ -12,8 +12,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 
-const Attendance = () => {
-    const [attendanceDetails, setAttendanceDetails] = useState([1,"12 Dec", "XYZ", "Math", 34]);
+const Attendance = ({ attendance }) => {
 
     return (
         <Container maxWidth="md">
@@ -37,8 +36,7 @@ const Attendance = () => {
                                             <Typography
                                                 variant="h6"
                                                 style={{ fontWeight: "bold" }}
-                                                color="primary"
-                                            >
+                                                color="primary">
                                                 {text}
                                             </Typography>
                                         </TableCell>
@@ -46,19 +44,20 @@ const Attendance = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                <TableRow>
-                                    {attendanceDetails.map((text) => (
-                                        <TableCell>
-                                        <Typography
+                                {attendance.map((att, index) =>
+                                    <TableRow key={index}>
+                                        <TableCell><Typography
                                             variant="h6"
                                             style={{ fontWeight: "bold" }}
-                                            color="inherit"
-                                        >
-                                            {text}  
-                                        </Typography>
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
+                                            color="inherit">
+                                            {index + 1}
+                                        </Typography></TableCell>
+                                        <TableCell>{att.date}</TableCell>
+                                        <TableCell>{att.class_record}</TableCell>
+                                        <TableCell>{att.subject}</TableCell>
+                                        <TableCell>{att.duration}</TableCell>
+                                    </TableRow>
+                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>
