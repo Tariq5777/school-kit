@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { useContext, useState, useEffect } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
@@ -22,7 +22,6 @@ import image from "../img/SK-logo/default-monochrome-sk.png";
 import DrawerItems from "./DrawerItems";
 import NavItems from "./NavItems";
 import DropdownMenu from "./DropdownMenu";
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -51,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
         display: "none",
     },
     drawer: {
+        height:"70px",
         width: drawerWidth,
         flexShrink: 0,
     },

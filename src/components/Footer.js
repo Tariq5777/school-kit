@@ -20,9 +20,11 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
     footer: {
         padding: theme.spacing(3, 2),
-        marginTop: "auto",
+        marginTop: "100px",
         backgroundColor:
-            theme.palette.type === "light" ? theme.palette.grey[200] : theme.palette.grey[800],
+            theme.palette.type === "light"
+                ? theme.palette.grey[200]
+                : theme.palette.grey[800],
     },
 }));
 
@@ -30,20 +32,23 @@ export default function Footer() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root} >
+        <>
             <CssBaseline />
-            <footer className={classes.footer} style={{
-                width: "100%",
-                flexShrink: 0,
-                textAlign: "center",
-                position: "fixed",
-                bottom: 0
-            }}>
+            <footer
+                className={classes.footer}
+                style={{
+                    width: "100%",
+                    flexShrink: 0,
+                    textAlign: "center",
+                    position: "relative",
+                    bottom: 0,
+                }}
+            >
                 <Container maxWidth="sm">
                     <Typography variant="h5">School Kit</Typography>
                     <Copyright />
                 </Container>
             </footer>
-        </div>
+        </>
     );
 }

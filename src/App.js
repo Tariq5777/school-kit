@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 // import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -26,9 +26,9 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "1rem" }}>
+                <main style={{ marginTop: "1rem", }}>
                     <Route exact path="/" component={LandingPage} />
-                    <PrivateRoute path="/home" component={Home} />
+                    {/* <PrivateRoute path="/home" component={Home} /> */}
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/forgot-password" component={ForgotPassword} />

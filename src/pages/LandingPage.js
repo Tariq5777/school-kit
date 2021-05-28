@@ -21,7 +21,7 @@ const LandingPage = () => {
     useEffect(() => {
         if (isAuthenticated()) {
             setUser(true);
-            return <Redirect to="/home" />;
+            return <Redirect to="/dashboard" />;
         }
     }, [])
 

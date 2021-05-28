@@ -115,13 +115,15 @@ const StudentDashboard = () => {
                     <Card style={{ margin: "3rem 1rem 1rem 0" }}>
                         <CardContent>
                             <Typography variant="h4">Ongoing Classes</Typography>
+                        </CardContent>
+                            <CardContent>
                             <TableContainer component={Paper} variant="outlined">
                                 <Table size="medium">
                                     <TableHead>
                                         <TableRow>
                                             {["Meet ID", "Date", "Subject"].map((data, key) =>
                                                 <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
-                                            )}
+                                                )}
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -151,7 +153,9 @@ const StudentDashboard = () => {
                                 <Typography variant="h4">
                                     Recent Classes
                                 </Typography>
-                                <Typography variant="h4">User 1</Typography>
+                            </CardContent>
+                            <CardContent>
+                                <Typography variant="h4">User {profile.acc_type}</Typography>
                             </CardContent>
                         </Card>
                     )}

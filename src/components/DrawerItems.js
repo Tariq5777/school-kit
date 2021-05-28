@@ -8,6 +8,7 @@ import InputIcon from "@material-ui/icons/Input";
 import AddIcon from "@material-ui/icons/Add";
 import ClassRoundedIcon from "@material-ui/icons/ClassRounded";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import GetAppIcon from '@material-ui/icons/GetApp';
 import React from "react";
 
 const DrawerItems = ({ userType }) => {
@@ -21,14 +22,23 @@ const DrawerItems = ({ userType }) => {
         { title: "Submit Assignment", link: "assignment", icon: <AssignmentIcon /> },
         { title: "Check Attendance", link: "attendance", icon: <BarChartIcon /> },
         { title: "Result", link: "result", icon: <SchoolIcon /> },
-        { title: "Send Query", link: "query", icon: <AddIcon /> }
+        { title: "Send Query", link: "query", icon: <AddIcon /> },
+        {title:"Download Extension", link:"download", icon:<GetAppIcon/>}
     ]
 
     const teacherDrawer = [
         { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
-        { title: "Timetable", link: "timetable", icon: <TableChartIcon /> },
-        { title: "Classes", link: "classes", icon: <ClassRoundedIcon /> },
-        { title: "Check Attendance", link: "attendance", icon: <BarChartIcon /> }
+        { title: "Timetable", link: "timetable", icon: <TableChartIcon />, subItems:{
+            add:{title:"Add",link:"add"},
+            update:{title:"Update",link:"update"},
+            view:{title:"View", link:"view"}
+        } },
+        { title: "Classes", link: "classes", icon: <ClassRoundedIcon />, subItems: {
+            transcript:{title:"Transcript",link:"transcript"},
+            summary:{title:"Summary",link:"summary"},
+        } },
+        { title: "Check Attendance", link: "attendance", icon: <BarChartIcon /> },
+        { title:"Download Extension", link:"download", icon:<GetAppIcon/>}
     ]
 
     return (
@@ -45,47 +55,12 @@ const DrawerItems = ({ userType }) => {
             )}
             {userType === 2 && (
                 <List>
-                    {["Dashboard", "Timetable", "Classes", "Attendance"].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index === 0 && <HomeRoundedIcon />}
-                                {index === 1 && <TableChartIcon />}
-                                {index === 2 && <ClassRoundedIcon />}
-                                {index === 3 && <BarChartIcon />}
-                                {/* {index == 4 &&  < /> } */}
-                            </ListItemIcon>
-                            <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
-                                <ListItemText primary={text} />
-                            </Link>
-                            {index === 1 && (
-                                <List style={{ display: "flex", flexDirection: "column" }}>
-                                    {["Add", "Update", "View"].map(
-                                        (text, index) => (
-                                            <ListItem button key={text}>
-                                                <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
-                                                    <ListItemText primary={text} />
-                                                </Link>
-                                            </ListItem>
-                                        )
-                                    )}
-                                </List>
-                            )}
-                            {index === 2 && (
-                                <List style={{ display: "block" }}>
-                                    {["Transcript", "Summary"].map(
-                                        (text, index) => (
-                                            <ListItem button key={text}>
-                                                <Link to={`/${text}`} style={{ textDecoration: "none", color: "#333333" }}>
-                                                    <ListItemText primary={text} />
-                                                </Link>
-                                            </ListItem>
-
-                                        ))
-                                    }
-                                </List>
-                            )}
-                        </ListItem>
-                    ))}
+                    {teacherDrawer.map((data, key) => 
+                    <ListItem key={key} button divider onClick={()=>history.push(data.link)}>
+                        <ListItemIcon>{data.icon}</ListItemIcon>
+                        <ListItemText primary={data.title} />
+                    </ListItem>
+                    )}
                 </List>
             )}
         </div>

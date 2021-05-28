@@ -58,7 +58,7 @@ const ChangePassword = ({ baseUrl }) => {
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link to="/home">Go back</Link>
+                            <Link to="/dashboard">Go back</Link>
                         </Grid>
                     </Grid>
                 </form>

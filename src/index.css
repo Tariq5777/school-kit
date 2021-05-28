@@ -51,6 +51,12 @@ ul {
 .makeStyles-menuButton-4 {
   margin-right: 0;
 }
+
+/* Drawer */
+.makeStyles-drawerHeader-8  {
+  min-height: 80px !important;
+}
+
 /* DROP DOWN */
 
 .dropdown {
@@ -218,5 +224,5 @@ ul {
   }
 }
 /* Navbar  */
-@media screen and (max-width: 800px) {
-}
+/* @media screen and (max-width: 800px) {
+} */

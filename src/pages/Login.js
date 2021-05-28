@@ -22,7 +22,7 @@ const Login = ({ history }) => {
 
     if (isAuthenticated()) {
         setUser(true)
-        return <Redirect to="/home" />;
+        return <Redirect to="/dashboard" />;
     }
 
     const handleLogin = (e) => {

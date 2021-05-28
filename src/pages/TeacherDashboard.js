@@ -1,4 +1,5 @@
 import {
+    Box,
     Card,
     CardContent,
     Container,
@@ -30,6 +31,23 @@ const TeacherDashboard = () => {
         standard: 0,
     });
 
+    const [timetable, setTimetable] = useState({
+        day: 0,
+        tt: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    });
+    const [liveClass, setLiveClass] = useState([]);
+
+    const schedule = [
+        "8:00 - 9:00",
+        "9:00 - 10:00",
+        "10:00 - 11:00",
+        "11:00-12:00",
+        "12:00-1:00",
+        "1:00-2:00",
+        "2:00-3:00",
+        "3:00-4:00",
+    ];
+
     const { token } = isAuthenticated();
 
     const config = {
@@ -60,170 +78,130 @@ const TeacherDashboard = () => {
                         section,
                         standard,
                     });
-                    // setUserType({acc_type});
-                    // console.log(profile);
                     setIsPending(false);
                 })
                 .catch((err) => {
                     console.log(err.message);
                 });
-        }, 500);
+            axios.get("/extra/timetable/today", config).then((res) => {
+                setTimetable({
+                    day: res.data.day,
+                    tt: { ...res.data.timetable },
+                });
+            }, []);
+            axios.get("/user/liveclass", config).then((res) => {
+                setLiveClass(res.data);
+            });
+        });
     }, []);
-    // profile.acc_type = 2;
+
     if (isAuthenticated()) {
         setUser(true);
     }
 
-    function createData(
-        day,
-        subject1,
-        subject2,
-        subject3,
-        Lunch,
-        subject4,
-        subject5
-    ) {
-        return { day, subject1, subject2, subject3, Lunch, subject4, subject5 };
-    }
-    const day = "Monday";
-    const subject1 = "Mathematics";
-    const Lunch = "Lunch";
-    const subject2 = subject1;
-    const subject3 = subject1;
-    const subject4 = subject1;
-    const subject5 = subject1;
-    const rows = [
-        createData(
-            day,
-            subject1,
-            subject2,
-            subject3,
-            Lunch,
-            subject4,
-            subject5
-        ),
-    ];
-
     return (
         <Container
-            maxWidth="lg"
-            style={{ marginBottom: "450px" }}
-            component={Paper}
-        >
-            <Grid
-                container
-                spacing={4}
-                direction="column"
-                style={{ overflowX: "auto" }}
-            >
-                <Grid item>
-                    <Typography variant="h4" gutterBottom display="block">
-                        Todays Time Table (date)
-                    </Typography>
-                </Grid>
-                <Grid item style={{ overflowX: "auto" }} className="long-table">
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow component={Paper}>
-                                <TableCell>Day / Time</TableCell>
-                                <TableCell>8:00 - 9:00</TableCell>
-                                <TableCell>9:00 - 10:00</TableCell>
-                                <TableCell>10:00 - 11:00</TableCell>
-                                <TableCell>Break {profile.full_name}</TableCell>
-                                <TableCell>11:30 - 12:30</TableCell>
-                                <TableCell>12:30 - 01:30</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody component={Paper}>
-                            <TableRow>
-                                <TableCell component="th" scope="row">
-                                    {day}
-                                </TableCell>
-                                <TableCell>{subject1}</TableCell>
-                                <TableCell>{subject2}</TableCell>
-                                <TableCell>{subject3}</TableCell>
-                                <TableCell>{Lunch}</TableCell>
-                                <TableCell>{subject4}</TableCell>
-                                <TableCell>{subject5}</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </Grid>
-                <Grid
-                    item
-                    style={{ overflowX: "auto" }}
-                    className="short-table"
-                >
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow component={Paper}>
-                                <TableCell>Day / Time</TableCell>
-                                <TableCell component="th" scope="row">
-                                    {day}
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody component={Paper}>
-                            <TableRow>
-                                <TableCell>8:00 - 9:00</TableCell>
-                                <TableCell>{subject1}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>9:00 - 10:00</TableCell>
-                                <TableCell>{subject2}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>10:00 - 11:00</TableCell>
-                                <TableCell>{subject3}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>Break {profile.full_name}</TableCell>
-                                <TableCell>{Lunch}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>11:30 - 12:30</TableCell>
-                                <TableCell>{subject4}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>12:30 - 01:30</TableCell>
-                                <TableCell>{subject5}</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </Grid>
-                <Grid
-                    item
-                    style={{ display: "flex" }}
-                    className="dashboard-section"
-                >
-                    <Card style={{ margin: "1rem 1rem 1rem 0" }}>
+        maxWidth="lg"
+        style={{ marginTop: "60px" }}
+        component={Paper}
+    >
+        <div style={{ paddingTop: "25px" }}>
+            <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
+                <CardContent><Typography variant="h4" component="h4">Today TimeTable</Typography></CardContent>
+                <CardContent>
+                    <TableContainer component={Paper} variant="outlined">
+                        <Table size="medium">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><Box fontWeight="fontWeightBold">Day/Time</Box></TableCell>
+                                    {schedule.map((s, i) =>
+                                        <TableCell key={i}><Box fontWeight="fontWeightBold">{s}</Box></TableCell>
+                                    )}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell component="th" scope="row">
+                                        <Box fontWeight="fontWeightBold">{timetable.day}</Box>
+                                    </TableCell>
+                                    {
+                                        Object.entries(timetable.tt).map(row => (
+                                            <TableCell component="th" scope="row" key={row[0]}>{row[1]}</TableCell>
+                                        ))
+                                    }
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </CardContent>
+            </Card>
+        </div>
+
+        <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+                <Card style={{ margin: "3rem 1rem 1rem 0" }}>
+                    <CardContent>
+                        <Typography variant="h4">Ongoing Classes</Typography>
+                    </CardContent>
+                        <CardContent>
+                        <TableContainer component={Paper} variant="outlined">
+                            <Table size="medium">
+                                <TableHead>
+                                    <TableRow>
+                                        {["Meet ID", "Date", "Subject"].map((data, key) =>
+                                            <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
+                                            )}
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {liveClass.map(live =>
+                                        <TableRow key={live.id}>
+                                            <TableCell component="th" scope="row">
+                                                <Link to={window.location.pathname} onClick={
+                                                    () => window.open(`https://meet.google.com/${live.meet_id}`)}>
+                                                    {live.meet_id}
+                                                </Link>
+                                            </TableCell>
+                                            <TableCell component="th" scope="row">{live.date}</TableCell>
+                                            <TableCell component="th" scope="row">{live.subject}</TableCell>
+                                        </TableRow>
+                                    )}
+
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                {profile.acc_type === 1 && (
+                    <Card style={{ margin: "3rem 1rem" }}>
                         <CardContent>
                             <Typography variant="h4">
-                                Ongoing Classes
+                                Recent Classes
                             </Typography>
-                            <Link>
-                                <Typography>Ongoing class</Typography>
-                            </Link>
                         </CardContent>
-                    </Card>
-
-                    <Card style={{ margin: "1rem 1rem" }}>
                         <CardContent>
-                            <Typography variant="h4">Recent Classes</Typography>
-                            <Typography variant="h4">data</Typography>
+                            <Typography variant="h4">User {profile.acc_type}</Typography>
                         </CardContent>
                     </Card>
-                </Grid>
-                <Grid item style={{ display: "flex" }} >
-                    <Card style={{ margin: "1rem 1rem 1rem 0" }}md ={4}>
-                        <CardContent>
-                            <Typography variant="h4">Queries</Typography>
-                            <Typography variant="h4">query</Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                )}
             </Grid>
-        </Container>
+            <Grid item item xs={12} md={4}>
+                     <Card style={{ margin: "3rem 1rem" }} >
+                         <CardContent>
+                             <Typography variant="h4">Queries</Typography>
+                         </CardContent>
+                             <CardContent>
+                             <Typography variant="h4">query</Typography>
+                         </CardContent>
+                     </Card>
+                 </Grid>
+
+
+        </Grid>
+
+    </Container>
     );
 };
 
