@@ -14,13 +14,11 @@ import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import Timetable from "./components/Timetable";
 import Profile from "./pages/Profile";
 import Query from "./pages/Query";
-import Attendance from "./components/Attendance";
 import TimeTablePage from "./pages/Timetable/TimeTablePage";
 import AttendanceDisplayPage from "./pages/Attendance/AttendanceDisplayPage";
-import MeetSummaryPage from "./pages/Meet Summary/MeetSummaryPage";
+import MeetSummary from "./pages/MeetSummary/MeetSummary";
 
 
 const App = () => {
@@ -32,7 +30,7 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "1rem", }}>
+                <main style={{ marginTop: "1rem", height: "70vh" }}>
                     <Route exact path="/" component={LandingPage} />
                     {/* <PrivateRoute path="/home" component={Home} /> */}
                     <Route path="/login" component={Login} />
@@ -46,7 +44,7 @@ const App = () => {
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
                     <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
-                    <PrivateRoute exact path="/meet-summary" component={MeetSummaryPage} />
+                    <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
                 </main>
             </UserStatusContext.Provider>
             <Footer />

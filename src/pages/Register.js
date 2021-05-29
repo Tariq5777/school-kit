@@ -1,19 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import {
-    Button,
-    TextField,
-    FormControl,
-    FormLabel,
-    FormControlLabel,
-    RadioGroup,
-    Radio,
-    Container,
-    Grid
+    Button, TextField, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, Card, Box, Typography, Grid
 } from "@material-ui/core";
 import { Link } from 'react-router-dom'
 import { Redirect } from "react-router";
 import { isAuthenticated } from "../helper/auth/authUtils";
+import { Alert } from "react-bootstrap";
 
 const Register = () => {
     const [fullName, setFullName] = useState("");
@@ -59,129 +52,138 @@ const Register = () => {
             });
     };
     if (registerStatus) {
-        return <Redirect to="/login" />;
+        return setTimeout(() => <Redirect to="/login" />, 500)
     }
 
     return (
-        <Container maxWidth="sm" style={{ marginTop: "5rem" }}>
-            {error && <p>{errorMessage}</p>}
-            <h1>Register User</h1>
-            <form onSubmit={handleSubmit} className="register">
-                <FormControl margin="normal" fullWidth={true}>
-                    <TextField
-                        type="text"
-                        id="outlined-basic"
-                        label="Full Name"
-                        required
-                        variant="outlined"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                    />
-                </FormControl>
-                <FormControl margin="normal" fullWidth={true}>
-                    <TextField
-                        type="email"
-                        id="outlined-basic"
-                        label="Email"
-                        required
-                        variant="outlined"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </FormControl>
-                <FormControl margin="normal" fullWidth={true}>
-                    <TextField
-                        type="password"
-                        required
-                        id="outlined-basic"
-                        label="Password"
-                        variant="outlined"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </FormControl>
-                {/* ACCOUNT TYPE RADIO BUTTON */}
-                <FormControl margin="normal">
-                    <FormLabel component="legend">Account Type</FormLabel>
-                    <RadioGroup
-                        row
-                        value={userType}
-                        onChange={(e) => setUserType(e.target.value)}
-                    >
-                        <FormControlLabel
-                            value="1"
-                            control={<Radio />}
-                            label="Student"
-                        />
-                        <FormControlLabel
-                            value="2"
-                            control={<Radio />}
-                            label="Teacher"
-                        />
-                    </RadioGroup>
-                </FormControl>
-                {/*END ACCOUNT TYPE RADIO BUTTON */}
-
-                {parseInt(userType) === 1 && (
-                    <div>
-                        <div>
-                            <TextField
-                                type="number"
-                                id="class"
-                                label="Class"
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                disabled={parseInt(userType) === 2}
-                                value={standard}
-                                onChange={(e) => setStandard(e.target.value)}
-                            />
-                            <TextField
-                                type="text"
-                                id="section"
-                                label="section"
-                                variant="outlined"
-                                margin="normal"
-                                className="get-section"
-                                required
-                                disabled={parseInt(userType) === 2}
-                                style={{ marginLeft: "10px" }}
-                                value={section}
-                                onChange={(e) => setSection(e.target.value)}
-                            />
-                        </div>
+        <Grid container spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: '85vh', width: '100%' }}>
+            <Grid item xs={12}>
+                <Card elevation={3} style={{ width: '60vh', padding: "55px" }} raised={false}>
+                    <Typography align="center" variant="h4"><Box fontWeight="fontWeightBold">REGISTER</Box></Typography>
+                    <br />
+                    <form onSubmit={handleSubmit} className="register">
                         <FormControl margin="normal" fullWidth={true}>
                             <TextField
-                                type="number"
-                                id="rollno"
-                                label="Roll Number"
-                                variant="outlined"
+                                type="text"
+                                id="outlined-basic"
+                                label="Full Name"
                                 required
-                                disabled={parseInt(userType) === 2}
-                                value={rollNo}
-                                onChange={(e) => setRollNo(e.target.value)}
+                                variant="outlined"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
                             />
                         </FormControl>
-                    </div>
-                )}
-                <FormControl fullWidth={true}>
-                    <Button
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                        color="secondary"
-                    >
-                        {" "}
-                        Register
+                        <FormControl margin="normal" fullWidth={true}>
+                            <TextField
+                                type="email"
+                                id="outlined-basic"
+                                label="Email"
+                                required
+                                variant="outlined"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl margin="normal" fullWidth={true}>
+                            <TextField
+                                type="password"
+                                required
+                                id="outlined-basic"
+                                label="Password"
+                                variant="outlined"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </FormControl>
+                        {/* ACCOUNT TYPE RADIO BUTTON */}
+                        <FormControl margin="normal">
+                            <FormLabel component="legend">Account Type</FormLabel>
+                            <RadioGroup
+                                row
+                                value={userType}
+                                onChange={(e) => setUserType(e.target.value)}
+                            >
+                                <FormControlLabel
+                                    value="1"
+                                    control={<Radio />}
+                                    label="Student"
+                                />
+                                <FormControlLabel
+                                    value="2"
+                                    control={<Radio />}
+                                    label="Teacher"
+                                />
+                            </RadioGroup>
+                        </FormControl>
+                        {/*END ACCOUNT TYPE RADIO BUTTON */}
+
+                        {parseInt(userType) === 1 && (
+                            <div>
+                                <div>
+                                    <TextField
+                                        type="number"
+                                        id="class"
+                                        label="Class"
+                                        variant="outlined"
+                                        margin="normal"
+                                        required
+                                        disabled={parseInt(userType) === 2}
+                                        value={standard}
+                                        onChange={(e) => setStandard(e.target.value)}
+                                    />
+                                    <TextField
+                                        type="text"
+                                        id="section"
+                                        label="section"
+                                        variant="outlined"
+                                        margin="normal"
+                                        className="get-section"
+                                        required
+                                        disabled={parseInt(userType) === 2}
+                                        style={{ marginLeft: "10px" }}
+                                        value={section}
+                                        onChange={(e) => setSection(e.target.value)}
+                                    />
+                                </div>
+                                <FormControl margin="normal" fullWidth={true}>
+                                    <TextField
+                                        type="number"
+                                        id="rollno"
+                                        label="Roll Number"
+                                        variant="outlined"
+                                        required
+                                        disabled={parseInt(userType) === 2}
+                                        value={rollNo}
+                                        onChange={(e) => setRollNo(e.target.value)}
+                                    />
+                                </FormControl>
+                            </div>
+                        )}
+                        <FormControl fullWidth={true}>
+                            <Button
+                                size="large"
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                            >
+                                Register
                     </Button>
-                </FormControl>
-                <Grid container style={{ marginTop: "20px" }}>
-                    <Grid item xs>
-                        <Link to="/login">Already have an account ? Sign In</Link>
-                    </Grid>
-                </Grid>
-            </form>
-        </Container>
+                        </FormControl>
+                        <Grid container style={{ marginTop: "20px" }}>
+                            <Grid item xs>
+                                <Link to="/login">Already have an account ? Sign In</Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+                    {registerStatus && <Alert variant="success">Account Created successfully</Alert>}
+                    {error && <Alert variant="danger">{errorMessage}</Alert>}
+                </Card>
+            </Grid>
+        </Grid>
     );
 };
 
