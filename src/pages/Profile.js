@@ -1,10 +1,23 @@
 import {
     Avatar,
-    Button, Card, CardContent, Container, Paper, Table, TableCell, TableContainer, TableHead, TableRow, Typography,
+    Button,
+    Card,
+    CardContent,
+    Backdrop,
+    Container,
+    Modal,
+    Paper,
+    Table,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    TextField,
 } from "@material-ui/core";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import face4 from "../img/faces/face4.jpg";
 const Profile = () => {
@@ -16,11 +29,74 @@ const Profile = () => {
         section: "",
         standard: 0,
     });
+    const history = useHistory();
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const { token } = isAuthenticated();
+    const [isPending , setIsPending] = useState(false);
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    const handleChangePassword = (e) => {
+        const data = new FormData();
+        data.append("current_password", currentPassword);
+        data.append("new_password", newPassword);
+
+        e.preventDefault();
+        axios
+            .put("api/change_password/", data, config)
+            .then((res) => {
+                console.log(res.data.message);
+                setIsPending(true);
+                setTimeout(()=>{
+                    history.push("/dashboard");
+                }, 1000)
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    };
     useEffect(() => {
-        axios.get("api/profile/", { headers: { Authorization: `Bearer ${isAuthenticated().token}` } })
-            .then(res => setProfile({ ...res.data }))
-    }, [])
+        axios
+            .get("api/profile/", {
+                headers: { Authorization: `Bearer ${isAuthenticated().token}` },
+            })
+            .then((res) => setProfile({ ...res.data }));
+    }, []);
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const modalBody = (
+        <div className="modal-dialog">
+            <form className="modal" onSubmit={handleChangePassword}>
+                <Button variant="outlined" color="primary" onClick={()=>setModalOpen(!modalBody)}>Cancel</Button>
+                <Typography variant="h3">Change your password</Typography>
+                <TextField
+                    type="password"
+                    label="Current Password"
+                    variant="outlined"
+                    value={currentPassword}
+                    required
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+                <TextField
+                    type="password"
+                    label="New Password"
+                    variant="outlined"
+                    value={newPassword}
+                    required
+                    onChange={(e) => setNewPassword(e.target.value)}
+                />
+                <Button type="submit" variant="contained" color="secondary">
+                    Change Password
+                </Button>
+                {isPending && <h2>Password Changed,  Redirecting to Dashboard</h2>}
+            </form>
+        </div>
+    );
 
     return (
         <Container
@@ -110,11 +186,25 @@ const Profile = () => {
                     </TableContainer>
                 </CardContent>
                 <CardContent>
-                    <Link to="/change-password" style={{ color: "white", textDecoration: "none" }}>
-                        <Button variant="contained" color="secondary">
-                            Change Password
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => setModalOpen(!modalOpen)}
+                    >
+                        Change Password
+                    </Button>
+                    <Modal
+                        open={modalOpen}
+                        onClose={() => setModalOpen(!modalOpen)}
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{    
+                            timeout: 500,
+                        }}
+                    >
+                        {modalBody}
+                    </Modal>
                 </CardContent>
             </Card>
         </Container>

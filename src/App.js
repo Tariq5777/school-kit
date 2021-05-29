@@ -20,10 +20,10 @@ import Query from "./pages/Query";
 import Attendance from "./components/Attendance";
 import TimeTablePage from "./pages/Timetable/TimeTablePage";
 import AttendanceDisplayPage from "./pages/Attendance/AttendanceDisplayPage";
+import MeetSummaryPage from "./pages/Meet Summary/MeetSummaryPage";
 
 
 const App = () => {
-    const baseUrl = "http://localhost:7000/api/";
 
     const [user, setUser] = useState(false);
     const value = useMemo(() => ({ user, setUser }), [user, setUser]);
@@ -40,12 +40,13 @@ const App = () => {
                     <Route path="/forgot-password" component={ForgotPassword} />
                     <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
-                    <PrivateRoute path="/change-password" baseUrl={baseUrl} component={ChangePassword} />
+                    <PrivateRoute path="/change-password" component={ChangePassword} />
                     {/* <Route path="*" component={NotFound} /> */}
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
                     <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
+                    <PrivateRoute exact path="/meet-summary" component={MeetSummaryPage} />
                 </main>
             </UserStatusContext.Provider>
             <Footer />

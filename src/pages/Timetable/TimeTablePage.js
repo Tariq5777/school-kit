@@ -19,7 +19,7 @@ const TimeTablePage = () => {
     ];
 
     useEffect(() => {
-        axios.get("extra/timetable/", { headers: { Authorization: `Bearer ${isAuthenticated().token}` } })
+        axios.get("http://localhost:7000/extra/timetable/", { headers: { Authorization: `Bearer ${isAuthenticated().token}` } })
             .then(res => {
                 setTimetable(res.data.timetable)
             })
@@ -30,7 +30,6 @@ const TimeTablePage = () => {
     return (
         <div>
             <Timetable timetable={timetable} schedule={schedule} />
-
         </div>
     )
 }

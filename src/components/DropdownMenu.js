@@ -16,13 +16,6 @@ const DropdownMenu = () => {
     const { user, setUser } = useContext(UserStatusContext);
     let history = useHistory()
 
-    // const { token } = isAuthenticated();
-
-    // const config = {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    // };
     const handleLogout = (e) => {
         localStorage.removeItem("userInfo");
         setUser(false);

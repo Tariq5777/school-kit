@@ -55,7 +55,7 @@ const StudentDashboard = () => {
         }).catch((err) => {
             console.log("Profile Error", err.message);
         });
-        axios.get("extra/timetable/today", config)
+        axios.get("extra/timetable/today/", config)
             .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } }))
         axios.get("user/liveclass/", config)
             .then(res => setLiveClass(res.data))

@@ -10,15 +10,14 @@ import {
     TableRow,
     Typography,
 } from "@material-ui/core";
-import { useState } from "react";
 
 const Attendance = ({ attendance }) => {
 
     return (
         <Container maxWidth="md">
             <Card>
-                <CardContent>
-                    <Typography variant="h4">Attendance</Typography>
+                <CardContent style= {{textAlign:"center"}}>
+                    <Typography variant="h3">Attendance</Typography>
                 </CardContent>
                 <CardContent>
                     <TableContainer>

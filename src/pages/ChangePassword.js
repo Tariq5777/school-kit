@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 
-const ChangePassword = ({ baseUrl }) => {
+const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
