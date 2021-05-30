@@ -1,25 +1,14 @@
 import {
-    Avatar,
-    Button,
-    Card,
-    CardContent,
-    Backdrop,
-    Container,
-    Modal,
-    Paper,
-    Table,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-    TextField,
+    Avatar, Backdrop, Modal, makeStyles, Container,
 } from "@material-ui/core";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Button, Card, Form } from "react-bootstrap";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import face4 from "../img/faces/face4.jpg";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ChangePassword from "./ChangePassword";
 const Profile = () => {
     const [profile, setProfile] = useState({
         acc_type: 0,
@@ -33,7 +22,9 @@ const Profile = () => {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const { token } = isAuthenticated();
-    const [isPending , setIsPending] = useState(false);
+    const [isPending, setIsPending] = useState(false);
+
+    const classes = useStyles();
 
     const config = {
         headers: {
@@ -51,7 +42,7 @@ const Profile = () => {
             .then((res) => {
                 console.log(res.data.message);
                 setIsPending(true);
-                setTimeout(()=>{
+                setTimeout(() => {
                     history.push("/dashboard");
                 }, 1000)
             })
@@ -69,146 +60,90 @@ const Profile = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
+    const handlePasswordChange = () => {
+
+        setModalOpen(true);
+    }
+
     const modalBody = (
-        <div className="modal-dialog">
-            <form className="modal" onSubmit={handleChangePassword}>
-                <Button variant="outlined" color="primary" onClick={()=>setModalOpen(!modalBody)}>Cancel</Button>
-                <Typography variant="h3">Change your password</Typography>
-                <TextField
-                    type="password"
-                    label="Current Password"
-                    variant="outlined"
-                    value={currentPassword}
-                    required
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                />
-                <TextField
-                    type="password"
-                    label="New Password"
-                    variant="outlined"
-                    value={newPassword}
-                    required
-                    onChange={(e) => setNewPassword(e.target.value)}
-                />
-                <Button type="submit" variant="contained" color="secondary">
-                    Change Password
-                </Button>
-                {isPending && <h2>Password Changed,  Redirecting to Dashboard</h2>}
-            </form>
+        <div>
+
         </div>
     );
 
     return (
         <Container
             maxWidth="md"
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-                justifyContent: "center",
-            }}
-        >
+            style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}>
             <div className="profile-image">
                 <Avatar
                     alt="Remy Sharp"
                     src={face4}
-                    style={{
-                        width: "100px",
-                        height: "100px",
-                        alignItems: "center",
-                    }}
+                    style={{ width: "100px", height: "100px", alignItems: "center", }}
                 />
+                <Card className="mt-5" style={{ width: '35rem', height: '70%' }}>
+                    <Card.Header as="h5" >Profile</Card.Header>
+                    <Card.Body>
+                        <Form>
+                            <Form.Group>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control disabled value={profile.full_name} />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control disabled value={profile.email} />
+                            </Form.Group>
+                            {profile.acc_type === 1 &&
+                                <div>
+                                    <Form.Group>
+                                        <Form.Label>Roll No.</Form.Label>
+                                        <Form.Control disabled value={profile.roll_no} />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Class</Form.Label>
+                                        <Form.Control disabled value={profile.standard} />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Section</Form.Label>
+                                        <Form.Control disabled value={profile.section} />
+                                    </Form.Group>
+                                </div>
+                            }
+                            <Button variant="primary" onClick={handlePasswordChange}>
+                                Change Password
+                          </Button>
+                        </Form>
+                        <Modal
+                            open={modalOpen}
+                            onClose={() => setModalOpen(false)}
+                            className={classes.modal}
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{ timeout: 500 }}>
+
+                            <ChangePassword />
+                        </Modal>
+                    </Card.Body>
+
+                </Card>
             </div>
-            <Card
-                elevation={2}
-                raised={false}
-                style={{ width: "400px", marginTop: "1rem" }}
-            >
-                <CardContent>
-                    <Typography variant="h4" component="h4">
-                        My Profile
-                    </Typography>
-                </CardContent>
-                <CardContent>
-                    <TableContainer component={Paper} variant="outlined">
-                        <Table size="medium">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            Name
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            {profile.full_name}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            Email
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            {profile.email}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            Class
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            {profile.standard}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            Section
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="h5">
-                                            {profile.section}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                        </Table>
-                    </TableContainer>
-                </CardContent>
-                <CardContent>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => setModalOpen(!modalOpen)}
-                    >
-                        Change Password
-                    </Button>
-                    <Modal
-                        open={modalOpen}
-                        onClose={() => setModalOpen(!modalOpen)}
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{    
-                            timeout: 500,
-                        }}
-                    >
-                        {modalBody}
-                    </Modal>
-                </CardContent>
-            </Card>
-        </Container>
+
+        </Container >
     );
 };
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    paper: {
+        width: '70%',
+        height: '80%',
+        backgroundColor: theme.palette.background.paper,
+        elevation: 3,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
 
 export default Profile;

@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         display: "none",
     },
     drawer: {
-        height:"70px",
+        height: "70px",
         width: drawerWidth,
         flexShrink: 0,
     },
