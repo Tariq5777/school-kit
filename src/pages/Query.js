@@ -6,6 +6,7 @@ import {
     FormControl,
     TextField,
     Button,
+    Typography,
 } from "@material-ui/core";
 import { useState } from "react";
 
@@ -21,6 +22,9 @@ const Query = () => {
                 <CardContent>
                     <form onSubmit={handleSendQuery}>
                         <CardContent>
+                            <Typography variant = "h3" style ={{ textAlign:"center"}}>
+                                Submit Queries
+                            </Typography>
                             <FormControl margin="normal" fullWidth={true}>
                                 <TextField
                                     type="text"

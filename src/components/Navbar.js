@@ -19,7 +19,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import image from "../img/SK-logo/default-monochrome-sk.png";
-import DrawerItems from "./DrawerItems";
+import DrawerItems2 from "./DrawerItems";
 import NavItems from "./NavItems";
 import DropdownMenu from "./DropdownMenu";
 const drawerWidth = 240;
@@ -208,7 +208,7 @@ const Navbar = () => {
                     </IconButton>
                 </div>
                 <Divider />
-                <DrawerItems userType={isAuthenticated().user_type} />
+                <DrawerItems2 userType={isAuthenticated().user_type} />
 
             </Drawer>
             <main

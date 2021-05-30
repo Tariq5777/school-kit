@@ -176,6 +176,12 @@ ul {
     margin: 1rem 1rem;
 }
 
+/* Download Page */
+
+.download-extension h2,.download-extension h6{
+    margin:2rem 0;
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1130px) {

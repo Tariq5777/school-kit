@@ -1,33 +1,54 @@
-import {
-    Collapse,
-    List,
-    ListItem,
-    ListItemIcon,
-    Button,
-    ListItemText,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import ClassOutlinedIcon from '@material-ui/icons/ClassOutlined';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
+import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import SchoolIcon from "@material-ui/icons/School";
-import InputIcon from "@material-ui/icons/Input";
 import AddIcon from "@material-ui/icons/Add";
-import ClassRoundedIcon from "@material-ui/icons/ClassRounded";
-import { Link, Redirect, useHistory } from "react-router-dom";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import React, { useState } from "react";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 
-const DrawerItems = ({ userType }) => {
-    // userType = 2;
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
+}));
 
+export default function DrawerItems2({ userType }) {
     let history = useHistory();
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const [timeTable, setTimeTable] = useState(false);
+    // const [classesOpen,setClassesOpen] = useState(false);
+    const [attendance, setAttendance] = useState(false);
 
-    const [timeTableopen, setTimeTableOpen] = useState(false);
-    const [classDrop, setClassDrop] = useState(false);
+    const handleTimeTable = () => {
+        setTimeTable(!timeTable);
+    };
+    const handleClick = () => {
+        setOpen(!open);
+    };
+    const handleAttendance = () => {
+        setAttendance(!attendance);
+    };
 
     const studentDrawer = [
         { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
@@ -47,30 +68,6 @@ const DrawerItems = ({ userType }) => {
         { title: "Download Extension", link: "download", icon: <GetAppIcon /> },
     ];
 
-    const teacherDrawer = [
-        { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
-        { title: "Timetable", icon: <TableChartIcon /> },
-        { title: "Classes", icon: <ClassRoundedIcon /> },
-        {
-            title: "Check Attendance",
-            link: "attendance",
-            icon: <BarChartIcon />,
-        },
-        { title: "Download Extension", link: "download", icon: <GetAppIcon /> },
-    ];
-
-    const dropItems = {
-        Timetable: [
-            { title: "Add", link: "add" },
-            { title: "Update", link: "update" },
-            { title: "View", link: "view" },
-        ],
-        Classes: [
-            { title: "Transcript", link: "transcript" },
-            { title: "Summary", link: "summary" },
-        ],
-    };
-
     return (
         <div>
             {userType === 1 && (
@@ -88,39 +85,99 @@ const DrawerItems = ({ userType }) => {
                     ))}
                 </List>
             )}
-            {userType === 2 && (
-                <List>
-                    {teacherDrawer.map((data, key) => (
-                        <ListItem
-                            key={key}
-                            button
-                            divider
-                            onClick={() => history.push(data.link)}
-                        >
-                            <ListItemIcon>{data.icon}</ListItemIcon>
-                            <ListItemText primary={data.title} />
-                            {data.title == "Timetable" && (
-                                <Button
-                                    onClick={() =>
-                                        setTimeTableOpen(!timeTableopen)
-                                    }
-                                >
-                                    <ExpandMore />
-                                </Button>
-                            )}
-                            {data.title == "Classes" && (
-                                <Button
-                                    onClick={() => setClassDrop(!classDrop)}
-                                >
-                                    <ExpandMore />
-                                </Button>
-                            )}
+            {userType == 2 && (
+                <List
+                    component="nav"
+                    aria-labelledby="nested-list-subheader"
+                    className={classes.root}
+                >
+                    <Link to="/Dashboard">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <HomeRoundedIcon />
+                            </ListItemIcon>
+
+                            <ListItemText primary="Dashboard" />
                         </ListItem>
-                    ))}
+                    </Link>
+                    <ListItem button onClick={handleTimeTable}>
+                        <ListItemIcon>
+                            <TableChartIcon />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Timetable" />
+                        {timeTable ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={timeTable} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <Link to="/add-timetable">
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AddIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Add" />
+                                </ListItem>
+                            </Link>
+                            <Link to="/update">
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <AddBoxOutlinedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Update" />
+                                </ListItem>
+                            </Link>
+                            <Link to="/timetable">
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <VisibilityOutlinedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="View" />
+                                </ListItem>
+                            </Link>
+                        </List>
+                    </Collapse>
+                    <ListItem button onClick={handleClick}>
+                        <ListItemIcon>
+                            <ClassOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Classes" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <ReceiptOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Transcript" />
+                            </ListItem>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <ListOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Summary" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <ListItem button onClick={handleAttendance}>
+                        <ListItemIcon>
+                            <BarChartIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Attendance" />
+                        {attendance ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={attendance} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <VisibilityOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="View Attendance" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </List>
             )}
         </div>
     );
-};
-
-export default DrawerItems;
+}
