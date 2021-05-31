@@ -59,9 +59,9 @@ ul {
 
 /* DROP DOWN */
 
-.dropdown {
+.drop-items{
   position: absolute;
-  top: 70px;
+  top: 85px;
   width: 300px;
   right: 1rem;
   background-color: #eeeeee;

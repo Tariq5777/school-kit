@@ -18,18 +18,18 @@ const AddTimetable = () => {
         "3:00-4:00",
     ];
 
-    const [standard, setStandard] = useState([
-        { id: 1, standard: 0, section: "" },
-    ]);
+    const [standard, setStandard] = useState(
+        { id: 0, standard: 0, section: "" },
+    );
 
     useEffect(() => {
         axios
-            .get("http://localhost:7000/api/standard/18", {
+            .get("http://localhost:7000/api/standard/", {
                 headers: { Authorization: `Bearer ${isAuthenticated().token}` },
             })
             .then((res) => {
-                setStandard(res.data.timetable);
-                console.log(standard);
+                const {id, standard, section}=res.data;
+                setStandard({id, standard, section});
             });
     }, []);
 

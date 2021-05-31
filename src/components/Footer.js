@@ -19,7 +19,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        padding: theme.spacing(3, 2),
+        padding: theme.spacing(3, 0),
         marginTop: "100px",
         backgroundColor:
             theme.palette.type === "light"
@@ -33,15 +33,17 @@ export default function Footer() {
 
     return (
         <>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <footer
                 className={classes.footer}
                 style={{
+
+                    position: "fixed",
                     width: "100%",
+                    bottom: 0,
+                    top:"auto",
                     flexShrink: 0,
                     textAlign: "center",
-                    position: "relative",
-                    bottom: 0,
                 }}
             >
                 <Container maxWidth="sm">

@@ -1,5 +1,4 @@
 import Navbar from "./components/Navbar";
-// import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -39,7 +38,6 @@ const App = () => {
                     <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute path="/change-password" component={ChangePassword} />
-                    {/* <Route path="*" component={NotFound} /> */}
                     <Route path="/add-timetable" component={AddTimetable} />
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />

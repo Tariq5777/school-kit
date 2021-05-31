@@ -29,7 +29,7 @@ const DropdownMenu = () => {
     ];
 
     return (
-        <div className="dropdown">
+        <div className="drop-items">
             <List className="menu-items">
                 {dropDownItems.map((item, key) => (
                     <ListItem button key={key} onClick={item.onClick}>
