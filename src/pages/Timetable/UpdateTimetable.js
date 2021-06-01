@@ -17,9 +17,9 @@ import { isAuthenticated } from "../../helper/auth/authUtils";
 
 const UpdateTimetable = () => {
     const [timetable, setTimetable] = useState({});
+    const [sid, setSID] = useState(0)
     const [standard, setStandard] = useState([]);
     const [isPending, setIsPending] = useState(true);
-    const [section, setSection] = useState("");
 
     const [dropdownTitle, setDropdownTitle] = useState("Select Standard");
 
@@ -34,20 +34,21 @@ const UpdateTimetable = () => {
         "3:00-4:00",
     ];
     const config = {
-        headers: { Authorization: `Bearer ${isAuthenticated().token}` },
-    };
+        headers: {
+            Authorization: `Bearer ${isAuthenticated().token}`
+        },
+    }
 
     useEffect(() => {
-        const data = { standard: 1, section: "A" };
         axios
-            .get("http://localhost:7000/extra/timetable/",config)
-            .then((res) => {
+            .get(`http://localhost:7000/extra/timetable/${sid}`, config)
+            .then(res => {
                 setTimetable(res.data.timetable);
                 setIsPending(false);
                 console.log(timetable);
             })
             .catch((err) => console.log(err.message));
-    }, []);
+    }, [sid]);
 
     useEffect(() => {
         axios.get("http://localhost:7000/api/standard/", config).then((res) => {
@@ -61,14 +62,13 @@ const UpdateTimetable = () => {
             <Row>
                 <Col>
                     <DropdownButton title={dropdownTitle}>
-                        {standard.map((std, key) => (
+                        {standard.map(std => (
                             <Dropdown.Item
                                 value={std.standard + " " + std.section}
-                                key={key}
-                                onSelect={(e) =>
-                                    setDropdownTitle(
-                                        std.standard + " " + std.section
-                                    )
+                                eventKey={std.id}
+                                onSelect={(e) => {
+                                    setDropdownTitle(std.standard + " " + std.section); setSID(std.id)
+                                }
                                 }
                             >
                                 {std.standard + " " + std.section}

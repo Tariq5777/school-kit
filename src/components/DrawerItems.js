@@ -91,49 +91,40 @@ export default function DrawerItems2({ userType }) {
                     aria-labelledby="nested-list-subheader"
                     className={classes.root}
                 >
-                    <Link to="/Dashboard">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <HomeRoundedIcon />
-                            </ListItemIcon>
+                    <ListItem button onClick={() => history.push("/dashboard")}>
+                        <ListItemIcon>
+                            <HomeRoundedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Dashboard" />
+                    </ListItem>
 
-                            <ListItemText primary="Dashboard" />
-                        </ListItem>
-                    </Link>
                     <ListItem button onClick={handleTimeTable}>
                         <ListItemIcon>
                             <TableChartIcon />
                         </ListItemIcon>
-
                         <ListItemText primary="Timetable" />
                         {timeTable ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={timeTable} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <Link to="/add-timetable">
-                                <ListItem button className={classes.nested}>
-                                    <ListItemIcon>
-                                        <AddIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Add" />
-                                </ListItem>
-                            </Link>
-                            <Link to="/update-timetable">
-                                <ListItem button className={classes.nested}>
-                                    <ListItemIcon>
-                                        <AddBoxOutlinedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Update" />
-                                </ListItem>
-                            </Link>
-                            <Link to="/timetable">
-                                <ListItem button className={classes.nested}>
-                                    <ListItemIcon>
-                                        <VisibilityOutlinedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="View" />
-                                </ListItem>
-                            </Link>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/add-timetable")}>
+                                <ListItemIcon>
+                                    <AddIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Add" />
+                            </ListItem>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/update-timetable")}>
+                                <ListItemIcon>
+                                    <AddBoxOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Update" />
+                            </ListItem>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/timetable")}>
+                                <ListItemIcon>
+                                    <VisibilityOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="View" />
+                            </ListItem>
                         </List>
                     </Collapse>
                     <ListItem button onClick={handleClick}>
