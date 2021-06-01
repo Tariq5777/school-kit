@@ -31,7 +31,7 @@ const Attendance = ({ attendance }) => {
                                         "Subject",
                                         "Duration",
                                     ].map((text) => (
-                                        <TableCell>
+                                        <TableCell key={text}>
                                             <Typography
                                                 variant="h6"
                                                 style={{ fontWeight: "bold" }}

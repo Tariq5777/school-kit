@@ -23,7 +23,7 @@ const TimeTablePage = () => {
             .then(res => {
                 setTimetable(res.data.timetable)
             })
-    }, [])
+    }, [])    
 
     document.title = "TimeTable"
 

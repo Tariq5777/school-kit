@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -18,6 +18,7 @@ import AttendanceDisplayPage from "./pages/Attendance/AttendanceDisplayPage";
 import MeetSummary from "./pages/MeetSummary/MeetSummary";
 import Download from "./pages/Download";
 import AddTimetable from "./pages/Timetable/AddTimetable";
+import UpdateTimetable from "./pages/Timetable/UpdateTimetable";
 
 
 const App = () => {
@@ -38,7 +39,8 @@ const App = () => {
                     <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute path="/change-password" component={ChangePassword} />
-                    <Route path="/add-timetable" component={AddTimetable} />
+                    <PrivateRoute path="/add-timetable" component={AddTimetable} />
+                    <PrivateRoute path="/update-timetable" component = {UpdateTimetable}/>
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
@@ -46,7 +48,7 @@ const App = () => {
                     <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
                 </main>
             </UserStatusContext.Provider>
-            <Footer />
+            {/* <Footer /> */}
         </Router>
     );
 };

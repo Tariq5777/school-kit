@@ -20,7 +20,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
     footer: {
         padding: theme.spacing(3, 0),
-        marginTop: "100px",
+        // marginTop: "100px",
         backgroundColor:
             theme.palette.type === "light"
                 ? theme.palette.grey[200]
@@ -38,7 +38,7 @@ export default function Footer() {
                 className={classes.footer}
                 style={{
 
-                    position: "fixed",
+                    position: "relative",
                     width: "100%",
                     bottom: 0,
                     top:"auto",

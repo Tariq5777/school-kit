@@ -118,7 +118,7 @@ export default function DrawerItems2({ userType }) {
                                     <ListItemText primary="Add" />
                                 </ListItem>
                             </Link>
-                            <Link to="/update">
+                            <Link to="/update-timetable">
                                 <ListItem button className={classes.nested}>
                                     <ListItemIcon>
                                         <AddBoxOutlinedIcon />
