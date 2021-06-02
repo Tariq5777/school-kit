@@ -43,6 +43,7 @@ ul {
   align-items: center;
   background-color: white;
   justify-content: space-between;
+  padding: 0 1rem !important;
 }
 
 .nav-items {

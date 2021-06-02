@@ -8,9 +8,6 @@ import {
     Row,
     Col,
     Container,
-    Form,
-    FormControl,
-    InputGroup,
     Card,
 } from "react-bootstrap";
 // import Timetable from "../../components/Timetable";
@@ -49,7 +46,6 @@ const AddTimetable = () => {
         const data = {
             timetable: timetable
         }
-
         //TODO: SEND POST REQUEST TO ADD TIMETABLE
 
         axios.post(`http://localhost:7000/extra/timetable/${ttStandard}`, data, config)
@@ -145,7 +141,7 @@ const AddTimetable = () => {
                         <Row className="flex-row-reverse">
                             <Button className="mx-3" variant="success" onClick={addTimetable}>
                                 Create TimeTable
-                    </Button>
+                            </Button>
                         </Row>
                     </Card.Body>
                 </Card>

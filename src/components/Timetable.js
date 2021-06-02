@@ -30,7 +30,7 @@ const Timetable = ({ timetable, schedule }) => {
                     <TableContainer component={Paper} variant="outlined">
                         <Table size="medium">
                             <TableHead>
-                                <TableRow>
+                                <TableRow >
                                     <TableCell>
                                         <Box fontWeight="fontWeightBold">
                                             Day/Time
@@ -47,7 +47,7 @@ const Timetable = ({ timetable, schedule }) => {
                             </TableHead>
                             <TableBody>
                                 {Object.entries(timetable).map((item, index) => (
-                                    <TableRow key={index}>
+                                    <TableRow hover key={index}>
                                         <TableCell><Box fontWeight="fontWeightBold">{days[item[0]]}</Box></TableCell>
                                         {Object.entries(item[1]).map(item =>
                                             <TableCell key={item[0]}>{item[1]}</TableCell>)
