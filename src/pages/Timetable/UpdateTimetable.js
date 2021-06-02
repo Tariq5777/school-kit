@@ -64,10 +64,10 @@ const UpdateTimetable = () => {
         };
         axios
             .put(`http://localhost:7000/extra/timetable/${sid}`, data, config)
-            .then((res) => {
+            .then(res => {
                 console.log(res.data);
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err.message);
             });
     };

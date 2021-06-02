@@ -38,16 +38,10 @@ const TimeTablePage = () => {
 
     useEffect(() => {
         if (userType == 1) {
-            const data = {
-                standard: standard.standard,
-                section: standard.section,
-            };
-            axios
-                .get("http://localhost:7000/extra/timetable/", data, config)
-                .then((res) => {
-                    setTimetable(res.data.timetable);
-                    setIsPending(false);
-                })
+            axios.get("http://localhost:7000/user/timetable/", config).then((res) => {
+                setTimetable(res.data.timetable);
+                setIsPending(false);
+            })
                 .catch((err) => console.log(err.message));
         } else {
             axios
@@ -61,15 +55,19 @@ const TimeTablePage = () => {
         }
     }, [sid]);
 
+
     useEffect(() => {
-        axios
-            .get("http://localhost:7000/api/standard", config)
-            .then((res) => {
-                setStandard(res.data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
+        if (userType == 2) {
+            axios
+                .get("http://localhost:7000/api/standard", config)
+                .then((res) => {
+                    setStandard(res.data);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }
+
     }, []);
 
     document.title = "TimeTable";
@@ -79,7 +77,7 @@ const TimeTablePage = () => {
             <Card>
                 {userType === 2 && <Card.Header>Get TimeTable</Card.Header>}
                 <Card.Body>
-                    {}
+                    { }
                     {userType === 2 && (
                         <Row>
                             <Col>
@@ -94,8 +92,8 @@ const TimeTablePage = () => {
                                             onSelect={() =>
                                                 setDropdownTitle(
                                                     num.standard +
-                                                        " " +
-                                                        num.section
+                                                    " " +
+                                                    num.section
                                                 )
                                             }
                                         >

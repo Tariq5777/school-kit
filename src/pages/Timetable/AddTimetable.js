@@ -44,11 +44,13 @@ const AddTimetable = () => {
     const addTimetable = (e) => {
         e.preventDefault()
         const data = {
+            standard: ttStandard,
             timetable: timetable
         }
+        console.log(data)
         //TODO: SEND POST REQUEST TO ADD TIMETABLE
 
-        axios.post(`http://localhost:7000/extra/timetable/${ttStandard}`, data, config)
+        axios.post(`http://localhost:7000/extra/timetable/`, data, config)
             .then((res) => {
                 console.log(res.data);
             })
