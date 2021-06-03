@@ -16,6 +16,7 @@ const ClassRecords = () => {
     const [subjects, setSubjects] = useState([]);
     const [classRecord, setClassRecord] = useState([]);
     const [selectedSubject, setSelectedSubject] = useState("");
+    const [selectedSection, setSelectedSection] = useState("");
     const [selectedStandard, setSelectedStandard] = useState(0);
     const [sid, setSID] = useState(0);
     const [dropdownStandard, setDropdownStandard] = useState("Select Standard");
@@ -30,9 +31,10 @@ const ClassRecords = () => {
     useEffect(() => {
         const data = {
             "standard": selectedStandard,
-            "section": selectedSubject
+            "section": selectedSection,
+            "subject":selectedSubject
         }
-        axios.get(`http://localhost:7000/extra/classrecord/standard/`, data, config)
+        axios.get(`http://localhost:7000/extra/classrecord/subject/`, data, config)
             .then(res => {
                 setClassRecord(res.data);
                 console.log(res.data);
@@ -40,7 +42,7 @@ const ClassRecords = () => {
             .catch(err => {
                 console.log(err.message);
             })
-    }, [sid])
+    }, [selectedStandard,selectedSection,selectedSubject])
 
     useEffect(() => {
         axios.get("http://localhost:7000/api/standard/", config).then((res) => {
@@ -71,6 +73,7 @@ const ClassRecords = () => {
                                                 std.standard + " " + std.section
                                             );
                                             setSelectedStandard(std.standard);
+                                            setSelectedSection(std.section)
                                         }
                                         }
                                     >
@@ -89,8 +92,10 @@ const ClassRecords = () => {
                                         key={subject["id"]}
                                         eventKey={subject["id"]}
                                         value={subject["id"]}
-                                        onSelect={() =>
-                                            setDropdownSubject(subject.subject)
+                                        onSelect={() =>{
+                                            setDropdownSubject(subject.subject);
+                                            setSelectedSubject(subject.subject);
+                                        }
                                         }
                                     >
                                         {subject["subject"]}
