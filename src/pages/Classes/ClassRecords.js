@@ -15,21 +15,22 @@ const ClassRecords = () => {
     const [standard, setStandard] = useState([]);
     const [subjects, setSubjects] = useState([]);
     const [classRecord, setClassRecord] = useState([]);
+    const [selectedSubject, setSelectedSubject]= useState("");
+    const [selectedStandard, setSelectedStandard]= useState(0);
     const [sid, setSID] = useState(0);
     const [dropdownStandard, setDropdownStandard] = useState("Select Standard");
     const [dropdownSubject, setDropdownSubject] = useState("Select Subject");
 
-    const config = {
+ const config = {
         headers: {
             Authorization: `Bearer ${isAuthenticated().token}`,
         },
     };
 
-
     useEffect(() => {
         const data = {
-            "standard": 1,
-            "section" : "A"
+            "standard": selectedStandard,
+            "section" : selectedSubject
         }
         axios.get(`http://localhost:7000/extra/classrecord/standard/`,data, config)
         .then(res =>{
@@ -39,26 +40,16 @@ const ClassRecords = () => {
         .catch(err=>{
             console.log(err.message);
         })
-    }, [])
+    }, [sid])
 
     useEffect(() => {
-        get_standard();
-        get_subject();
+        axios.get("http://localhost:7000/api/standard/", config).then((res) => {
+            setStandard(res.data);
+            console.log(standard);
+        });
+        axios.get("api/subjects/", config).then((res) => setSubjects(res.data));
     }, []);
 
-    const get_standard = () => {
-        axios.get("api/standard/", config).then((res) => setStandard(res.data));
-    };
-
-    const get_subject = () => {
-        axios
-            .get("api/subjects/", config)
-            .then((res) => {
-                setSubjects(res.data);
-                console.log(subjects);
-            })
-            .catch((err) => console.log(err.message));
-    };
 
     return (
         <Container>
@@ -75,10 +66,12 @@ const ClassRecords = () => {
                                     <Dropdown.Item
                                         key={std.id}
                                         eventKey={std.id}
-                                        onSelect={() =>
+                                        onSelect={() =>{
                                             setDropdownStandard(
                                                 std.standard + " " + std.section
-                                            )
+                                            );
+                                            setSelectedStandard(std.standard);
+                                        }
                                         }
                                     >
                                         {std.standard + " " + std.section}
@@ -89,18 +82,18 @@ const ClassRecords = () => {
                         <Col>
                             <DropdownButton
                                 title={dropdownSubject}
-                                // onSelect={(e)=>setSubjectRecord(e)}
+                                onSelect={(e)=>setSelectedSubject(e)}
                             >
                                 {subjects.map((subject) => {
                                     <Dropdown.Item
-                                        key={subject.id}
-                                        eventKey={subject.id}
-                                        value={subject.subject}
+                                        key={subject["id"]}
+                                        eventKey={subject["id"]}
+                                        value={subject["id"]}
                                         onSelect={() =>
                                             setDropdownSubject(subject.subject)
                                         }
                                     >
-                                        {subject}
+                                        {subject["subject"]}
                                     </Dropdown.Item>;
                                 })}
                             </DropdownButton>
