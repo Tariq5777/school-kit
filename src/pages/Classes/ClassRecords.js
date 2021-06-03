@@ -15,13 +15,13 @@ const ClassRecords = () => {
     const [standard, setStandard] = useState([]);
     const [subjects, setSubjects] = useState([]);
     const [classRecord, setClassRecord] = useState([]);
-    const [selectedSubject, setSelectedSubject]= useState("");
-    const [selectedStandard, setSelectedStandard]= useState(0);
+    const [selectedSubject, setSelectedSubject] = useState("");
+    const [selectedStandard, setSelectedStandard] = useState(0);
     const [sid, setSID] = useState(0);
     const [dropdownStandard, setDropdownStandard] = useState("Select Standard");
     const [dropdownSubject, setDropdownSubject] = useState("Select Subject");
 
- const config = {
+    const config = {
         headers: {
             Authorization: `Bearer ${isAuthenticated().token}`,
         },
@@ -30,16 +30,16 @@ const ClassRecords = () => {
     useEffect(() => {
         const data = {
             "standard": selectedStandard,
-            "section" : selectedSubject
+            "section": selectedSubject
         }
-        axios.get(`http://localhost:7000/extra/classrecord/standard/`,data, config)
-        .then(res =>{
-            setClassRecord(res.data);
-            console.log(res.data);
-        })
-        .catch(err=>{
-            console.log(err.message);
-        })
+        axios.get(`http://localhost:7000/extra/classrecord/standard/`, data, config)
+            .then(res => {
+                setClassRecord(res.data);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     }, [sid])
 
     useEffect(() => {
@@ -66,7 +66,7 @@ const ClassRecords = () => {
                                     <Dropdown.Item
                                         key={std.id}
                                         eventKey={std.id}
-                                        onSelect={() =>{
+                                        onSelect={() => {
                                             setDropdownStandard(
                                                 std.standard + " " + std.section
                                             );
@@ -82,9 +82,9 @@ const ClassRecords = () => {
                         <Col>
                             <DropdownButton
                                 title={dropdownSubject}
-                                onSelect={(e)=>setSelectedSubject(e)}
+                                onSelect={(e) => setSelectedSubject(e)}
                             >
-                                {subjects.map((subject) => {
+                                {subjects.map(subject =>
                                     <Dropdown.Item
                                         key={subject["id"]}
                                         eventKey={subject["id"]}
@@ -94,12 +94,12 @@ const ClassRecords = () => {
                                         }
                                     >
                                         {subject["subject"]}
-                                    </Dropdown.Item>;
-                                })}
+                                    </Dropdown.Item>
+                                )}
                             </DropdownButton>
                         </Col>
                     </Row>
-                    <Row > 
+                    <Row >
                         <Col>
                             <Table responsive hover className="mt-4">
                                 <thead>
@@ -112,14 +112,14 @@ const ClassRecords = () => {
                                             "Ended At",
                                             "Duration",
                                             "Subject",
-                                        ].map(text=>(
+                                        ].map(text => (
                                             <th key={text}>{text}</th>
                                         ))}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {classRecord.map((data, key)=>(
-                                        <tr key= {key}>
+                                    {classRecord.map((data, key) => (
+                                        <tr key={key}>
                                             <td>{data.id}</td>
                                             <td>{data.meet_id}</td>
                                             <td>{data.data}</td>
