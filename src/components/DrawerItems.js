@@ -136,17 +136,17 @@ export default function DrawerItems2({ userType }) {
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/class-records")}>
                                 <ListItemIcon>
                                     <ReceiptOutlinedIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Transcript" />
+                                <ListItemText primary="Class Records" />
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <ListOutlinedIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Summary" />
+                                <ListItemText primary="Transcript and Summary" />
                             </ListItem>
                         </List>
                     </Collapse>

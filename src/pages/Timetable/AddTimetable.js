@@ -27,6 +27,7 @@ const AddTimetable = () => {
     const [ttStandard, setTTStandard] = useState(0)
     const [standard, setStandard] = useState([])
     const [subjects, setSubject] = useState([])
+    
     const schedule = [
         "8:00 - 9:00",
         "9:00 - 10:00",
@@ -131,7 +132,7 @@ const AddTimetable = () => {
                                                                     {subject.subject}
                                                                 </option>
                                                             )}
-                                                        </select>
+                                                        </select>   
                                                     </td>
                                                 )}
                                             </tr>

@@ -19,6 +19,7 @@ import MeetSummary from "./pages/MeetSummary/MeetSummary";
 import Download from "./pages/Download";
 import AddTimetable from "./pages/Timetable/AddTimetable";
 import UpdateTimetable from "./pages/Timetable/UpdateTimetable";
+import ClassRecords from "./pages/Classes/ClassRecords";
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
                     <PrivateRoute exact path="/query" component={Query} />
                     <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
                     <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
+                    <PrivateRoute exact path="/class-records" component={ClassRecords} />
                 </main>
             </UserStatusContext.Provider>
             {/* <Footer /> */}

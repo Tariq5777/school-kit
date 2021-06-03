@@ -1,4 +1,4 @@
-import {
+    import {
     Button, Card, CardContent, Container, Table, TableBody, TableFooter, TableCell, TableContainer, TableHead, TableRow, Typography
 } from "@material-ui/core";
 import axios from "axios";
@@ -10,7 +10,7 @@ const MeetSummary = () => {
 
     const [open, setOpen] = useState(false);
     const [data, setData] = useState({ title: "", transcript: "" })
-    const [meetTableData, setMeetTableData] = useState([])
+    const [meetTableData, setMeetTableData] = useState([]);
 
     useEffect(() => {
         axios.get('/extra/meetsummary/', { headers: { Authorization: `Bearer ${isAuthenticated().token}` } }).then(res =>
