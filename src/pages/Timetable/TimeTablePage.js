@@ -16,7 +16,7 @@ const TimeTablePage = () => {
     const [isPending, setIsPending] = useState(true);
     const [standard, setStandard] = useState([]);
     const [sid, setSID] = useState(0);
-    const [dropdownTitle, setDropdownTitle] = useState("Select Standard");
+    const [dropdownTitle, setDropdownTitle] = useState("");
     const userType = isAuthenticated().user_type;
 
     const schedule = [

@@ -145,7 +145,7 @@ const UpdateTimetable = () => {
                                                                     }
                                                                 >
                                                                     {
-                                                                        subject["subject"]
+                                                                        subject.subject
                                                                     }
                                                                 </option>
                                                             )
