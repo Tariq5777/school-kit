@@ -22,33 +22,39 @@ const ClassRecords = () => {
     const [dropdownStandard, setDropdownStandard] = useState("Select Standard");
     const [dropdownSubject, setDropdownSubject] = useState("Select Subject");
 
-    const config = {
-        headers: {
-            Authorization: `Bearer ${isAuthenticated().token}`,
-        },
-    };
+
 
     useEffect(() => {
-        if(selectedSubject === ""){
-            const data= {
-                "standard": selectedStandard,
-                "section": selectedSection,    
-            }
-            axios.get("http://localhost:7000/extra/classrecord/standard", data, config)
-                .then((res)=>{
+        if (selectedSubject === "") {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${isAuthenticated().token}`,
+                },
+                params: {
+                    standard: selectedStandard,
+                    section: selectedSection,
+                }
+            };
+            axios.get("http://localhost:7000/extra/classrecord/standard", config)
+                .then((res) => {
                     setClassRecord(res.data);
                 })
-                .catch(err=>{
+                .catch(err => {
                     console.log(err.message);
                 })
         }
-        else{   
-            const data = {
-                "standard": selectedStandard,
-                "section": selectedSection,
-                "subject":selectedSubject
-            }
-            axios.get(`http://localhost:7000/extra/classrecord/subject/`, data, config)
+        else {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${isAuthenticated().token}`,
+                },
+                params: {
+                    standard: selectedStandard,
+                    section: selectedSection,
+                    subject: selectedSubject
+                }
+            };
+            axios.get(`http://localhost:7000/extra/classrecord/subject/`, config)
                 .then(res => {
                     setClassRecord(res.data);
                     console.log(res.data);
@@ -57,14 +63,22 @@ const ClassRecords = () => {
                     console.log(err.message);
                 })
         }
-    }, [selectedStandard,selectedSection,selectedSubject])
+    }, [selectedStandard, selectedSection, selectedSubject])
 
     useEffect(() => {
-        axios.get("http://localhost:7000/api/standard/", config).then((res) => {
+        axios.get("http://localhost:7000/api/standard/", {
+            headers: {
+                Authorization: `Bearer ${isAuthenticated().token}`,
+            },
+        }).then((res) => {
             setStandard(res.data);
             console.log(standard);
         });
-        axios.get("api/subjects/", config).then((res) => setSubjects(res.data));
+        axios.get("api/subjects/", {
+            headers: {
+                Authorization: `Bearer ${isAuthenticated().token}`,
+            },
+        }).then((res) => setSubjects(res.data));
     }, []);
 
 
@@ -106,7 +120,7 @@ const ClassRecords = () => {
                                         key={subject["id"]}
                                         eventKey={subject["id"]}
                                         value={subject["id"]}
-                                        onSelect={() =>{
+                                        onSelect={() => {
                                             setDropdownSubject(subject.subject);
                                             setSelectedSubject(subject.subject);
                                         }
