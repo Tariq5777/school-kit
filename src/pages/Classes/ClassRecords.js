@@ -18,7 +18,7 @@ const ClassRecords = () => {
     const [selectedSubject, setSelectedSubject] = useState("");
     const [selectedSection, setSelectedSection] = useState("");
     const [selectedStandard, setSelectedStandard] = useState(0);
-    const [sid, setSID] = useState(0);
+    // const [sid, setSID] = useState(0);
     const [dropdownStandard, setDropdownStandard] = useState("Select Standard");
     const [dropdownSubject, setDropdownSubject] = useState("Select Subject");
 
@@ -29,19 +29,34 @@ const ClassRecords = () => {
     };
 
     useEffect(() => {
-        const data = {
-            "standard": selectedStandard,
-            "section": selectedSection,
-            "subject":selectedSubject
+        if(selectedSubject === ""){
+            const data= {
+                "standard": selectedStandard,
+                "section": selectedSection,    
+            }
+            axios.get("http://localhost:7000/extra/classrecord/standard", data, config)
+                .then((res)=>{
+                    setClassRecord(res.data);
+                })
+                .catch(err=>{
+                    console.log(err.message);
+                })
         }
-        axios.get(`http://localhost:7000/extra/classrecord/subject/`, data, config)
-            .then(res => {
-                setClassRecord(res.data);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err.message);
-            })
+        else{   
+            const data = {
+                "standard": selectedStandard,
+                "section": selectedSection,
+                "subject":selectedSubject
+            }
+            axios.get(`http://localhost:7000/extra/classrecord/subject/`, data, config)
+                .then(res => {
+                    setClassRecord(res.data);
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
+        }
     }, [selectedStandard,selectedSection,selectedSubject])
 
     useEffect(() => {
@@ -62,7 +77,6 @@ const ClassRecords = () => {
                         <Col>
                             <DropdownButton
                                 title={dropdownStandard}
-                                onSelect={(e) => setSID(e)}
                             >
                                 {standard.map((std) => (
                                     <Dropdown.Item
