@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -57,20 +56,20 @@ const UpdateTimetable = () => {
         axios.get("api/subjects/", config).then((res) => setSubject(res.data));
     }, []);
 
-    const updateTimetable = (e) => {
-        e.preventDefault();
-        const data = {
-            timetable: timetable,
-        };
-        axios
-            .put(`http://localhost:7000/extra/timetable/${sid}`, data, config)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
-    };
+    // const updateTimetable = (e) => {
+    //     e.preventDefault();
+    //     const data = {
+    //         timetable: timetable,
+    //     };
+    //     axios
+    //         .put(`http://localhost:7000/extra/timetable/${sid}`, data, config)
+    //         .then(res => {
+    //             console.log(res.data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err.message);
+    //         });
+    // };
 
     return (
         <Container>

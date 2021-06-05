@@ -37,7 +37,7 @@ const TimeTablePage = () => {
     };
 
     useEffect(() => {
-        if (userType == 1) {
+        if (userType === 1) {
             axios.get("http://localhost:7000/user/timetable/", config).then((res) => {
                 setTimetable(res.data.timetable);
                 setIsPending(false);
@@ -57,7 +57,7 @@ const TimeTablePage = () => {
 
 
     useEffect(() => {
-        if (userType == 2) {
+        if (userType === 2) {
             axios
                 .get("http://localhost:7000/api/standard", config)
                 .then((res) => {

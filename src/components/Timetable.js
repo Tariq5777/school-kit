@@ -12,7 +12,6 @@ import {
     TableHead,
     TableRow,
 } from "@material-ui/core";
-import { useState } from "react";
 
 const Timetable = ({ timetable, schedule }) => {
 

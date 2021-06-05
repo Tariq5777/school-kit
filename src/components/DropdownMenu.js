@@ -1,12 +1,11 @@
 // import { ArrowLeft, ArrowRight, SchoolRounded } from "@material-ui/icons";
 import {
-    Divider,
     List,
     ListItem,
     ListItemIcon,
     Typography,
 } from "@material-ui/core";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import {  Redirect, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { UserStatusContext } from "../helper/UserStatusContext";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";

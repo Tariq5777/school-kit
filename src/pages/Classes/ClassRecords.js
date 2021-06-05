@@ -129,6 +129,13 @@ const ClassRecords = () => {
                                         {subject["subject"]}
                                     </Dropdown.Item>
                                 )}
+                                <Dropdown.Item key="" eventKey="" onSelect={() => {
+                                            setDropdownSubject("Select Subject");
+                                            setSelectedSubject("");
+                                        }
+                                        }>
+                                            Null
+                                </Dropdown.Item>
                             </DropdownButton>
                         </Col>
                     </Row>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ClassOutlinedIcon from '@material-ui/icons/ClassOutlined';
 import List from "@material-ui/core/List";
@@ -85,7 +85,7 @@ export default function DrawerItems2({ userType }) {
                     ))}
                 </List>
             )}
-            {userType == 2 && (
+            {userType === 2 && (
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"
@@ -142,7 +142,7 @@ export default function DrawerItems2({ userType }) {
                                 </ListItemIcon>
                                 <ListItemText primary="Class Records" />
                             </ListItem>
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/meet-summary")}>
                                 <ListItemIcon>
                                     <ListOutlinedIcon />
                                 </ListItemIcon>

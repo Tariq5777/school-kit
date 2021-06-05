@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { Button, TextField, Container, Grid, Card, Typography, FormControl, Paper, CardContent, CardActions, CardActionArea, Box } from "@material-ui/core";
+import { Button, TextField, Grid, Card, Typography, FormControl, CardContent, CardActions, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { authenticate, isAuthenticated } from "../helper/auth/authUtils";

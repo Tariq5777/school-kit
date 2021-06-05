@@ -3,14 +3,10 @@ import { useState } from "react";
 import { Card, Form, Button, Alert, } from "react-bootstrap";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useHistory } from "react-router";
 const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfPassword] = useState("");
-
-    let history = useHistory()
-
     const [error, setError] = useState("")
 
     const { token } = isAuthenticated();

@@ -4,7 +4,7 @@ import {
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import face4 from "../img/faces/face4.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,25 +31,25 @@ const Profile = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const handleChangePassword = (e) => {
-        const data = new FormData();
-        data.append("current_password", currentPassword);
-        data.append("new_password", newPassword);
+    // const handleChangePassword = (e) => {
+    //     const data = new FormData();
+    //     data.append("current_password", currentPassword);
+    //     data.append("new_password", newPassword);
 
-        e.preventDefault();
-        axios
-            .put("api/change_password/", data, config)
-            .then((res) => {
-                console.log(res.data.message);
-                setIsPending(true);
-                setTimeout(() => {
-                    history.push("/dashboard");
-                }, 1000)
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    };
+    //     e.preventDefault();
+    //     axios
+    //         .put("api/change_password/", data, config)
+    //         .then((res) => {
+    //             console.log(res.data.message);
+    //             setIsPending(true);
+    //             setTimeout(() => {
+    //                 history.push("/dashboard");
+    //             }, 1000)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.message);
+    //         });
+    // };
     useEffect(() => {
         axios
             .get("api/profile/", {
