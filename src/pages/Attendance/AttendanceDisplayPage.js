@@ -12,7 +12,7 @@ const AttendanceDisplayPage = () => {
             .then(res => {
                 setAttendance(res.data)
             })
-    }, [])  
+    }, [])      
 
 
     return (

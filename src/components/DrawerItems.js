@@ -159,7 +159,7 @@ export default function DrawerItems2({ userType }) {
                     </ListItem>
                     <Collapse in={attendance} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                            <ListItem button className={classes.nested} onClick={()=>history.push("/students-attendance")}>
                                 <ListItemIcon>
                                     <VisibilityOutlinedIcon />
                                 </ListItemIcon>
