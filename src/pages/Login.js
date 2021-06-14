@@ -21,9 +21,13 @@ const Login = ({ history }) => {
 
     const { error, loading, didRedirect } = values;
 
-    if (isAuthenticated()) {
+    if (isAuthenticated() && isAuthenticated().user_type === 1) {
         setUser(true)
         return <Redirect to="/dashboard" />;
+    }
+    else if(isAuthenticated() && isAuthenticated().user_type === 2){
+        setUser(true)
+        return <Redirect to="/teacher-dashboard" />;
     }
 
     const handleLogin = (e) => {

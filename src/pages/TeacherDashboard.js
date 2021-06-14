@@ -150,7 +150,7 @@ const TeacherDashboard = () => {
             <Grid item xs={12} md={4}>
                 <Card style={{ margin: "3rem 1rem 1rem 0" }}>
                     <CardContent>
-                        <Typography variant="h4">Ongoing Classes</Typography>
+                        <Typography variant="h4">Recent Classes</Typography>
                     </CardContent>
                         <CardContent>
                         <TableContainer component={Paper} variant="outlined">

@@ -111,7 +111,7 @@ const ClassRecords = () => {
                             </DropdownButton>
                         </Col>
                         <Col>
-                            <DropdownButton
+                             <DropdownButton
                                 title={dropdownSubject}
                                 onSelect={(e) => setSelectedSubject(e)}
                             >

@@ -11,6 +11,7 @@ import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import TableChartIcon from "@material-ui/icons/TableChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import BarChartIcon from "@material-ui/icons/BarChart";
@@ -37,9 +38,12 @@ export default function DrawerItems2({ userType }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [timeTable, setTimeTable] = useState(false);
-    // const [classesOpen,setClassesOpen] = useState(false);
+    const [assignmentOpen,setAssignmentOpen] = useState(false);
     const [attendance, setAttendance] = useState(false);
 
+    const handleAssignment = () => {
+        setAssignmentOpen(!assignmentOpen);
+    }
     const handleTimeTable = () => {
         setTimeTable(!timeTable);
     };
@@ -54,7 +58,7 @@ export default function DrawerItems2({ userType }) {
         { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
         { title: "Timetable", link: "timetable", icon: <TableChartIcon /> },
         {
-            title: "Submit Assignment",
+            title: "Assignments",
             link: "assignment",
             icon: <AssignmentIcon />,
         },
@@ -91,7 +95,7 @@ export default function DrawerItems2({ userType }) {
                     aria-labelledby="nested-list-subheader"
                     className={classes.root}
                 >
-                    <ListItem button onClick={() => history.push("/dashboard")}>
+                    <ListItem button onClick={() => history.push("/teacher-dashboard")}>
                         <ListItemIcon>
                             <HomeRoundedIcon />
                         </ListItemIcon>
@@ -147,6 +151,29 @@ export default function DrawerItems2({ userType }) {
                                     <ListOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Transcript and Summary" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <ListItem button onClick={handleAssignment}>
+                        <ListItemIcon>
+                            <AssignmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Assignments" />
+                        {assignmentOpen ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={assignmentOpen} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/create-assignment")}>
+                                <ListItemIcon>
+                                    <AddIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Create Assignment" />
+                            </ListItem>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/evaluate-assignment")}>
+                                <ListItemIcon>
+                                    <CheckBoxOutlinedIcon    />
+                                </ListItemIcon>
+                                <ListItemText primary="Evaluate Assignment" />
                             </ListItem>
                         </List>
                     </Collapse>

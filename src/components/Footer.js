@@ -1,4 +1,3 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -20,7 +19,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
     footer: {
         padding: theme.spacing(3, 0),
-        // marginTop: "100px",
+        marginTop: "100px",
         backgroundColor:
             theme.palette.type === "light"
                 ? theme.palette.grey[200]
@@ -33,11 +32,9 @@ export default function Footer() {
 
     return (
         <>
-            {/* <CssBaseline /> */}
             <footer
                 className={classes.footer}
                 style={{
-
                     position: "relative",
                     width: "100%",
                     bottom: 0,

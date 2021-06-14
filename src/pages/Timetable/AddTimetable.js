@@ -107,7 +107,7 @@ const AddTimetable = () => {
                             <Col className="mt-4"><p className="text-danger font-weight-bold">"- for FREE PERIOD"</p></Col></Row>
                         <Row>
                             <Col xs={12}>
-                                <Table striped bordered hover>
+                                <Table striped bordered hover responsive>
                                     <thead>
                                         <tr>
                                             {schedule.map((sch, index) => <th key={index}>{sch}</th>)}
@@ -118,7 +118,6 @@ const AddTimetable = () => {
                                             <tr key={row[0]}>
                                                 {Object.entries(timetable[row[0]]).map((col, index) =>
                                                     <td key={index}>
-                                                        {/*console.log(timetable[row[0]][col[0]])*/}
                                                         <select
                                                             key={col[0]}
                                                             onChange={(e) => {

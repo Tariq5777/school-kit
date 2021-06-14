@@ -102,9 +102,8 @@ const TeacherAttendancePage = () => {
                                             </tr>
                                         ))}
                                     </tbody>
-                                    </Table>
-                                    }
-                                        
+                                </Table>
+                                }      
                         </Col>
                     </Row>
                 </Card.Body>

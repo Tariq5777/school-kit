@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -21,6 +21,9 @@ import AddTimetable from "./pages/Timetable/AddTimetable";
 import UpdateTimetable from "./pages/Timetable/UpdateTimetable";
 import ClassRecords from "./pages/Classes/ClassRecords";
 import TeacherAttendancePage from "./pages/Attendance/TeacherAttendancePage";
+import StudentAssignmentPage from "./pages/Assignment/StudentAssignmentPage";
+import EvaluateAssignment from "./pages/Assignment/EvaluateAssignment";
+import CreateAssignment from "./pages/Assignment/CreateAssignment";
 
 
 const App = () => {
@@ -32,7 +35,7 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "1rem", height: "70vh" }}>
+                <main style={{ marginTop: "1rem"}}>
                     <Route exact path="/" component={LandingPage} />
                     <Route path="/login" component={Login} />
                     <Route path="/download" component={Download} />
@@ -50,9 +53,12 @@ const App = () => {
                     <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
                     <PrivateRoute exact path="/class-records" component={ClassRecords} />
                     <PrivateRoute exact path="/students-attendance" component={TeacherAttendancePage} />
+                    <PrivateRoute exact path="/assignment" component={StudentAssignmentPage} />
+                    <PrivateRoute exact path="/evaluate-assignment" component={EvaluateAssignment} />
+                    <PrivateRoute exact path="/create-assignment" component={CreateAssignment} />
                 </main>
             </UserStatusContext.Provider>
-            {/* <Footer /> */}
+            <Footer />
         </Router>
     );
 };
