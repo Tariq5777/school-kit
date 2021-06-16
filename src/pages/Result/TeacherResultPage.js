@@ -33,37 +33,38 @@ const TeacherResultPage = () => {
         get_standard();
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios
-            .get(`api/marks/?standard=${selectedStandard}&section=${selectedSection}`)
-            .then(res=>{
+            .get(`api/marks/?standard=${selectedStandard}&section=${selectedSection}`, config)
+            .then(res => {
                 setResults(res.data);
+                console.log(res.data)
             })
-            .catch(err=>{console.log(err.message)})
-    },[selectedStandard])
-    
+            .catch(err => { console.log(err.message) })
+    }, [selectedStandard])
+
     return (
         <Container>
             <Card>
                 <Row>
                     <Col>
-                    <DropdownButton title={dropdownTitle}>
-                        {standard.map((std) => (
-                            <Dropdown.Item
-                                value={std.standard + " " + std.section}
-                                eventKey={std.id}
-                                onSelect={(e) => {
-                                    setDropdownTitle(
-                                        std.standard + " " + std.section
-                                    );
-                                    setSelectedStandard(std.standard);
-                                    setSelectedSection(std.section);
-                                }}
-                            >
-                                {std.standard + " " + std.section}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>
+                        <DropdownButton title={dropdownTitle}>
+                            {standard.map((std) => (
+                                <Dropdown.Item
+                                    value={std.standard + " " + std.section}
+                                    eventKey={std.id}
+                                    onSelect={(e) => {
+                                        setDropdownTitle(
+                                            std.standard + " " + std.section
+                                        );
+                                        setSelectedStandard(std.standard);
+                                        setSelectedSection(std.section);
+                                    }}
+                                >
+                                    {std.standard + " " + std.section}
+                                </Dropdown.Item>
+                            ))}
+                        </DropdownButton>
                     </Col>
                 </Row>
                 <Row>
@@ -72,7 +73,7 @@ const TeacherResultPage = () => {
                             <thead>
                                 <tr>
                                     <td>
-                                        
+
                                     </td>
                                 </tr>
                             </thead>

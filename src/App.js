@@ -26,6 +26,7 @@ import EvaluateAssignment from "./pages/Assignment/EvaluateAssignment";
 import CreateAssignment from "./pages/Assignment/CreateAssignment";
 import StudentResult from "./pages/Result/StudentResult";
 import TeacherResultPage from "./pages/Result/TeacherResultPage";
+import AddResult from "./pages/Result/AddResult";
 
 
 const App = () => {
@@ -37,17 +38,17 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "1rem"}}>
+                <main style={{ marginTop: "1rem" }}>
                     <Route exact path="/" component={LandingPage} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/download" component={Download} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/forgot-password" component={ForgotPassword} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/download" component={Download} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/forgot-password" component={ForgotPassword} />
                     <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
                     <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
-                    <PrivateRoute path="/change-password" component={ChangePassword} />
-                    <PrivateRoute path="/add-timetable" component={AddTimetable} />
-                    <PrivateRoute path="/update-timetable" component = {UpdateTimetable}/>
+                    <PrivateRoute exact path="/change-password" component={ChangePassword} />
+                    <PrivateRoute exact path="/add-timetable" component={AddTimetable} />
+                    <PrivateRoute exact path="/update-timetable" component={UpdateTimetable} />
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
@@ -60,6 +61,7 @@ const App = () => {
                     <PrivateRoute exact path="/create-assignment" component={CreateAssignment} />
                     <PrivateRoute exact path="/result" component={StudentResult} />
                     <PrivateRoute exact path="/teacher-results" component={TeacherResultPage} />
+                    <PrivateRoute exact path="/add-result" component={AddResult} />
                 </main>
             </UserStatusContext.Provider>
             <Footer />
