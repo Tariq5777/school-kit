@@ -23,7 +23,7 @@ const DropdownMenu = () => {
 
     const dropDownItems = [
         { title: "Profile", onClick: () => { history.push("/profile") }, icon: <AccountCircleRoundedIcon fontSize="large" /> },
-        { title: "Support", onClick: () => { history.push("/support") }, icon: <LiveHelpRoundedIcon fontSize="large" /> },
+        // { title: "Support", onClick: () => { history.push("/support") }, icon: <LiveHelpRoundedIcon fontSize="large" /> },
         { title: "Logout", onClick: handleLogout, icon: <ExitToAppOutlinedIcon fontSize="large" /> }
     ];
 

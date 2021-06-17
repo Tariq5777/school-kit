@@ -22,8 +22,8 @@ const AddResult = () => {
             .then((res) => {
                 console.log(res.data);
             })
-            .catch((error) => {
-
+            .catch((error) => { 
+                console.log(error.message)
             });
     }
 
@@ -46,7 +46,7 @@ const AddResult = () => {
                             >Download .XLSX File</Button>
                         </Col>
                     </Row>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} className = "mx-3 my-3">
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Upload Result File</Form.Label>
                             <Form.Control

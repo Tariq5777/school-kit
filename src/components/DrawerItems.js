@@ -57,11 +57,11 @@ export default function DrawerItems2({ userType }) {
     const studentDrawer = [
         { title: "Dashboard", link: "dashboard", icon: <HomeRoundedIcon /> },
         { title: "Timetable", link: "timetable", icon: <TableChartIcon /> },
-        {
-            title: "Assignments",
-            link: "assignment",
-            icon: <AssignmentIcon />,
-        },
+        // {
+        //     title: "Assignments",
+        //     link: "assignment",
+        //     icon: <AssignmentIcon />,
+        // },
         {
             title: "Check Attendance",
             link: "attendance",
@@ -154,7 +154,7 @@ export default function DrawerItems2({ userType }) {
                             </ListItem>
                         </List>
                     </Collapse>
-                    <ListItem button onClick={handleAssignment}>
+                    {/* <ListItem button onClick={handleAssignment}>
                         <ListItemIcon>
                             <AssignmentIcon />
                         </ListItemIcon>
@@ -176,7 +176,7 @@ export default function DrawerItems2({ userType }) {
                                 <ListItemText primary="Evaluate Assignment" />
                             </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapse> */}
                     <ListItem button onClick={handleAttendance}>
                         <ListItemIcon>
                             <BarChartIcon />

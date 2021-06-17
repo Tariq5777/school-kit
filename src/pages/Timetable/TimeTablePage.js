@@ -74,11 +74,10 @@ const TimeTablePage = () => {
 
     return (
         <Container>
-            <Card>
-                {userType === 2 && <Card.Header>Get TimeTable</Card.Header>}
-                <Card.Body>
-                    { }
                     {userType === 2 && (
+            <Card>
+            {userType === 2 && <Card.Header>Get TimeTable</Card.Header>}
+                    <Card.Body>
                         <Row>
                             <Col>
                                 <DropdownButton
@@ -103,9 +102,9 @@ const TimeTablePage = () => {
                                 </DropdownButton>
                             </Col>
                         </Row>
-                    )}
-                </Card.Body>
+                    </Card.Body>
             </Card>
+                    )}
             {!isPending && (
                 <Timetable timetable={timetable} schedule={schedule} />
             )}

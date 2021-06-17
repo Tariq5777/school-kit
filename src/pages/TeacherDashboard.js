@@ -98,7 +98,7 @@ const TeacherDashboard = () => {
                 .catch(err=>{
                     console.log(err.message)
                 })
-            axios.get("/user/liveclass", config).then((res) => {
+            axios.get("/user/liveclass/", config).then((res) => {
                 setLiveClass(res.data);
             });
         });

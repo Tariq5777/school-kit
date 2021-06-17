@@ -21,9 +21,9 @@ import AddTimetable from "./pages/Timetable/AddTimetable";
 import UpdateTimetable from "./pages/Timetable/UpdateTimetable";
 import ClassRecords from "./pages/Classes/ClassRecords";
 import TeacherAttendancePage from "./pages/Attendance/TeacherAttendancePage";
-import StudentAssignmentPage from "./pages/Assignment/StudentAssignmentPage";
-import EvaluateAssignment from "./pages/Assignment/EvaluateAssignment";
-import CreateAssignment from "./pages/Assignment/CreateAssignment";
+// import StudentAssignmentPage from "./pages/Assignment/StudentAssignmentPage";
+// import EvaluateAssignment from "./pages/Assignment/EvaluateAssignment";
+// import CreateAssignment from "./pages/Assignment/CreateAssignment";
 import StudentResult from "./pages/Result/StudentResult";
 import TeacherResultPage from "./pages/Result/TeacherResultPage";
 import AddResult from "./pages/Result/AddResult";
@@ -56,12 +56,13 @@ const App = () => {
                     <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
                     <PrivateRoute exact path="/class-records" component={ClassRecords} />
                     <PrivateRoute exact path="/students-attendance" component={TeacherAttendancePage} />
-                    <PrivateRoute exact path="/assignment" component={StudentAssignmentPage} />
+                    {/* <PrivateRoute exact path="/assignment" component={StudentAssignmentPage} />
                     <PrivateRoute exact path="/evaluate-assignment" component={EvaluateAssignment} />
-                    <PrivateRoute exact path="/create-assignment" component={CreateAssignment} />
+                    <PrivateRoute exact path="/create-assignment" component={CreateAssignment} /> */}
                     <PrivateRoute exact path="/result" component={StudentResult} />
                     <PrivateRoute exact path="/teacher-results" component={TeacherResultPage} />
                     <PrivateRoute exact path="/add-result" component={AddResult} />
+                    
                 </main>
             </UserStatusContext.Provider>
             <Footer />
