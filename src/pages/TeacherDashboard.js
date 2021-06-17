@@ -23,13 +23,9 @@ const TeacherDashboard = () => {
     const [isPending, setIsPending] = useState(true);
     const { user, setUser } = useContext(UserStatusContext);
     const [profile, setProfile] = useState({
-        acc_type: 0,
-        email: "",
-        full_name: "",
-        roll_no: 0,
-        section: "",
-        standard: 0,
+        acc_type: 0, email: "", full_name: "", roll_no: 0, section: "", standard: 0,
     });
+    const [recentClasses, setRecentClasses] = useState([])
 
     const [timetable, setTimetable] = useState({
         day: 0,
@@ -38,8 +34,8 @@ const TeacherDashboard = () => {
     const [liveClass, setLiveClass] = useState([]);
 
     const standardID = useState({
-        standard:"",
-        section:""
+        standard: "",
+        section: ""
     })
 
     const schedule = [
@@ -95,12 +91,13 @@ const TeacherDashboard = () => {
                         tt: { ...res.data.timetable },
                     })
                 })
-                .catch(err=>{
+                .catch(err => {
                     console.log(err.message)
                 })
             axios.get("/user/liveclass/", config).then((res) => {
                 setLiveClass(res.data);
             });
+            axios.get('/extra/recent/', config).then(res => setRecentClasses(res.data))
         });
     }, []);
 
@@ -110,107 +107,102 @@ const TeacherDashboard = () => {
 
     return (
         <Container
-        maxWidth="lg"
-        style={{ marginTop: "60px" }}
-        component={Paper}
-    >
-        <div style={{ paddingTop: "25px" }}>
-            <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
-                <CardContent><Typography variant="h4" component="h4">Today TimeTable</Typography></CardContent>
-                <CardContent>
-                    <TableContainer component={Paper} variant="outlined">
-                        <Table size="medium">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell><Box fontWeight="fontWeightBold">Day/Time</Box></TableCell>
-                                    {schedule.map((s, i) =>
-                                        <TableCell key={i}><Box fontWeight="fontWeightBold">{s}</Box></TableCell>
-                                    )}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell component="th" scope="row">
-                                        <Box fontWeight="fontWeightBold">{timetable.day}</Box>
-                                    </TableCell>
-                                    {
-                                        Object.entries(timetable.tt).map(row => (
-                                            <TableCell component="th" scope="row" key={row[0]}>{row[1]}</TableCell>
-                                        ))
-                                    }
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </CardContent>
-            </Card>
-        </div>
-
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
-                <Card style={{ margin: "3rem 1rem 1rem 0" }}>
+            maxWidth="lg"
+            style={{ marginTop: "60px" }}
+            component={Paper}
+        >
+            <div style={{ paddingTop: "25px" }}>
+                <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
+                    <CardContent><Typography variant="h4" component="h4">Today TimeTable</Typography></CardContent>
                     <CardContent>
-                        <Typography variant="h4">Recent Classes</Typography>
-                    </CardContent>
-                        <CardContent>
                         <TableContainer component={Paper} variant="outlined">
                             <Table size="medium">
                                 <TableHead>
                                     <TableRow>
-                                        {["Meet ID", "Date", "Subject"].map((data, key) =>
-                                            <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
-                                            )}
+                                        <TableCell><Box fontWeight="fontWeightBold">Day/Time</Box></TableCell>
+                                        {schedule.map((s, i) =>
+                                            <TableCell key={i}><Box fontWeight="fontWeightBold">{s}</Box></TableCell>
+                                        )}
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {liveClass.map(live =>
-                                        <TableRow key={live.id}>
-                                            <TableCell component="th" scope="row">
-                                                <Link to={window.location.pathname} onClick={
-                                                    () => window.open(`https://meet.google.com/${live.meet_id}`)}>
-                                                    {live.meet_id}
-                                                </Link>
-                                            </TableCell>
-                                            <TableCell component="th" scope="row">{live.date}</TableCell>
-                                            <TableCell component="th" scope="row">{live.subject}</TableCell>
-                                        </TableRow>
-                                    )}
-
+                                    <TableRow>
+                                        <TableCell component="th" scope="row">
+                                            <Box fontWeight="fontWeightBold">{timetable.day}</Box>
+                                        </TableCell>
+                                        {
+                                            Object.entries(timetable.tt).map(row => (
+                                                <TableCell component="th" scope="row" key={row[0]}>{row[1]}</TableCell>
+                                            ))
+                                        }
+                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>
                     </CardContent>
                 </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-                {profile.acc_type === 1 && (
-                    <Card style={{ margin: "3rem 1rem" }}>
+            </div>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                    <Card style={{ margin: "3rem 1rem 1rem 0" }}>
                         <CardContent>
-                            <Typography variant="h4">
-                                Recent Classes
-                            </Typography>
+                            <Typography variant="h4">Recent Classes</Typography>
                         </CardContent>
                         <CardContent>
-                            <Typography variant="h4">User {profile.acc_type}</Typography>
+                            <TableContainer component={Paper} variant="outlined">
+                                <Table size="medium">
+                                    <TableHead>
+                                        <TableRow>
+                                            {["Meet ID", "Date", "Subject"].map((data, key) =>
+                                                <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
+                                            )}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {recentClasses.map(recent =>
+                                            <TableRow key={recent.id}>
+                                                <TableCell component="th" scope="row">{recent.meet_id}</TableCell>
+                                                <TableCell component="th" scope="row">{recent.date}</TableCell>
+                                                <TableCell component="th" scope="row">{recent.subject}</TableCell>
+                                            </TableRow>
+                                        )}
+
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </CardContent>
                     </Card>
-                )}
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    {profile.acc_type === 1 && (
+                        <Card style={{ margin: "3rem 1rem" }}>
+                            <CardContent>
+                                <Typography variant="h4">
+                                    Recent Classes
+                                </Typography>
+                            </CardContent>
+                            <CardContent>
+                                <Typography variant="h4">User {profile.acc_type}</Typography>
+                            </CardContent>
+                        </Card>
+                    )}
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <Card style={{ margin: "3rem 1rem" }} >
+                        <CardContent>
+                            <Typography variant="h4">Queries</Typography>
+                        </CardContent>
+                        <CardContent>
+                            <Typography variant="h4">query {profile.acc_type}</Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+
             </Grid>
-            <Grid item item xs={12} md={4}>
-                     <Card style={{ margin: "3rem 1rem" }} >
-                         <CardContent>
-                             <Typography variant="h4">Queries</Typography>
-                         </CardContent>
-                             <CardContent>
-                             <Typography variant="h4">query {profile.acc_type}</Typography>
-                         </CardContent>
-                     </Card>
-                 </Grid>
 
-
-        </Grid>
-
-    </Container>
+        </Container>
     );
 };
 

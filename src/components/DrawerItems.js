@@ -38,7 +38,7 @@ export default function DrawerItems2({ userType }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [timeTable, setTimeTable] = useState(false);
-    const [assignmentOpen,setAssignmentOpen] = useState(false);
+    const [assignmentOpen, setAssignmentOpen] = useState(false);
     const [attendance, setAttendance] = useState(false);
 
     const handleAssignment = () => {
@@ -186,7 +186,7 @@ export default function DrawerItems2({ userType }) {
                     </ListItem>
                     <Collapse in={attendance} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested} onClick={()=>history.push("/students-attendance")}>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/students-attendance")}>
                                 <ListItemIcon>
                                     <VisibilityOutlinedIcon />
                                 </ListItemIcon>
