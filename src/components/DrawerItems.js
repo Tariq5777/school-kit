@@ -11,9 +11,8 @@ import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 import TableChartIcon from "@material-ui/icons/TableChart";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import SchoolIcon from "@material-ui/icons/School";
 import AddIcon from "@material-ui/icons/Add";
@@ -39,7 +38,12 @@ export default function DrawerItems2({ userType }) {
     const [open, setOpen] = React.useState(false);
     const [timeTable, setTimeTable] = useState(false);
     const [assignmentOpen, setAssignmentOpen] = useState(false);
+    const [resultOpen,setResultsOpen] = useState(false);
     const [attendance, setAttendance] = useState(false);
+
+    const handleResult = () =>{
+        setResultsOpen(!resultOpen);
+    }
 
     const handleAssignment = () => {
         setAssignmentOpen(!assignmentOpen);
@@ -151,6 +155,29 @@ export default function DrawerItems2({ userType }) {
                                     <ListOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Transcript and Summary" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <ListItem button onClick={handleResult}>
+                        <ListItemIcon>
+                            <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Results" />
+                        {resultOpen ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={resultOpen} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/add-result")}>
+                                <ListItemIcon>
+                                    <AddIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Add Result" />
+                            </ListItem>
+                            <ListItem button className={classes.nested} onClick={() => history.push("/teacher-results")}>
+                                <ListItemIcon>
+                                    <VisibilityOutlinedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="View Results" />
                             </ListItem>
                         </List>
                     </Collapse>

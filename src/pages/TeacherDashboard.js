@@ -174,8 +174,9 @@ const TeacherDashboard = () => {
                         </CardContent>
                     </Card>
                 </Grid>
+                    {profile.acc_type === 1 && 
+                    (
                 <Grid item xs={12} md={4}>
-                    {profile.acc_type === 1 && (
                         <Card style={{ margin: "3rem 1rem" }}>
                             <CardContent>
                                 <Typography variant="h4">
@@ -186,8 +187,8 @@ const TeacherDashboard = () => {
                                 <Typography variant="h4">User {profile.acc_type}</Typography>
                             </CardContent>
                         </Card>
-                    )}
                 </Grid>
+                    )}
                 <Grid item xs={12} md={4}>
                     <Card style={{ margin: "3rem 1rem" }} >
                         <CardContent>

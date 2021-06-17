@@ -82,7 +82,7 @@ const TeacherResultPage = () => {
                 </Card.Header>
                 <Row>
                     <Col>
-                        <Table hover responsive>
+                        <Table hover responsive striped bordered>
                             <thead>
                                 <tr>
                                     {["Full Name", "First Term", "Second Term", "Total", "Standard"].map((text)=>(
