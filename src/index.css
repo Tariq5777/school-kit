@@ -251,6 +251,12 @@ ul {
     margin: 1rem !important;
   }
 }
+
+/* Teacher Dashboard */
+.timetable-options button{
+  margin:0.5rem;
+}
+
 /* Dashboard */
 @media screen and (min-width: 800px) {
   .short-table {

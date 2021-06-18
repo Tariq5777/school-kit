@@ -5,6 +5,7 @@ import {
     Container,
     Grid,
     Typography,
+    Button
 } from "@material-ui/core";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from "../helper/UserStatusContext";
@@ -17,7 +18,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Row, Col } from 'react-bootstrap'
+
 
 const TeacherDashboard = () => {
     const [isPending, setIsPending] = useState(true);
@@ -26,11 +29,7 @@ const TeacherDashboard = () => {
         acc_type: 0, email: "", full_name: "", roll_no: 0, section: "", standard: 0,
     });
     const [recentClasses, setRecentClasses] = useState([])
-
-    const [timetable, setTimetable] = useState({
-        day: 0,
-        tt: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    });
+    const history = useHistory();
     const [liveClass, setLiveClass] = useState([]);
 
     const standardID = useState({
@@ -84,16 +83,6 @@ const TeacherDashboard = () => {
                 .catch((err) => {
                     console.log(err.message);
                 });
-            axios.get("http://localhost:7000/extra/timetable/today/", config)
-                .then((res) => {
-                    setTimetable({
-                        day: res.data.day,
-                        tt: { ...res.data.timetable },
-                    })
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
             axios.get("/user/liveclass/", config).then((res) => {
                 setLiveClass(res.data);
             });
@@ -111,41 +100,22 @@ const TeacherDashboard = () => {
             style={{ marginTop: "60px" }}
             component={Paper}
         >
-            <div style={{ paddingTop: "25px" }}>
-                <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
-                    <CardContent><Typography variant="h4" component="h4">Today TimeTable</Typography></CardContent>
-                    <CardContent>
-                        <TableContainer component={Paper} variant="outlined">
-                            <Table size="medium">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell><Box fontWeight="fontWeightBold">Day/Time</Box></TableCell>
-                                        {schedule.map((s, i) =>
-                                            <TableCell key={i}><Box fontWeight="fontWeightBold">{s}</Box></TableCell>
-                                        )}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell component="th" scope="row">
-                                            <Box fontWeight="fontWeightBold">{timetable.day}</Box>
-                                        </TableCell>
-                                        {
-                                            Object.entries(timetable.tt).map(row => (
-                                                <TableCell component="th" scope="row" key={row[0]}>{row[1]}</TableCell>
-                                            ))
-                                        }
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </CardContent>
-                </Card>
-            </div>
 
             <Grid container spacing={2}>
-                <Grid item xs={12} md={4}>
-                    <Card style={{ margin: "3rem 1rem 1rem 0" }}>
+            <Grid item xs={12} md={6}>
+                <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
+                    <CardContent>
+                    <Typography variant="h4" component="h4" style={{disply:"inline"}}>TimeTable Options</Typography>
+                    </CardContent>
+                    <CardContent className ="timetable-options">
+                        <Button onClick={()=>history.push("/timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>See Time Table</Button>
+                        <Button onClick={()=>history.push("/update-timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>Update Time Table</Button>
+                        <Button onClick={()=>history.push("/add-timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>Add Time Table</Button>
+                    </CardContent>
+                </Card>
+            </Grid>
+                <Grid item xs={12} md={6}>
+                    <Card>
                         <CardContent>
                             <Typography variant="h4">Recent Classes</Typography>
                         </CardContent>
@@ -189,18 +159,6 @@ const TeacherDashboard = () => {
                         </Card>
                 </Grid>
                     )}
-                <Grid item xs={12} md={4}>
-                    <Card style={{ margin: "3rem 1rem" }} >
-                        <CardContent>
-                            <Typography variant="h4">Queries</Typography>
-                        </CardContent>
-                        <CardContent>
-                            <Typography variant="h4">query {profile.acc_type}</Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-
-
             </Grid>
 
         </Container>
