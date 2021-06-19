@@ -9,6 +9,7 @@ import ChangePassword from "./pages/ChangePassword";
 import { useState, useMemo } from "react";
 import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
+import TeacherRoute from './helper/auth/TeacherRoute';
 import TeacherDashboard from "./pages/TeacherDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import Profile from "./pages/Profile";
@@ -45,24 +46,24 @@ const App = () => {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword} />
                     <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
-                    <PrivateRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
+                    <TeacherRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute exact path="/change-password" component={ChangePassword} />
-                    <PrivateRoute exact path="/add-timetable" component={AddTimetable} />
-                    <PrivateRoute exact path="/update-timetable" component={UpdateTimetable} />
+                    <TeacherRoute exact path="/add-timetable" component={AddTimetable} />
+                    <TeacherRoute exact path="/update-timetable" component={UpdateTimetable} />
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/query" component={Query} />
                     <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
-                    <PrivateRoute exact path="/meet-summary" component={MeetSummary} />
-                    <PrivateRoute exact path="/class-records" component={ClassRecords} />
+                    <TeacherRoute exact path="/meet-summary" component={MeetSummary} />
+                    <TeacherRoute exact path="/class-records" component={ClassRecords} />
                     <PrivateRoute exact path="/students-attendance" component={TeacherAttendancePage} />
                     {/* <PrivateRoute exact path="/assignment" component={StudentAssignmentPage} />
                     <PrivateRoute exact path="/evaluate-assignment" component={EvaluateAssignment} />
                     <PrivateRoute exact path="/create-assignment" component={CreateAssignment} /> */}
                     <PrivateRoute exact path="/result" component={StudentResult} />
-                    <PrivateRoute exact path="/teacher-results" component={TeacherResultPage} />
-                    <PrivateRoute exact path="/add-result" component={AddResult} />
-                    
+                    <TeacherRoute exact path="/teacher-results" component={TeacherResultPage} />
+                    <TeacherRoute exact path="/add-result" component={AddResult} />
+
                 </main>
             </UserStatusContext.Provider>
             <Footer />
