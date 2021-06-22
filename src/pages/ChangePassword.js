@@ -27,7 +27,7 @@ const ChangePassword = () => {
 
 
         axios
-            .put('http://localhost:7000/api/change_password/', data, config)
+            .put('api/change_password/', data, config)
             .then((res) => {
                 console.log(res.data.message);
             })

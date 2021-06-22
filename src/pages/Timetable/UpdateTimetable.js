@@ -39,21 +39,17 @@ const UpdateTimetable = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:7000/extra/timetable/${sid}`, config)
-            .then((res) => {
+            .get(`extra/timetable/${sid}`, config)
+            .then(res => {
                 setTimetable(res.data.timetable);
                 setIsPending(false);
-                console.log(timetable);
             })
-            .catch((err) => console.log(err.message));
+            .catch(err => console.log(err.message));
     }, [sid]);
 
     useEffect(() => {
-        axios.get("http://localhost:7000/api/standard/", config).then((res) => {
-            setStandard(res.data);
-            console.log(standard);
-        });
-        axios.get("api/subjects/", config).then((res) => setSubject(res.data));
+        axios.get("api/standard/", config).then(res => setStandard(res.data));
+        axios.get("api/subjects/", config).then(res => setSubject(res.data));
     }, []);
 
     // const updateTimetable = (e) => {

@@ -25,7 +25,7 @@ const Login = ({ history }) => {
         setUser(true)
         return <Redirect to="/dashboard" />;
     }
-    else if(isAuthenticated() && isAuthenticated().user_type === 2){
+    else if (isAuthenticated() && isAuthenticated().user_type === 2) {
         setUser(true)
         return <Redirect to="/teacher-dashboard" />;
     }
@@ -33,7 +33,7 @@ const Login = ({ history }) => {
     const handleLogin = (e) => {
         e.preventDefault();
         setValues({ ...values, loading: true })
-        axios.post("http://localhost:7000/api/login/", {
+        axios.post("api/login/", {
             email: username,
             password: password,
         })
@@ -91,18 +91,18 @@ const Login = ({ history }) => {
                             <FormControl fullWidth={true} style={{ marginLeft: "50px", marginRight: "50px" }}>
                                 <Button style={{ paddingTop: "15px", paddingBottom: "15px" }} type="submit" variant="contained" color="secondary" disabled={loading}>
                                     Login
-                                    </Button>
+                                </Button>
                             </FormControl>
                         </CardActions>
                         <CardActions style={{ marginBotton: "25px" }}>
                             <Link to="forgot-password">
                                 CAN'T SIGN IN?
-                                    </Link>
+                            </Link>
                         </CardActions>
                         <CardActions>
                             <Link to="register">
                                 DON'T HAVE AN ACCOUNT? REGISTER HERE
-                                </Link>
+                            </Link>
                         </CardActions>
                     </form>
 

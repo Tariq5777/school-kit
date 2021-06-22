@@ -40,7 +40,7 @@ const Register = () => {
         }
         console.log(data);
         axios
-            .post("http://127.0.0.1:7000/api/register/", data)
+            .post("api/register/", data)
             .then((res) => {
                 setRegisterStatus(true);
                 console.log(res);
@@ -171,7 +171,7 @@ const Register = () => {
                                 color="secondary"
                             >
                                 Register
-                    </Button>
+                            </Button>
                         </FormControl>
                         <Grid container style={{ marginTop: "20px" }}>
                             <Grid item xs>

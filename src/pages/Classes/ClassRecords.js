@@ -35,7 +35,7 @@ const ClassRecords = () => {
                     section: selectedSection,
                 }
             };
-            axios.get("http://localhost:7000/extra/classrecord/standard", config)
+            axios.get("extra/classrecord/standard", config)
                 .then((res) => {
                     setClassRecord(res.data);
                 })
@@ -54,7 +54,7 @@ const ClassRecords = () => {
                     subject: selectedSubject
                 }
             };
-            axios.get(`http://localhost:7000/extra/classrecord/subject/`, config)
+            axios.get(`extra/classrecord/subject/`, config)
                 .then(res => {
                     setClassRecord(res.data);
                     console.log(res.data);
@@ -66,7 +66,7 @@ const ClassRecords = () => {
     }, [selectedStandard, selectedSection, selectedSubject])
 
     useEffect(() => {
-        axios.get("http://localhost:7000/api/standard/", {
+        axios.get("api/standard/", {
             headers: {
                 Authorization: `Bearer ${isAuthenticated().token}`,
             },
@@ -111,7 +111,7 @@ const ClassRecords = () => {
                             </DropdownButton>
                         </Col>
                         <Col>
-                             <DropdownButton
+                            <DropdownButton
                                 title={dropdownSubject}
                                 onSelect={(e) => setSelectedSubject(e)}
                             >
@@ -130,11 +130,11 @@ const ClassRecords = () => {
                                     </Dropdown.Item>
                                 )}
                                 <Dropdown.Item key="" eventKey="" onSelect={() => {
-                                            setDropdownSubject("Select Subject");
-                                            setSelectedSubject("");
-                                        }
-                                        }>
-                                            Null
+                                    setDropdownSubject("Select Subject");
+                                    setSelectedSubject("");
+                                }
+                                }>
+                                    Null
                                 </Dropdown.Item>
                             </DropdownButton>
                         </Col>

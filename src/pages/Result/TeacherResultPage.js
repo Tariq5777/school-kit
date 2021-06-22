@@ -24,26 +24,19 @@ const TeacherResultPage = () => {
         const get_standard = () => {
             axios
                 .get("api/standard/", config)
-                .then((res) => {
-                    setStandard(res.data);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
+                .then(res => setStandard(res.data))
+                .catch(err => console.log(err.message));
         };
         get_standard();
     }, []);
 
     useEffect(() => {
-        if(selectedStandard === "" && selectedSection === ""){return}
-        else{
+        if (selectedStandard === "" && selectedSection === "") { return }
+        else {
             axios
                 .get(`api/marks/?standard=${selectedStandard}&section=${selectedSection}`, config)
-                .then(res => {
-                    setResults(res.data);
-                    console.log(results)
-                })
-                .catch(err => { console.log(err.message) })
+                .then(res => setResults(res.data))
+                .catch(err => console.log(err.message))
         }
     }, [selectedStandard])
 
@@ -52,49 +45,49 @@ const TeacherResultPage = () => {
             <Card>
                 <Card.Header>
 
-                <Row className="mx-2 my-2">
-                    <Col>
-                        <Typography variant="h4" >
+                    <Row className="mx-2 my-2">
+                        <Col>
+                            <Typography variant="h4" >
                                 Select Standard
 
-                        </Typography>
-                    </Col>
-                    <Col>
-                        <DropdownButton title={dropdownTitle}>
-                            {standard.map((std) => (
-                                <Dropdown.Item
-                                    value={std.standard + " " + std.section}
-                                    eventKey={std.id}
-                                    onSelect={(e) => {
-                                        setDropdownTitle(
-                                            std.standard + " " + std.section
-                                        );
-                                        setSelectedStandard(std.standard);
-                                        setSelectedSection(std.section);
-                                    }}
-                                >
-                                    {std.standard + " " + std.section}
-                                </Dropdown.Item>
-                            ))}
-                        </DropdownButton>
-                    </Col>
-                </Row>
+                            </Typography>
+                        </Col>
+                        <Col>
+                            <DropdownButton title={dropdownTitle}>
+                                {standard.map((std) => (
+                                    <Dropdown.Item
+                                        value={std.standard + " " + std.section}
+                                        eventKey={std.id}
+                                        onSelect={(e) => {
+                                            setDropdownTitle(
+                                                std.standard + " " + std.section
+                                            );
+                                            setSelectedStandard(std.standard);
+                                            setSelectedSection(std.section);
+                                        }}
+                                    >
+                                        {std.standard + " " + std.section}
+                                    </Dropdown.Item>
+                                ))}
+                            </DropdownButton>
+                        </Col>
+                    </Row>
                 </Card.Header>
                 <Row>
                     <Col>
                         <Table hover responsive striped bordered>
                             <thead>
                                 <tr>
-                                    {["Full Name", "First Term", "Second Term", "Total", "Standard"].map((text)=>(
-                                    <td key ={text}>
-                                        {text}
-                                    </td>
+                                    {["Full Name", "First Term", "Second Term", "Total", "Standard"].map((text) => (
+                                        <td key={text}>
+                                            {text}
+                                        </td>
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
-                                {results.map((data, key)=>(
-                                    <tr key= {key}>
+                                {results.map((data, key) => (
+                                    <tr key={key}>
                                         <td>{data.full_name}</td>
                                         <td>{data.first_term}</td>
                                         <td>{data.second_term}</td>
