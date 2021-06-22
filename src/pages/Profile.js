@@ -17,12 +17,9 @@ const Profile = () => {
         roll_no: 0,
         section: "",
         standard: 0,
+        profile_img: ""
     });
-    const history = useHistory();
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
     const { token } = isAuthenticated();
-    const [isPending, setIsPending] = useState(false);
 
     const classes = useStyles();
 
@@ -31,30 +28,9 @@ const Profile = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    // const handleChangePassword = (e) => {
-    //     const data = new FormData();
-    //     data.append("current_password", currentPassword);
-    //     data.append("new_password", newPassword);
-
-    //     e.preventDefault();
-    //     axios
-    //         .put("api/change_password/", data, config)
-    //         .then((res) => {
-    //             console.log(res.data.message);
-    //             setIsPending(true);
-    //             setTimeout(() => {
-    //                 history.push("/dashboard");
-    //             }, 1000)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.message);
-    //         });
-    // };
     useEffect(() => {
         axios
-            .get("api/profile/", {
-                headers: { Authorization: `Bearer ${isAuthenticated().token}` },
-            })
+            .get("api/profile/", config)
             .then((res) => setProfile({ ...res.data }));
     }, []);
 
@@ -65,20 +41,14 @@ const Profile = () => {
         setModalOpen(true);
     }
 
-    const modalBody = (
-        <div>
-
-        </div>
-    );
-
     return (
         <Container
             maxWidth="md"
             style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}>
             <div className="profile-image">
                 <Avatar
-                    alt="Remy Sharp"
-                    src={face4}
+                    alt="Profile Pic"
+                    src={profile.profile_img}
                     style={{ width: "100px", height: "100px", alignItems: "center", }}
                 />
                 <Card className="mt-5" style={{ width: '35rem', height: '70%' }}>
@@ -111,7 +81,7 @@ const Profile = () => {
                             }
                             <Button variant="primary" onClick={handlePasswordChange}>
                                 Change Password
-                          </Button>
+                            </Button>
                         </Form>
                         <Modal
                             open={modalOpen}
