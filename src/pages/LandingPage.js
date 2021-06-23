@@ -1,5 +1,4 @@
 import {
-    CssBaseline,
     Container,
     Typography,
     Button,
@@ -27,8 +26,7 @@ const LandingPage = () => {
 
 
     return (
-        <div>
-            <CssBaseline />
+        <div style ={{position:"relative"}}>
             <Container className="landing-page">
                 <div>
                     <img

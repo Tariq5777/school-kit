@@ -35,7 +35,7 @@ export default function Footer() {
             <footer
                 className={classes.footer}
                 style={{
-                    position: "relative",
+                    position: "absolute",
                     width: "100%",
                     bottom: 0,
                     top:"auto",

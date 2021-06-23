@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { isAuthenticated } from "../helper/auth/authUtils";
-import face4 from "../img/faces/face4.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ChangePassword from "./ChangePassword";
 const Profile = () => {

@@ -39,7 +39,7 @@ const App = () => {
         <Router>
             <UserStatusContext.Provider value={value}>
                 <Navbar />
-                <main style={{ marginTop: "1rem" }}>
+                <main style={{ marginTop: "1rem",position:"relative" }}>
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/download" component={Download} />

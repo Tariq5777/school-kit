@@ -37,7 +37,7 @@ const StudentDashboard = () => {
         tt: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" }
     })
     const [liveClass, setLiveClass] = useState([])
-
+    const [recentClasses, setRecentClasses] = useState([]);
     const { token } = isAuthenticated();
 
     const config = {
@@ -59,6 +59,7 @@ const StudentDashboard = () => {
             .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } }))
         axios.get("user/liveclass/", config)
             .then(res => setLiveClass(res.data))
+        axios.get('/extra/recent/', config).then(res => setRecentClasses(res.data))
     }, []);
 
     const schedule = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-1:00", "1:00-2:00", "2:00-3:00", "3:00-4:00"]
@@ -138,18 +139,34 @@ const StudentDashboard = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    {profile.acc_type === 1 && (
-                        <Card style={{ margin: "3rem 1rem" }}>
-                            <CardContent>
-                                <Typography variant="h4">
-                                    Recent Classes
-                                </Typography>
-                            </CardContent>
-                            <CardContent>
-                                <Typography variant="h4">User {profile.acc_type}</Typography>
-                            </CardContent>
-                        </Card>
-                    )}
+                    <Card  style={{ margin: "3rem 1rem 1rem 0" }}>
+                        <CardContent>
+                            <Typography variant="h4">Recent Classes</Typography>
+                        </CardContent>
+                        <CardContent>
+                            <TableContainer component={Paper} variant="outlined">
+                                <Table size="medium">
+                                    <TableHead>
+                                        <TableRow>
+                                            {["Meet ID", "Date", "Subject"].map((data, key) =>
+                                                <TableCell key={key}><Box fontWeight="fontWeightBold">{data}</Box></TableCell>
+                                            )}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {recentClasses.map(recent =>
+                                            <TableRow key={recent.id}>
+                                                <TableCell component="th" scope="row">{recent.meet_id}</TableCell>
+                                                <TableCell component="th" scope="row">{recent.date}</TableCell>
+                                                <TableCell component="th" scope="row">{recent.subject}</TableCell>
+                                            </TableRow>
+                                        )}
+
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </CardContent>
+                    </Card>
                 </Grid>
 
 
