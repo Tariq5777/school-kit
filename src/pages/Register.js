@@ -43,17 +43,19 @@ const Register = () => {
             .post("api/register/", data)
             .then((res) => {
                 setRegisterStatus(true);
-                console.log(res);
+                // console.log(res);
+                if(res.statusText==="Created"){
+                    <Redirect to="/login" />
+                }
             })
             .catch((error) => {
                 setError(true);
                 setErrorMessage(error.response.data.message);
-                console.log(error.response.data.message);
             });
     };
-    if (registerStatus) {
-        return setTimeout(() => <Redirect to="/login" />, 500)
-    }
+    // if (registerStatus) {
+    //     return setTimeout(() => <Redirect to="/login" />, 500)
+    // }
 
     return (
         <Grid container spacing={0}
@@ -180,6 +182,7 @@ const Register = () => {
                         </Grid>
                     </form>
                     {registerStatus && <Alert variant="success">Account Created successfully</Alert>}
+                    {registerStatus && <Redirect to="/login" />}
                     {error && <Alert variant="danger">{errorMessage}</Alert>}
                 </Card>
             </Grid>
