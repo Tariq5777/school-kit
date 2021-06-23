@@ -43,7 +43,12 @@ const UpdateTimetable = () => {
             .then((res) => {
                 setTimetable(res.data.timetable);
                 setIsPending(false);
-                console.log(timetable);
+                // Object.entries(timetable).map((row)=>{
+                //     console.log(row);
+                // });
+                // Object.entries(timetable).map(row=>{
+                //     console.log(row);
+                // })
             })
             .catch((err) => console.log(err.message));
     }, [sid]);
@@ -117,12 +122,14 @@ const UpdateTimetable = () => {
                             </thead>
                             <tbody>
                                 {Object.entries(timetable).map((row) => (
+                                
                                     <tr key={row[0]}>
                                         {Object.entries(timetable[row[0]]).map(
                                             (col, index) => (
                                                 <td key={index}>
                                                     {/*console.log(timetable[row[0]][col[0]])*/}
                                                     <select
+                                                        
                                                         key={col[0]}
                                                         onChange={(e) => {
                                                             var tt = {
@@ -142,9 +149,11 @@ const UpdateTimetable = () => {
                                                                     value={
                                                                         subject.subject
                                                                     }
+                                                                    selected={subject.subject==col[1]}
                                                                 >
                                                                     {
                                                                         subject["subject"]
+                                                                        // col[1]
                                                                     }
                                                                 </option>
                                                             )
