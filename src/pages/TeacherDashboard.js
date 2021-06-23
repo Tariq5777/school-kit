@@ -55,7 +55,7 @@ const TeacherDashboard = () => {
             Authorization: `Bearer ${token}`,
         },
     };
-    const url = "http://localhost:7000/api/profile/";
+    const url = "api/profile/";
 
     useEffect(() => {
         setTimeout(() => {
@@ -102,18 +102,18 @@ const TeacherDashboard = () => {
         >
 
             <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
-                    <CardContent>
-                    <Typography variant="h4" component="h4" style={{disply:"inline"}}>TimeTable Options</Typography>
-                    </CardContent>
-                    <CardContent className ="timetable-options">
-                        <Button onClick={()=>history.push("/timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>See Time Table</Button>
-                        <Button onClick={()=>history.push("/update-timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>Update Time Table</Button>
-                        <Button onClick={()=>history.push("/add-timetable")} variant="outlined" color="secondary" style={{disply:"inline"}}>Add Time Table</Button>
-                    </CardContent>
-                </Card>
-            </Grid>
+                <Grid item xs={12} md={6}>
+                    <Card elevation={2} raised={false} style={{ overflowX: "auto" }}>
+                        <CardContent>
+                            <Typography variant="h4" component="h4" style={{ disply: "inline" }}>TimeTable Options</Typography>
+                        </CardContent>
+                        <CardContent className="timetable-options">
+                            <Button onClick={() => history.push("/timetable")} variant="outlined" color="secondary" style={{ disply: "inline" }}>See Time Table</Button>
+                            <Button onClick={() => history.push("/update-timetable")} variant="outlined" color="secondary" style={{ disply: "inline" }}>Update Time Table</Button>
+                            <Button onClick={() => history.push("/add-timetable")} variant="outlined" color="secondary" style={{ disply: "inline" }}>Add Time Table</Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
                 <Grid item xs={12} md={6}>
                     <Card>
                         <CardContent>
@@ -144,20 +144,20 @@ const TeacherDashboard = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                    {profile.acc_type === 1 && 
+                {profile.acc_type === 1 &&
                     (
-                <Grid item xs={12} md={4}>
-                        <Card style={{ margin: "3rem 1rem" }}>
-                            <CardContent>
-                                <Typography variant="h4">
-                                    Recent Classes
-                                </Typography>
-                            </CardContent>
-                            <CardContent>
-                                <Typography variant="h4">User {profile.acc_type}</Typography>
-                            </CardContent>
-                        </Card>
-                </Grid>
+                        <Grid item xs={12} md={4}>
+                            <Card style={{ margin: "3rem 1rem" }}>
+                                <CardContent>
+                                    <Typography variant="h4">
+                                        Recent Classes
+                                    </Typography>
+                                </CardContent>
+                                <CardContent>
+                                    <Typography variant="h4">User {profile.acc_type}</Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     )}
             </Grid>
 

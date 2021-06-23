@@ -38,14 +38,14 @@ const TimeTablePage = () => {
 
     useEffect(() => {
         if (userType === 1) {
-            axios.get("http://localhost:7000/user/timetable/", config).then((res) => {
+            axios.get("user/timetable/", config).then((res) => {
                 setTimetable(res.data.timetable);
                 setIsPending(false);
             })
                 .catch((err) => console.log(err.message));
         } else {
             axios
-                .get(`http://localhost:7000/extra/timetable/${sid}`, config)
+                .get(`extra/timetable/${sid}`, config)
                 .then((res) => {
                     setTimetable(res.data.timetable);
                     setIsPending(false);
@@ -59,13 +59,9 @@ const TimeTablePage = () => {
     useEffect(() => {
         if (userType === 2) {
             axios
-                .get("http://localhost:7000/api/standard", config)
-                .then((res) => {
-                    setStandard(res.data);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
+                .get("api/standard", config)
+                .then(res => setStandard(res.data))
+                .catch(err => console.log(err.message));
         }
 
     }, []);
@@ -74,9 +70,9 @@ const TimeTablePage = () => {
 
     return (
         <Container>
-                    {userType === 2 && (
-            <Card>
-            {userType === 2 && <Card.Header>Get TimeTable</Card.Header>}
+            {userType === 2 && (
+                <Card>
+                    {userType === 2 && <Card.Header>Get TimeTable</Card.Header>}
                     <Card.Body>
                         <Row>
                             <Col>
@@ -103,8 +99,8 @@ const TimeTablePage = () => {
                             </Col>
                         </Row>
                     </Card.Body>
-            </Card>
-                    )}
+                </Card>
+            )}
             {!isPending && (
                 <Timetable timetable={timetable} schedule={schedule} />
             )}

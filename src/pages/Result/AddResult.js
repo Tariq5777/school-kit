@@ -22,7 +22,7 @@ const AddResult = () => {
             .then((res) => {
                 console.log(res.data);
             })
-            .catch((error) => { 
+            .catch((error) => {
                 console.log(error.message)
             });
     }
@@ -39,14 +39,14 @@ const AddResult = () => {
                     <Row>
                         <Col>
                             <Button className="mx-3" variant="primary"
-                                onClick={() => window.location.href = 'http://localhost:7000/media/files/Result.csv'}
+                                onClick={() => window.location.href = 'media/files/Result.csv'}
                             >Download .CSV File</Button>
                             <Button variant="primary"
-                                onClick={() => window.location.href = 'http://localhost:7000/media/files/Result.xlsx'}
+                                onClick={() => window.location.href = 'media/files/Result.xlsx'}
                             >Download .XLSX File</Button>
                         </Col>
                     </Row>
-                    <Form onSubmit={handleSubmit} className = "mx-3 my-3">
+                    <Form onSubmit={handleSubmit} className="mx-3 my-3">
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Upload Result File</Form.Label>
                             <Form.Control

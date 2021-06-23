@@ -16,21 +16,18 @@ const StudentResult = () => {
         standard: ""
     })
 
-    
+
     useEffect(() => {
         axios
             .get('api/result/', { headers: { Authorization: `Bearer ${isAuthenticated().token}` } })
-            .then(res => {
-                setResult({ ...res.data })
-                // console.log(result)
-            })
-            .catch(err => { console.log(err.message) })
+            .then(res => setResult({ ...res.data }))
+            .catch(err => console.log(err.message))
     }, [])
 
     const printResult = (e) => {
         window.print();
     }
-    
+
 
     return (
         <Container>
@@ -43,7 +40,7 @@ const StudentResult = () => {
                         <Col className="font-weight-bold h4">{result.full_name}</Col>
                         <Col className="font-weight-bold h4">Standard {result.standard}</Col>
                     </Row>
-                    <Table striped bordered hover id="printData"> 
+                    <Table striped bordered hover id="printData">
                         <thead>
                             <tr>
                                 <th>First Term</th>

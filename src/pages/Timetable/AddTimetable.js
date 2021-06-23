@@ -27,7 +27,7 @@ const AddTimetable = () => {
     const [ttStandard, setTTStandard] = useState(0)
     const [standard, setStandard] = useState([])
     const [subjects, setSubject] = useState([])
-    
+
     const schedule = [
         "8:00 - 9:00",
         "9:00 - 10:00",
@@ -48,10 +48,7 @@ const AddTimetable = () => {
             standard: ttStandard,
             timetable: timetable
         }
-        console.log(data)
-        //TODO: SEND POST REQUEST TO ADD TIMETABLE
-
-        axios.post(`http://localhost:7000/extra/timetable/`, data, config)
+        axios.post(`extra/timetable/`, data, config)
             .then((res) => {
                 console.log(res.data);
             })
@@ -131,7 +128,7 @@ const AddTimetable = () => {
                                                                     {subject.subject}
                                                                 </option>
                                                             )}
-                                                        </select>   
+                                                        </select>
                                                     </td>
                                                 )}
                                             </tr>

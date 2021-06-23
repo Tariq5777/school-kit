@@ -48,7 +48,7 @@ const StudentDashboard = () => {
     const url = "api/profile/"
 
     useEffect(() => {
-        axios.get(url, config).then((res) => {
+        axios.get(url, config).then(res => {
             const { acc_type, full_name, email, roll_no, section, standard, } = res.data;
             setProfile({ acc_type, full_name, email, roll_no, section, standard, });
             setIsPending(false);
