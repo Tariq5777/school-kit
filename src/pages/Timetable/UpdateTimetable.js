@@ -49,21 +49,21 @@ const UpdateTimetable = () => {
         },
     };
 
-    // const update=(e)=>{
-    //     e.preventDefault();
-    //     const data = {
-    //         standard: sid,
-    //         timetable: timetable
-    //     }
-    //     axios.post(`extra/timetable/`, data, config)
-    //     .then((res) => {
-    //         console.log(res.data);
-    //         setStatusMessage("Timetable updated Successfully!");
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.message);
-    //     })
-    // }
+    const update=(e)=>{
+        e.preventDefault();
+        const data = {
+            standard: sid,
+            timetable: timetable
+        }
+        axios.post(`extra/timetable/`, data, config)
+        .then((res) => {
+            console.log(res.data);
+            setStatusMessage("Timetable updated Successfully!");
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
+    }
     var alert_css={};
     useEffect(() => {
        if(sid!=0){
@@ -94,24 +94,6 @@ const UpdateTimetable = () => {
         axios.get("api/subjects/", config).then(res => setSubject(res.data));
     }, []);
 
-
-    // Use This function for update time table
-
-    const updateTimetable = (e) => {
-        e.preventDefault();
-        const data = {
-            timetable: timetable,
-        };
-        axios
-            .put(`http://localhost:7000/extra/timetable/${sid}/`, data, config)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
-    };
-
     return (
         <Container>
             <h1>Update Timetable</h1>
@@ -138,7 +120,7 @@ const UpdateTimetable = () => {
                     </DropdownButton>
                 </Col>
                 <Col>
-                    {timetable_not_null && <Button onClick={updateTimetable} className="mx-3" variant="success">
+                    {timetable_not_null && <Button onClick={update} className="mx-3" variant="success">
                         Update
                     </Button>}
                 </Col>
