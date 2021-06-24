@@ -38,7 +38,8 @@ const TeacherAttendancePage = () => {
                 <Card.Body>
                     {!open && <Card.Title> <Typography variant="h3" color="primary">
                         Attendance
-                    </Typography>
+                    </Typography><br/>
+                    <h4>Classes</h4><br/>
                     </Card.Title>}
                     {open && <Card.Title onClick={() => setOpen(!open)} style={{ cursor: "pointer" }}>
                         <Typography variant="h3" color="secondary">

@@ -7,7 +7,15 @@ import { Link } from 'react-router-dom'
 import { Redirect } from "react-router";
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { Alert } from "react-bootstrap";
-
+const custom_css=`
+.MuiDrawer-root.MuiDrawer-docked.makeStyles-drawer-6{
+    display:none !important;
+}
+.makeStyles-appBarShift-3{
+    width:100%;
+    margin-left:0;
+}
+`
 const Register = () => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -186,6 +194,7 @@ const Register = () => {
                     {error && <Alert variant="danger">{errorMessage}</Alert>}
                 </Card>
             </Grid>
+            <style>{custom_css}</style>
         </Grid>
     );
 };

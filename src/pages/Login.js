@@ -6,7 +6,15 @@ import { Redirect } from "react-router";
 import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from '../helper/UserStatusContext'
 import { Alert } from "react-bootstrap";
-
+const custom_css=`
+.MuiDrawer-root.MuiDrawer-docked.makeStyles-drawer-6{
+    display:none !important;
+}
+.makeStyles-appBarShift-3{
+    width:100%;
+    margin-left:0;
+}
+`
 const Login = ({ history }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -110,7 +118,9 @@ const Login = ({ history }) => {
 
                 </Card>
             </Grid>
+            <style>{custom_css}</style>
         </Grid>
+        
     );
 };
 

@@ -7,6 +7,7 @@ import {
     Typography,
     Button
 } from "@material-ui/core";
+
 import { isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from "../helper/UserStatusContext";
 import { useContext, useState, useEffect } from "react";
@@ -23,6 +24,7 @@ import { Row, Col } from 'react-bootstrap'
 
 
 const TeacherDashboard = () => {
+    
     const [isPending, setIsPending] = useState(true);
     const { user, setUser } = useContext(UserStatusContext);
     const [profile, setProfile] = useState({

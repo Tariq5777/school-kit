@@ -12,15 +12,27 @@ import {
 import Timetable from "../../components/Timetable";
 import { isAuthenticated } from "../../helper/auth/authUtils";
 
+const footer_styles=`
+.makeStyles-footer-13{
+    position:relative !important;
+    margin-top:95vh;
+    margin-bottom:0;
+}
+.form-select.form-select-lg.mb-3{
+    border:none;
+    padding:3px;
+}
+`;
+
 const UpdateTimetable = () => {
     const [timetable, setTimetable] = useState({});
     const [sid, setSID] = useState(0);
     const [standard, setStandard] = useState([]);
     const [subjects, setSubject] = useState([]);
     const [isPending, setIsPending] = useState(true);
-
+    const [timetable_not_null, setTimetableValue]=useState(false);
     const [dropdownTitle, setDropdownTitle] = useState("Select Standard");
-
+    const [status_message, setStatusMessage] = useState("");
     const schedule = [
         "8:00 - 9:00",
         "9:00 - 10:00",
@@ -37,15 +49,49 @@ const UpdateTimetable = () => {
         },
     };
 
+    const update=(e)=>{
+        e.preventDefault();
+        const data = {
+            standard: sid,
+            timetable: timetable
+        }
+        axios.post(`extra/timetable/`, data, config)
+        .then((res) => {
+            console.log(res.data);
+            setStatusMessage("Timetable updated Successfully!");
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
+    }
+    var alert_css={};
     useEffect(() => {
+       if(sid!=0){
         axios
-            .get(`extra/timetable/${sid}`, config)
-            .then(res => {
+        .get(`extra/timetable/${sid}`, config)
+        .then(res => {
+            if(res.data.timetable!==null && res.data.timetable!==undefined){
                 setTimetable(res.data.timetable);
+                setTimetableValue(true);
                 setIsPending(false);
+                setStatusMessage("Timetable found!");
+               
+            }
+       
+                
+            
 
-            })
-            .catch(err => console.log(err.message));
+        })
+        .catch(
+            err => {
+                console.log(err.message);
+                setTimetable({});
+                setIsPending(true);
+                setTimetableValue(false);
+                setStatusMessage("An error occured. Try again!")
+                
+                                });
+       }
     }, [sid]);
 
     useEffect(() => {
@@ -70,6 +116,9 @@ const UpdateTimetable = () => {
 
     return (
         <Container>
+            <h1>Update Timetable</h1>
+            <p>Choose a standard and update the time table. After update, click on the Update button.</p>
+            <p style={{color:timetable_not_null?"darkgreen":"red", fontSize:"16px", fontWeight:"bold"}}>{status_message}</p>
             <Row>
                 <Col>
                     <DropdownButton title={dropdownTitle}>
@@ -77,6 +126,7 @@ const UpdateTimetable = () => {
                             <Dropdown.Item
                                 value={std.standard + " " + std.section}
                                 eventKey={std.id}
+                                
                                 onSelect={(e) => {
                                     setDropdownTitle(
                                         std.standard + " " + std.section
@@ -90,9 +140,9 @@ const UpdateTimetable = () => {
                     </DropdownButton>
                 </Col>
                 <Col>
-                    <Button className="mx-3" variant="success">
+                    {timetable_not_null && <Button onClick={update} className="mx-3" variant="success">
                         Update
-                    </Button>
+                    </Button>}
                 </Col>
             </Row>
             <Row>
@@ -168,6 +218,7 @@ const UpdateTimetable = () => {
                     )}
                 </Col>
             </Row>
+            <style>{footer_styles}</style>
         </Container>
     );
 };

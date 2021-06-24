@@ -18,7 +18,10 @@ const Attendance = ({ attendance }) => {
             <Card>
                 <CardContent style= {{textAlign:"center"}}>
                     <Typography variant="h3">Attendance</Typography>
+                    <Typography variant="h4">Classes</Typography>
+                   
                 </CardContent>
+              
                 <CardContent>
                     <TableContainer>
                         <Table size="small">

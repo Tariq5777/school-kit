@@ -14,6 +14,33 @@ import SchoolKitLogo from "../img/School Kit - logo/default-monochrome.png";
 import ChromeIcon from "../img/google-chrome-icon.png";
 // import { Link } from "react-router-dom";
 
+
+const button_styles={
+    color:"crimson",
+    border:"1px solid crimson",
+    padding:"10px",
+    fontWeight:"bold",
+    borderRadius:"5px",
+    marginTop:"5px",
+    position:"absolute",
+    marginLeft:"-20px"
+
+}
+
+const custom_css=`
+.MuiDrawer-root.MuiDrawer-docked.makeStyles-drawer-6{
+    display:none !important;
+}
+.makeStyles-appBarShift-3{
+    width:100%;
+    margin-left:0;
+}
+.makeStyles-footer-13{
+    position:relative !important;
+    margin-bottom:0;
+}
+`
+
 const LandingPage = () => {
     const { user, setUser } = useContext(UserStatusContext);
 
@@ -49,10 +76,10 @@ const LandingPage = () => {
                         amount of features that can handle their study’s basic
                         needs and regularities.
                     </Typography>
-                    <Button color="secondary" variant="outlined" style={{ marginTop: "2rem" }}>Learn More</Button>
+                    <a href="#learnmore" color="secondary" variant="outlined" style={button_styles}>Learn More</a>
                 </div>
             </Container>
-            <Container className="why-school-kit" maxWidth="md">
+            <Container className="why-school-kit" maxWidth="md" id="learnmore">
                 <div className="content">
                     <Typography
                         variant="h1"
@@ -137,7 +164,9 @@ const LandingPage = () => {
                     </List>
                 </div>
             </Container>
+            <style>{custom_css}</style>
         </div>
+        
     );
 };
 
