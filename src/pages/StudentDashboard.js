@@ -59,7 +59,14 @@ const StudentDashboard = () => {
             .then((response) => setTimetable({ day: response.data.day, tt: { ...response.data.timetable } }))
         axios.get("user/liveclass/", config)
             .then(res => setLiveClass(res.data))
-        axios.get('/extra/recent/', config).then(res => setRecentClasses(res.data))
+        axios
+            // Recent Classes Not Working In Student
+            .get('extra/recent/', config)
+            .then(res => {
+                setRecentClasses(res.data)
+                console.log(res.data)
+            })
+            .catch(err => console.log(err.response.status))
     }, []);
 
     const schedule = ["8:00 - 9:00", "9:00 - 10:00", "10:00 - 11:00", "11:00-12:00", "12:00-1:00", "1:00-2:00", "2:00-3:00", "3:00-4:00"]

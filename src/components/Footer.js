@@ -35,6 +35,7 @@ export default function Footer() {
             <footer
                 className={classes.footer}
                 style={{
+                    // Footer Not Working Properly
                     position: "absolute",
                     width: "100%",
                     bottom: 0,

@@ -99,17 +99,13 @@ const Navbar = () => {
         }
     }, []);
 
-    const handleLogout = (e) => {
-        localStorage.removeItem("userInfo");
-        setUser(false);
-        return <Redirect to="/" />;
-    };
-
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
+    
+    // Sidebar open at login/register also fix here
+    const [open, setOpen] = useState(true)
 
-    const handleDrawerOpen = () => {
+    const handleDrawerOpen = () => {    
         setOpen(true);
     };
 

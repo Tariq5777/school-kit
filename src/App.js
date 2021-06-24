@@ -10,6 +10,7 @@ import { useState, useMemo } from "react";
 import { UserStatusContext } from './helper/UserStatusContext';
 import PrivateRoute from "./helper/auth/PrivateRoute";
 import TeacherRoute from './helper/auth/TeacherRoute';
+import StudentRoute from './helper/auth/StudentRoute';
 import TeacherDashboard from "./pages/TeacherDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import Profile from "./pages/Profile";
@@ -31,7 +32,7 @@ import AddResult from "./pages/Result/AddResult";
 
 
 const App = () => {
-
+    
     const [user, setUser] = useState(false);
     const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
@@ -40,30 +41,30 @@ const App = () => {
             <UserStatusContext.Provider value={value}>
                 <Navbar />
                 <main style={{ marginTop: "1rem",position:"relative" }}>
+
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/download" component={Download} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword} />
-                    <PrivateRoute exact path="/dashboard" component={StudentDashboard} />
+                    <StudentRoute exact path="/dashboard" component={StudentDashboard} />
                     <TeacherRoute exact path="/teacher-dashboard" component={TeacherDashboard} />
                     <PrivateRoute exact path="/change-password" component={ChangePassword} />
                     <TeacherRoute exact path="/add-timetable" component={AddTimetable} />
                     <TeacherRoute exact path="/update-timetable" component={UpdateTimetable} />
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
-                    <PrivateRoute exact path="/query" component={Query} />
+                    <StudentRoute exact path="/query" component={Query} />
                     <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
                     <TeacherRoute exact path="/meet-summary" component={MeetSummary} />
                     <TeacherRoute exact path="/class-records" component={ClassRecords} />
-                    <PrivateRoute exact path="/students-attendance" component={TeacherAttendancePage} />
+                    <TeacherRoute exact path="/students-attendance" component={TeacherAttendancePage} />
                     {/* <PrivateRoute exact path="/assignment" component={StudentAssignmentPage} />
                     <PrivateRoute exact path="/evaluate-assignment" component={EvaluateAssignment} />
                     <PrivateRoute exact path="/create-assignment" component={CreateAssignment} /> */}
-                    <PrivateRoute exact path="/result" component={StudentResult} />
+                    <StudentRoute exact path="/result" component={StudentResult} />
                     <TeacherRoute exact path="/teacher-results" component={TeacherResultPage} />
                     <TeacherRoute exact path="/add-result" component={AddResult} />
-
                 </main>
             </UserStatusContext.Provider>
             <Footer />
