@@ -55,7 +55,7 @@ const App = () => {
                     <PrivateRoute exact path="/timetable" component={TimeTablePage} />
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <StudentRoute exact path="/query" component={Query} />
-                    <PrivateRoute exact path="/attendance" component={AttendanceDisplayPage} />
+                    <StudentRoute exact path="/attendance" component={AttendanceDisplayPage} />
                     <TeacherRoute exact path="/meet-summary" component={MeetSummary} />
                     <TeacherRoute exact path="/class-records" component={ClassRecords} />
                     <TeacherRoute exact path="/students-attendance" component={TeacherAttendancePage} />

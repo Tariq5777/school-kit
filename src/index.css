@@ -73,6 +73,12 @@ ul {
   transition: height var(--speed) ease;
 }
 
+@media screen and (max-width: 358px) {
+  .drop-items{
+    width:170px;
+    right:auto;
+  }
+}
 .menu-items {
   display: flex;
   flex-direction: column;

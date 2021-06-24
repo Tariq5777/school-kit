@@ -16,7 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import image from "../img/SK-logo/default-monochrome-sk.png";
+import image from "../img/School-Kit-Logo.png";
 import DrawerItems2 from "./DrawerItems";
 import NavItems from "./NavItems";
 import DropdownMenu from "./DropdownMenu";
@@ -146,7 +146,7 @@ const Navbar = () => {
                         <Link to="/">
                             <img
                                 src={image}
-                                style={{ width: "80px" }}
+                                style={{ width: "150px" }}
                                 alt="school-kit-logo"
                             />
                         </Link>

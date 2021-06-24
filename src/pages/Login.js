@@ -6,6 +6,7 @@ import { Redirect } from "react-router";
 import { authenticate, isAuthenticated } from "../helper/auth/authUtils";
 import { UserStatusContext } from '../helper/UserStatusContext'
 import { Alert } from "react-bootstrap";
+
 const custom_css=`
 .MuiDrawer-root.MuiDrawer-docked.makeStyles-drawer-6{
     display:none !important;
