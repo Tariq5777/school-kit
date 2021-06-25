@@ -31,7 +31,7 @@ const TeacherAttendancePage = () => {
             .then(res => { setMeetAttendance(res.data) })
             .catch(err => { console.log(err.message) })
     }, [meetId]);
-
+    document.title = "Attendance";
     return (
         <Container>
             <Card>

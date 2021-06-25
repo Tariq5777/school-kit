@@ -20,7 +20,7 @@ const ForgotPassword = () => {
                 console.log(err.message);
             })
     };
-
+    document.title = "Forgot Password";
 
 
     return (

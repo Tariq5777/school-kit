@@ -27,7 +27,7 @@ const Login = ({ history }) => {
         loading: false,
         didRedirect: false
     })
-
+    document.title = "Login";
     const { error, loading, didRedirect } = values;
 
     if (isAuthenticated() && isAuthenticated().user_type === 1) {

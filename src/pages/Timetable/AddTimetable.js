@@ -66,7 +66,7 @@ const AddTimetable = () => {
         axios.get("api/standard/", config).then(res =>
             setStandard(res.data))
     }
-
+    document.title = "Add Timetable";
     const get_subject = () => {
         axios.get("api/subjects/", config).then(res =>
             setSubject(res.data))

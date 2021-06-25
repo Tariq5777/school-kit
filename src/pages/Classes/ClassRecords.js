@@ -80,8 +80,7 @@ const ClassRecords = () => {
             },
         }).then((res) => setSubjects(res.data));
     }, []);
-
-
+    document.title = "Class Records";
     return (
         <Container>
             <Card>

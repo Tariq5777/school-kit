@@ -46,6 +46,7 @@ const StudentDashboard = () => {
         },
     };
     const url = "api/profile/"
+    document.title = "Dashboard";
 
     useEffect(() => {
         axios.get(url, config).then(res => {

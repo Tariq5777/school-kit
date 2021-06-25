@@ -38,7 +38,7 @@ const TeacherDashboard = () => {
         standard: "",
         section: ""
     })
-
+    document.title = "Dashboard";
     const schedule = [
         "8:00 - 9:00",
         "9:00 - 10:00",

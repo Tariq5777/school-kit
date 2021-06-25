@@ -14,7 +14,7 @@ const AttendanceDisplayPage = () => {
             })
     }, [])      
 
-
+    document.title = "Attendance";
     return (
         <div>
             <Attendance attendance={attendance} />

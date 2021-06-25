@@ -4,30 +4,37 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { isAuthenticated } from "../../helper/auth/authUtils";
-import ModalView from "../../components/ModalView";
+import SummaryModal from "../../components/SummaryModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TranscriptModal from "../../components/TranscriptModal";
 const MeetSummary = () => {
 
     const [open, setOpen] = useState(false);
     const [data, setData] = useState({ title: "", transcript: "" })
     const [meetTableData, setMeetTableData] = useState([]);
-
+    const [transcript, setTranscript] = useState([]);
+    const [openT,setOpenT] = useState(false);
+    const config = {
+        headers: {
+            Authorization: `Bearer ${isAuthenticated().token}`,
+        },
+    };
     useEffect(() => {
-        axios.get('/extra/meetsummary/', { headers: { Authorization: `Bearer ${isAuthenticated().token}` } }).then(res =>
+        axios.get('/extra/meetsummary/', config).then(res =>
             setMeetTableData(res.data))
     }, [])
 
 
-    const getTranscript = (id, meet_id) => {
-        axios.get(`extra/meetsummary/t/${id}`, { headers: { Authorization: `Bearer ${isAuthenticated().token}` } }).then(res => {
-            setData({ title: meet_id, transcript: res.data.transcript })
-            setOpen(true)
-
+    const getTranscript = (id) => {
+        axios.get(`extra/meetsummary/t/${id}`, config).then(res => {
+            const data = JSON.parse(res.data.transcript)
+            setTranscript(data)
+            setOpenT(true)
         })
     }
 
     const getSummary = (id, meet_id) => {
-        axios.get(`extra/meetsummary/s/${id}`, { headers: { Authorization: `Bearer ${isAuthenticated().token}` } }).then(res => {
+        axios.get(`extra/meetsummary/s/${id}`, config).then(res => {
             setData({ title: meet_id, transcript: res.data.summary })
             setOpen(true)
         })
@@ -35,8 +42,10 @@ const MeetSummary = () => {
 
     return (
         <Container maxWidth="md">
-            <ModalView data={data} open={open} onClose={() => setOpen(false)}>
-            </ModalView>
+            <SummaryModal data={data} open={open} onClose={() => setOpen(false)}>
+            </SummaryModal>
+            <TranscriptModal data = {transcript} open={openT} onClose={() => setOpenT(false)}>
+            </TranscriptModal>
             <Card>
                 <CardContent style={{ textAlign: "center" }}>
                     <Typography variant="h3">Meet Summary</Typography>
@@ -69,7 +78,7 @@ const MeetSummary = () => {
                                         <TableCell className="text-center">{data.standard} {data.section}</TableCell>
                                         <TableCell className="text-center">{data.date}</TableCell>
                                         <TableCell style={{ display: "flex", justifyContent: "center" }}>
-                                            <Button onClick={() => { getTranscript(data.id, data.meet_id); }}
+                                            <Button onClick={() => { getTranscript(data.id); }}
                                                 color="primary"
                                                 variant="contained"
                                                 style={{ margin: " 0 1rem", }}>
@@ -85,19 +94,6 @@ const MeetSummary = () => {
                                     </TableRow>
                                 ))}
                             </TableBody>
-                            <TableFooter>
-                                <TableRow>
-                                    <TableCell>
-                                        Table Footer
-                                   </TableCell>
-                                    <TableCell>
-                                        Table Footer
-                                   </TableCell>
-                                    <TableCell>
-                                        Table Footer
-                                   </TableCell>
-                                </TableRow>
-                            </TableFooter>
                         </Table>
                     </TableContainer>
                 </CardContent>

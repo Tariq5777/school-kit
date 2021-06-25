@@ -41,6 +41,7 @@ const custom_css=`
 }
 `
 
+document.title = "School Kit";
 const LandingPage = () => {
     const { user, setUser } = useContext(UserStatusContext);
 

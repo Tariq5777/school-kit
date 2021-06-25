@@ -28,7 +28,7 @@ const Register = () => {
     const [registerStatus, setRegisterStatus] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-
+    document.title = "Register";
     if (isAuthenticated()) {
         return <Redirect to="/" />;
     }

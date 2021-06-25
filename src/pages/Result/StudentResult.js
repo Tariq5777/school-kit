@@ -27,7 +27,7 @@ const StudentResult = () => {
     const printResult = (e) => {
         window.print();
     }
-
+    document.title = "Result";
 
     return (
         <Container>

@@ -19,7 +19,7 @@ const TeacherResultPage = () => {
             Authorization: `Bearer ${isAuthenticated().token}`,
         },
     };
-
+    document.title = "Results";
     useEffect(() => {
         const get_standard = () => {
             axios

@@ -39,7 +39,7 @@ const Profile = () => {
 
         setModalOpen(true);
     }
-
+    document.title = "Profile";
     return (
         <Container
             maxWidth="md"

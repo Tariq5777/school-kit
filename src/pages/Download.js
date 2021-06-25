@@ -12,6 +12,21 @@ import {
 import chromeLogo from "../img/google-chrome-icon.png";
 
 const Download = () => {
+    const custom_css = `
+.MuiDrawer-root.MuiDrawer-docked.makeStyles-drawer-6{
+    display:none !important;
+}
+.makeStyles-appBarShift-3{
+    width:100%;
+    margin-left:0;
+}
+.makeStyles-footer-13{
+    position:relative !important;
+    margin-bottom:0;
+}
+`;
+
+    document.title = "Download Extension";
     return (
         <Container maxWidth="md" className="download-extension">
             <Typography variant="h2" style={{ color: "#333333" }}>
@@ -68,6 +83,7 @@ const Download = () => {
                     </Card>
                 </Grid>
             </Grid>
+            <style>{custom_css}</style>
         </Container>
     );
 };

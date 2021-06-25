@@ -15,7 +15,7 @@ const Query = () => {
     const [query, setQuery] = useState("");
 
     const handleSendQuery = () => {};
-
+    document.title = "Query";
     return (
         <Container maxWidth="sm">
             <Card>

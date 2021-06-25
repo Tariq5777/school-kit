@@ -88,7 +88,7 @@ const UpdateTimetable = () => {
         })
     }
     }, [sid]);
-
+    document.title = "Update Timetable";
     useEffect(() => {
         axios.get("api/standard/", config).then(res => setStandard(res.data));
         axios.get("api/subjects/", config).then(res => setSubject(res.data));

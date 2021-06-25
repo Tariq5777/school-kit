@@ -1,7 +1,7 @@
 import { makeStyles, Modal, Fade, Backdrop } from '@material-ui/core'
 import { Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-const ModalView = ({ data, open, onClose }) => {
+const SummaryModal = ({ data, open, onClose }) => {
     const classes = useStyles();
 
     return (
@@ -20,7 +20,7 @@ const ModalView = ({ data, open, onClose }) => {
                 }}>
                     <Card.Header as="h2" >{data.title}</Card.Header>
                     <Card.Body>
-                        <Card.Title></Card.Title>
+                        <Card.Title>ABC</Card.Title>
                         <Card.Text>
                             <h5>{data.transcript}</h5>
                         </Card.Text>
@@ -33,7 +33,7 @@ const ModalView = ({ data, open, onClose }) => {
     )
 }
 
-export default ModalView
+export default SummaryModal
 
 const useStyles = makeStyles((theme) => ({
     modal: {

@@ -26,7 +26,7 @@ const AddResult = () => {
                 console.log(error.message)
             });
     }
-
+    document.title = "Add Result";
 
     return (
         <Container>
