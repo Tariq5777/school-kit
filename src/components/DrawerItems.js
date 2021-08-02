@@ -38,10 +38,10 @@ export default function DrawerItems2({ userType }) {
     const [open, setOpen] = React.useState(false);
     const [timeTable, setTimeTable] = useState(false);
     const [assignmentOpen, setAssignmentOpen] = useState(false);
-    const [resultOpen,setResultsOpen] = useState(false);
+    const [resultOpen, setResultsOpen] = useState(false);
     const [attendance, setAttendance] = useState(false);
 
-    const handleResult = () =>{
+    const handleResult = () => {
         setResultsOpen(!resultOpen);
     }
 
@@ -73,7 +73,6 @@ export default function DrawerItems2({ userType }) {
         },
         { title: "Result", link: "result", icon: <SchoolIcon /> },
         { title: "Send Query", link: "query", icon: <AddIcon /> },
-        { title: "Download Extension", link: "download", icon: <GetAppIcon /> },
     ];
 
     return (
@@ -169,7 +168,7 @@ export default function DrawerItems2({ userType }) {
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested} onClick={() => history.push("/add-result")}>
                                 <ListItemIcon>
-                                    <AddIcon/>
+                                    <AddIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Add Result" />
                             </ListItem>

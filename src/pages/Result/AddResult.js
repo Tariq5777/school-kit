@@ -39,10 +39,10 @@ const AddResult = () => {
                     <Row>
                         <Col>
                             <Button className="mx-3" variant="primary"
-                                onClick={() => window.location.href = 'media/files/Result.csv'}
+                                onClick={() => window.location.href = 'http://localhost:7000/media/files/Result.csv'}
                             >Download .CSV File</Button>
                             <Button variant="primary"
-                                onClick={() => window.location.href = 'media/files/Result.xlsx'}
+                                onClick={() => window.location.href = 'http://localhost:7000/media/files/Result.xlsx'}
                             >Download .XLSX File</Button>
                         </Col>
                     </Row>

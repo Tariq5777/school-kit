@@ -20,7 +20,7 @@ const SummaryModal = ({ data, open, onClose }) => {
                 }}>
                     <Card.Header as="h2" >{data.title}</Card.Header>
                     <Card.Body>
-                        <Card.Title>ABC</Card.Title>
+                        {/*<Card.Title>Summary</Card.Title>*/}
                         <Card.Text>
                             <h5>{data.transcript}</h5>
                         </Card.Text>
